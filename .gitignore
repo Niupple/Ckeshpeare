@@ -1,0 +1,8 @@
+Debug
+Release
+Ckeshpeare/Debug/*
+Ckeshpeare/Release/*
+*.vcxproj
+*.vcxproj.filters
+*.vcxproj.user
+.vs
