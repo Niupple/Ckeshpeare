@@ -45,6 +45,22 @@ namespace dyj {
         }
     }
 
+    bool Token::is_relation(Token *_t) {
+        if (!_t) {
+            return false;
+        }
+        switch (_t->get_type()) {
+        case Token::LSS:
+        case Token::LEQ:
+        case Token::GRE:
+        case Token::GEQ:
+        case Token::NEQ:
+        case Token::EQL:
+            return true;
+        }
+        return false;
+    }
+
     Token::Token() {
         type = Token::DEFAULT;
     }

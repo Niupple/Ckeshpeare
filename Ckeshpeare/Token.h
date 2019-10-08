@@ -45,6 +45,7 @@ namespace dyj {
             RBRACE
         };
         static std::string type_to_string(Type);
+        static bool is_relation(Token *_t);
 
         Token();
         Token(Type _type, const std::string &_content);
