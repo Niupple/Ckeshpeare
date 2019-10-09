@@ -1,0 +1,6 @@
+int gg;
+void main() {
+	const int a = 10;
+	const int b = 1, c = 2;
+	printf(" !#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\]^_`abcdefghijklmnopqrstuvwxyz{|}~");
+}

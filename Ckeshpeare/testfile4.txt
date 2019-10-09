@@ -1,0 +1,28 @@
+const int ccc = 100;
+int ddd;
+
+void add(int a) {
+
+}
+
+int add2(int b) {
+	return (b);
+}
+
+char add3(int c) {
+	char qaq;
+	qaq = '_';
+	return (qaq);
+}
+
+void main() {
+	const int con = +10;
+	int a, b, c;
+	a = 0;
+	b = a;
+	c = a + b;
+	add(a);
+	add2(b);
+	add3(c);
+	return ;
+}

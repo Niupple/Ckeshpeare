@@ -6,7 +6,7 @@ namespace dyj {
     Tokenizer::Tokenizer() : cur(0) {}
 
     Tokenizer Tokenizer::InitCTokenizer::get_cTokenizer() {
-        DP("get_cTokenizer is called\n");
+        //DP("get_cTokenizer is called\n");
         Tokenizer ct;
         vector<MatcherBase *> &mat = ct.matchers;
         mat.push_back(new IntConstantMatcher());
@@ -45,17 +45,17 @@ namespace dyj {
         mat.push_back(new KeywordMatcher("{", Token::LBRACE));
         mat.push_back(new KeywordMatcher("}", Token::RBRACE));
         mat.push_back(new IdentifierMatcher());
-        DP("mat len is %u\n", ct.matchers.size());
+        //DP("mat len is %u\n", ct.matchers.size());
         return std::move(ct);
     }
 
     void Tokenizer::feed(const string &_content) {
         content = _content;
-        DP("cTokenizer has a vector of length %u\n", matchers.size());
+        //DP("cTokenizer has a vector of length %u\n", matchers.size());
     }
 
     Token *Tokenizer::get_token(void) {
-        DP("IN get_token:\n");
+        //DP("IN get_token:\n");
         skip_spaces();
         clear();
         do {
@@ -63,7 +63,7 @@ namespace dyj {
         } while (!time_to_get());
         Token *ret = retrive_token();
         if (ret) {
-            DP("got token : %s", ret->to_string().c_str());
+            //DP("got token : %s", ret->to_string().c_str());
         }
         return ret;
     }
@@ -86,12 +86,12 @@ namespace dyj {
 
     void Tokenizer::push(void) {
         for (auto p = possible.begin(); p != possible.end(); ) {
-            DP("push %c to %u, ", peek(), *p);
+            //DP("push %c to %u, ", peek(), *p);
             if (matchers[*p]->feed(peek()) == MatcherBase::FAILED) {
-                DP("Failed\n");
+                //DP("Failed\n");
                 p = possible.erase(p);
             } else {
-                DP("OKed\n");
+                //DP("OKed\n");
                 ++p;
             }
         }
@@ -126,14 +126,14 @@ namespace dyj {
     }
 
     bool Tokenizer::time_to_get(void) {
-        DP("checking time to get:\n");
+        //DP("checking time to get:\n");
         if (peek() == EOF) {
             return true;
         } else {
             for (auto p = possible.begin(); p != possible.end(); ++p) {
-                DP("peeking %u:\n", *p);
+                //DP("peeking %u:\n", *p);
                 if(matchers[*p]->peek(peek()) != MatcherBase::FAILED) {
-                    DP("peeking %u, not failed\n", *p);
+                    //DP("peeking %u, not failed\n", *p);
                     return false;
                 }
             }

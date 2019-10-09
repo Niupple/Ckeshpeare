@@ -1,4 +1,4 @@
-#include "Token.h"
+﻿#include "Token.h"
 
 namespace dyj {
     std::string Token::type_to_string(Type _type) {
@@ -76,7 +76,7 @@ namespace dyj {
     }
 
     std::string Token::to_string() const {
-        return Token::type_to_string(type) + " " + content + "\n";
+        return Token::type_to_string(type) + " " + content;
     }
 
     bool Token::operator==(const Token &_rhs) const    {

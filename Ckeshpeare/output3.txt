@@ -1,0 +1,48 @@
+INTTK int
+IDENFR gg
+<变量定义>
+SEMICN ;
+<变量说明>
+VOIDTK void
+MAINTK main
+LPARENT (
+RPARENT )
+LBRACE {
+CONSTTK const
+INTTK int
+IDENFR a
+ASSIGN =
+INTCON 10
+<无符号整数>
+<整数>
+<常量定义>
+SEMICN ;
+CONSTTK const
+INTTK int
+IDENFR b
+ASSIGN =
+INTCON 1
+<无符号整数>
+<整数>
+COMMA ,
+IDENFR c
+ASSIGN =
+INTCON 2
+<无符号整数>
+<整数>
+<常量定义>
+SEMICN ;
+<常量说明>
+PRINTFTK printf
+LPARENT (
+STRCON  !#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\]^_`abcdefghijklmnopqrstuvwxyz{|}~
+<字符串>
+RPARENT )
+<写语句>
+SEMICN ;
+<语句>
+<语句列>
+<复合语句>
+RBRACE }
+<主函数>
+<程序>

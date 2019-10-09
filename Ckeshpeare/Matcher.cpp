@@ -51,7 +51,7 @@ namespace dyj {
             }
             break;
         case FIRST:
-            if (is_alpha(c)) {
+            if (is_alpha(c) || is_digit(c)) {
                 return MATCHED;
             } else {
                 return Status::FAILED;

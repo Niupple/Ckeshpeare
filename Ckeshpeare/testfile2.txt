@@ -1,0 +1,17 @@
+void main() {
+	int a, b;
+	a = 1;
+	b = 2;
+	while (a < b) a = a / 1;
+	while (a + b) {
+		a = a * 2;
+		b = b / a;
+	}
+	do { a = a + 1; } while (a != b);
+	for (a = 1 + 2 * b; b <= 100; a = a + 10) {
+		a = a + 20; b = b + 10;
+	}
+	for (b = 10; a * b + a; b = b - 1)
+		printf(a * a + b);
+	return ;
+}

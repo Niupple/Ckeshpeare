@@ -1,4 +1,5 @@
 #include "LlParser.h"
+#include "debug.h"
 
 namespace dyj{
     LlParser::LlParser(std::vector<Token *> &_tokens) : tokens(_tokens), cur(0U) {}
@@ -14,6 +15,7 @@ namespace dyj{
 
     Token *LlParser::pop(void) {
         if (cur < tokens.size()) {
+            DP("pop %s\n", tokens[cur]->get_content().c_str());
             return tokens[cur++];
         } else {
             return nullptr;
@@ -29,10 +31,19 @@ namespace dyj{
         }
     }
 
+    bool LlParser::ended(void) {
+        return cur == tokens.size();
+    }
+
     RecursiveDescentParser::RecursiveDescentParser(std::vector<Token *> &_tokens) : LlParser::LlParser(_tokens), tree(nullptr) {}
 
     Symbol *RecursiveDescentParser::parse(void) {
-        return tree = parse_program();
+        tree = parse_program();
+        if (ended()) {
+            return tree;
+        } else {
+            return (tree = nullptr);
+        }
     }
 
     Symbol *RecursiveDescentParser::get_tree(void) {
@@ -42,27 +53,34 @@ namespace dyj{
     typedef std::vector<Symbol *> Symbols;
 
 #define PARSE(_type, _name) Symbols symbols; \
+    DP("parsing %s:\n", _name); \
     Symbol::Type type = (_type); \
     std::string name = (_name)
 
 #define RETURN_PARSE() return new NonterminalSymbol(type, name, symbols)
 
 #define GET(_token_type) do {\
+        DP("getting %u\n", _token_type); \
         symbols.push_back(new TerminalSymbol(t = get(_token_type))); \
         if (!t) {\
+            DP("but failed\n"); \
             return nullptr; \
         } \
-    } while(0)\
+        DP("got\n"); \
+    } while(0)
 
 #define TAKE(_symbol_func) do {\
+        DP("taking:\n"); \
         symbols.push_back(s = _symbol_func());\
         if (!s) {\
+            DP("but failed\n"); \
             return nullptr;\
         }\
-    } while (0);\
+        DP("got\n"); \
+    } while (0)
 
     Symbol *RecursiveDescentParser::parse_operator_add(void) {
-        PARSE(Symbol::OPERATOR_ADD, "<¼Ó·¨ÔËËã·û>");
+        PARSE(Symbol::OPERATOR_ADD, "<åŠ æ³•è¿ç®—ç¬¦>");
         Token *t = peek();
         if (t && (t->get_type() == Token::PLUS || t->get_type() == Token::MINU)) {
             symbols.push_back(new TerminalSymbol(pop()));
@@ -73,7 +91,7 @@ namespace dyj{
     }
 
     Symbol *RecursiveDescentParser::parse_operator_multiply(void) {
-        PARSE(Symbol::OPERATOR_MULTIPLY, "<³Ë·¨ÔËËã·û>");
+        PARSE(Symbol::OPERATOR_MULTIPLY, "<ä¹˜æ³•è¿ç®—ç¬¦>");
         Token *t = peek();
         if (t && (t->get_type() == Token::MULT || t->get_type() == Token::DIV)) {
             symbols.push_back(new TerminalSymbol(pop()));
@@ -84,7 +102,7 @@ namespace dyj{
     }
 
     Symbol *RecursiveDescentParser::parse_operator_relation(void) {
-        PARSE(Symbol::OPERATOR_RELATION, "<¹ØÏµÔËËã·û>");
+        PARSE(Symbol::OPERATOR_RELATION, "<å…³ç³»è¿ç®—ç¬¦>");
         Token *t = peek();
         if (t) {
             switch (t->get_type()) {
@@ -104,7 +122,7 @@ namespace dyj{
     }
 
     Symbol *RecursiveDescentParser::parse_characters(void) {
-        PARSE(Symbol::CHARACTERS, "<×Ö·û>");
+        PARSE(Symbol::CHARACTERS, "<å­—ç¬¦>");
         Token *t = peek();
         if (t && t->get_type() == Token::CHARCON) {
             symbols.push_back(new TerminalSymbol(pop()));
@@ -115,18 +133,14 @@ namespace dyj{
     }
 
     Symbol *RecursiveDescentParser::parse_string(void) {
-        PARSE(Symbol::STRING, "<×Ö·û´®>");
+        PARSE(Symbol::STRING, "<å­—ç¬¦ä¸²>");
         Token *t = peek();
-        if (t && t->get_type() == Token::STRCON) {
-            symbols.push_back(new TerminalSymbol(pop()));
-            RETURN_PARSE();
-        } else {
-            return nullptr;
-        }
+        GET(Token::STRCON);
+        RETURN_PARSE();
     }
 
     Symbol *RecursiveDescentParser::parse_program(void) {
-        PARSE(Symbol::PROGRAM, "<³ÌÐò>");
+        PARSE(Symbol::PROGRAM, "<ç¨‹åº>");
         Token *t = peek();
         Symbol *s;
         if (t && t->get_type() == Token::CONSTTK) {
@@ -150,15 +164,12 @@ namespace dyj{
                 return nullptr;
             }
         }
-        symbols.push_back(s = parse_main_function());
-        if (!s) {
-            return nullptr;
-        }
+        TAKE(parse_main_function);
         RETURN_PARSE();
     }
 
     Symbol *RecursiveDescentParser::parse_const_declare(void) {
-        PARSE(Symbol::CONST_DECLARE, "<³£Á¿ËµÃ÷>");
+        PARSE(Symbol::CONST_DECLARE, "<å¸¸é‡è¯´æ˜Ž>");
         Token *t = peek();
         Symbol *s;
         do {
@@ -170,7 +181,7 @@ namespace dyj{
     }
 
     Symbol *RecursiveDescentParser::parse_const_define(void) {
-        PARSE(Symbol::CONST_DEFINE, "<³£Á¿¶¨Òå>");
+        PARSE(Symbol::CONST_DEFINE, "<å¸¸é‡å®šä¹‰>");
         Token *t = peek();
         Symbol *s;
         if (t && t->get_type() == Token::INTTK) {
@@ -180,7 +191,6 @@ namespace dyj{
             TAKE(parse_integer);
             while (peek() && peek()->get_type() == Token::COMMA) {
                 GET(Token::COMMA);
-                GET(Token::INTTK);
                 GET(Token::IDENFR);
                 GET(Token::ASSIGN);
                 TAKE(parse_integer);
@@ -189,13 +199,12 @@ namespace dyj{
             GET(Token::CHARTK);
             GET(Token::IDENFR);
             GET(Token::ASSIGN);
-            TAKE(parse_characters);
+            GET(Token::CHARCON);
             while (peek() && peek()->get_type() == Token::COMMA) {
                 GET(Token::COMMA);
-                GET(Token::CHARTK);
                 GET(Token::IDENFR);
                 GET(Token::ASSIGN);
-                TAKE(parse_characters);
+                GET(Token::CHARCON);
             }
         } else {
             return nullptr;
@@ -204,14 +213,14 @@ namespace dyj{
     }
 
     Symbol *RecursiveDescentParser::parse_unsigned_integer(void) {
-        PARSE(Symbol::UNSIGNED_INTEGER, "<ÎÞ·ûºÅÕûÊý>");
+        PARSE(Symbol::UNSIGNED_INTEGER, "<æ— ç¬¦å·æ•´æ•°>");
         Token *t = peek();
         GET(Token::INTCON);
         RETURN_PARSE();
     }
 
     Symbol *RecursiveDescentParser::parse_integer(void) {
-        PARSE(Symbol::INTEGER, "<ÕûÊý>");
+        PARSE(Symbol::INTEGER, "<æ•´æ•°>");
         Token *t = peek();
         Symbol *s;
         if (t && t->get_type() == Token::PLUS) {
@@ -224,7 +233,7 @@ namespace dyj{
     }
 
     Symbol *RecursiveDescentParser::parse_declare_header(void) {
-        PARSE(Symbol::DECLARE_HEADER, "<ÉùÃ÷Í·²¿>");
+        PARSE(Symbol::DECLARE_HEADER, "<å£°æ˜Žå¤´éƒ¨>");
         Token *t = peek();
         Symbol *s;
         if (t && t->get_type() == Token::INTTK) {
@@ -239,18 +248,19 @@ namespace dyj{
     }
 
     Symbol *RecursiveDescentParser::parse_variable_declare(void) {
-        PARSE(Symbol::VARIABLE_DECLARE, "<±äÁ¿ËµÃ÷>");
+        PARSE(Symbol::VARIABLE_DECLARE, "<å˜é‡è¯´æ˜Ž>");
         Token *t = peek();
         Symbol *s;
         do {
             TAKE(parse_variable_define);
             GET(Token::SEMICN);
-        } while (peek() && (peek()->get_type() == Token::INTTK || peek()->get_type() == Token::CHARTK));
+        } while (peek() && (peek()->get_type() == Token::INTTK || peek()->get_type() == Token::CHARTK) &&
+            peek(2) && peek(2)->get_type() != Token::LPARENT);
         RETURN_PARSE();
     }
 
     Symbol *RecursiveDescentParser::parse_variable_define(void) {
-        PARSE(Symbol::VARIABLE_DEFINE, "<±äÁ¿¶¨Òå>");
+        PARSE(Symbol::VARIABLE_DEFINE, "<å˜é‡å®šä¹‰>");
         Token *t = peek();
         Symbol *s;
         TAKE(parse_type_id);
@@ -286,11 +296,12 @@ namespace dyj{
     }
 
     Symbol *RecursiveDescentParser::parse_function_with_return(void) {
-        PARSE(Symbol::FUNCTION_WITH_RETURN, "<ÓÐ·µ»ØÖµº¯Êý¶¨Òå>");
+        PARSE(Symbol::FUNCTION_WITH_RETURN, "<æœ‰è¿”å›žå€¼å‡½æ•°å®šä¹‰>");
         Token *t = peek();
         Symbol *s;
 
         TAKE(parse_declare_header);
+        function_table[s->at(1).get_token()->get_content()] = true;
         GET(Token::LPARENT);
         TAKE(parse_parameter_list);
         GET(Token::RPARENT);
@@ -302,12 +313,13 @@ namespace dyj{
     }
 
     Symbol *RecursiveDescentParser::parse_function_without_return(void) {
-        PARSE(Symbol::FUNCTION_WITHOUT_RETURN, "<ÎÞ·µ»ØÖµº¯Êý¶¨Òå>");
-        Token *t;
+        PARSE(Symbol::FUNCTION_WITHOUT_RETURN, "<æ— è¿”å›žå€¼å‡½æ•°å®šä¹‰>");
+        Token *t = peek();
         Symbol *s;
 
         GET(Token::VOIDTK);
         GET(Token::IDENFR);
+        function_table[t->get_content()] = false;
         GET(Token::LPARENT);
         TAKE(parse_parameter_list);
         GET(Token::RPARENT);
@@ -319,7 +331,7 @@ namespace dyj{
     }
 
     Symbol *RecursiveDescentParser::parse_multiple_statement(void) {
-        PARSE(Symbol::MULTIPLE_STATEMENT, "<¸´ºÏÓï¾ä>");
+        PARSE(Symbol::MULTIPLE_STATEMENT, "<å¤åˆè¯­å¥>");
         Token *t = peek();
         Symbol *s;
         if (t && t->get_type() == Token::CONSTTK) {
@@ -327,7 +339,7 @@ namespace dyj{
         }
         if (peek(0) && (peek(0)->get_type() == Token::INTTK || peek(0)->get_type() == Token::CHARTK)
             && peek(1) && (peek(1)->get_type() == Token::IDENFR)
-            && peek(2) && (peek(2)->get_type() == Token::COMMA || peek(2)->get_type() == Token::SEMICN)) {
+            && peek(2) && (peek(2)->get_type() == Token::COMMA || peek(2)->get_type() == Token::SEMICN || peek(2)->get_type() == Token::LBRACK)) {
 
             TAKE(parse_variable_declare);
         }
@@ -336,7 +348,7 @@ namespace dyj{
     }
 
     Symbol *RecursiveDescentParser::parse_parameter_list(void) {
-        PARSE(Symbol::PARAMETER_LIST, "<²ÎÊý±í>");
+        PARSE(Symbol::PARAMETER_LIST, "<å‚æ•°è¡¨>");
         Token *t = peek();
         Symbol *s;
         if (t && (t->get_type() == Token::INTTK || t->get_type() == Token::CHARTK)) {
@@ -352,7 +364,7 @@ namespace dyj{
     }
 
     Symbol *RecursiveDescentParser::parse_main_function(void) {
-        PARSE(Symbol::MAIN_FUNCTION, "<Ö÷º¯Êý>");
+        PARSE(Symbol::MAIN_FUNCTION, "<ä¸»å‡½æ•°>");
         Token *t = peek();
         Symbol *s;
 
@@ -368,7 +380,7 @@ namespace dyj{
     }
 
     Symbol *RecursiveDescentParser::parse_expression(void) {
-        PARSE(Symbol::EXPRESSION, "<±í´ïÊ½>");
+        PARSE(Symbol::EXPRESSION, "<è¡¨è¾¾å¼>");
         Token *t = peek();
         Symbol *s;
 
@@ -391,7 +403,7 @@ namespace dyj{
     }
 
     Symbol *RecursiveDescentParser::parse_term(void) {
-        PARSE(Symbol::TERM, "<Ïî>");
+        PARSE(Symbol::TERM, "<é¡¹>");
         Token *t = peek();
         Symbol *s;
         TAKE(parse_factor);
@@ -408,7 +420,7 @@ namespace dyj{
     }
 
     Symbol *RecursiveDescentParser::parse_factor(void) {
-        PARSE(Symbol::FACTOR, "<Òò×Ó>");
+        PARSE(Symbol::FACTOR, "<å› å­>");
         Token *t = peek();
         Symbol *s;
 
@@ -438,7 +450,7 @@ namespace dyj{
     }
 
     Symbol *RecursiveDescentParser::parse_statement(void) {
-        PARSE(Symbol::STATEMENT, "<Óï¾ä>");
+        PARSE(Symbol::STATEMENT, "<è¯­å¥>");
         Token *t = peek();
         Symbol *s;
         if (t && t->get_type() == Token::IFTK) {
@@ -450,29 +462,37 @@ namespace dyj{
             TAKE(parse_block);
             GET(Token::RBRACE);
         } else if (t && t->get_type() == Token::IDENFR) {
-            if (peek(1) && peek(1)->get_type() == Token::ASSIGN) {
+            if (peek(1) && (peek(1)->get_type() == Token::ASSIGN || peek(1)->get_type() == Token::LBRACK)) {
                 TAKE(parse_assign_statement);
+                GET(Token::SEMICN);
             } else if (function_table.find(t->get_content()) != function_table.end()) {
                 if (function_table.at(t->get_content())) {
                     TAKE(parse_call_with_return);
+                    GET(Token::SEMICN);
                 } else {
                     TAKE(parse_call_without_return);
+                    GET(Token::SEMICN);
                 }
             } else {
                 return nullptr;
             }
         } else if (t && t->get_type() == Token::SCANFTK) {
             TAKE(parse_scanf);
+            GET(Token::SEMICN);
         } else if (t && t->get_type() == Token::PRINTFTK) {
             TAKE(parse_printf);
+            GET(Token::SEMICN);
         } else if (t && t->get_type() == Token::RETURNTK) {
             TAKE(parse_return);
+            GET(Token::SEMICN);
+        } else if (t && t->get_type() == Token::SEMICN) {
+            GET(Token::SEMICN);
         }
         RETURN_PARSE();
     }
 
     Symbol *RecursiveDescentParser::parse_assign_statement(void) {
-        PARSE(Symbol::ASSIGN_STATEMENT, "<¸³ÖµÓï¾ä>");
+        PARSE(Symbol::ASSIGN_STATEMENT, "<èµ‹å€¼è¯­å¥>");
         Token *t = peek();
         Symbol *s;
 
@@ -493,7 +513,7 @@ namespace dyj{
     }
 
     Symbol *RecursiveDescentParser::parse_if_statement(void) {
-        PARSE(Symbol::IF_STATEMENT, "<Ìõ¼þ±í´ïÊ½>");
+        PARSE(Symbol::IF_STATEMENT, "<æ¡ä»¶è¯­å¥>");
         Token *t = peek();
         Symbol *s;
 
@@ -511,7 +531,7 @@ namespace dyj{
     }
 
     Symbol *RecursiveDescentParser::parse_condition(void) {
-        PARSE(Symbol::CONDITION, "<Ìõ¼þ>");
+        PARSE(Symbol::CONDITION, "<æ¡ä»¶>");
         Token *t = peek();
         Symbol *s;
 
@@ -525,7 +545,7 @@ namespace dyj{
     }
 
     Symbol *RecursiveDescentParser::parse_loop_statement(void) {
-        PARSE(Symbol::LOOP_STATEMENT, "<Ñ­»·Óï¾ä>");
+        PARSE(Symbol::LOOP_STATEMENT, "<å¾ªçŽ¯è¯­å¥>");
         Token *t = peek();
         Symbol *s;
 
@@ -539,6 +559,9 @@ namespace dyj{
             GET(Token::DOTK);
             TAKE(parse_statement);
             GET(Token::WHILETK);
+            GET(Token::LPARENT);
+            TAKE(parse_condition);
+            GET(Token::RPARENT);
         } else if (t && t->get_type() == Token::FORTK) {
             GET(Token::FORTK);
             GET(Token::LPARENT);
@@ -569,14 +592,15 @@ namespace dyj{
     }
 
     Symbol *RecursiveDescentParser::parse_step(void) {
-        PARSE(Symbol::STEP, "<²½³¤>");
-        Token *t;
-        GET(Token::INTCON);
+        PARSE(Symbol::STEP, "<æ­¥é•¿>");
+        Token *t = peek();
+        Symbol *s;
+        TAKE(parse_unsigned_integer);
         RETURN_PARSE();
     }
 
     Symbol *RecursiveDescentParser::parse_call_with_return(void) {
-        PARSE(Symbol::CALL_WITH_RETURN, "<ÓÐ·µ»ØÖµº¯Êýµ÷ÓÃÓï¾ä>");
+        PARSE(Symbol::CALL_WITH_RETURN, "<æœ‰è¿”å›žå€¼å‡½æ•°è°ƒç”¨è¯­å¥>");
         Token *t = peek();
         Symbol *s;
 
@@ -589,7 +613,7 @@ namespace dyj{
     }
 
     Symbol *RecursiveDescentParser::parse_call_without_return(void) {
-        PARSE(Symbol::CALL_WITHOUT_RETURN, "<ÎÞ·µ»ØÖµº¯Êýµ÷ÓÃÓï¾ä>");
+        PARSE(Symbol::CALL_WITHOUT_RETURN, "<æ— è¿”å›žå€¼å‡½æ•°è°ƒç”¨è¯­å¥>");
         Token *t = peek();
         Symbol *s;
 
@@ -602,7 +626,7 @@ namespace dyj{
     }
 
     Symbol *RecursiveDescentParser::parse_argument_list(void) {
-        PARSE(Symbol::ARGUMENT_LIST, "<Öµ²ÎÊý±í>");
+        PARSE(Symbol::ARGUMENT_LIST, "<å€¼å‚æ•°è¡¨>");
         Token *t = peek();
         Symbol *s;
         if (t) {
@@ -624,11 +648,11 @@ namespace dyj{
     }
 
     Symbol *RecursiveDescentParser::parse_block(void) {
-        PARSE(Symbol::BLOCK, "<Óï¾äÁÐ>");
+        PARSE(Symbol::BLOCK, "<è¯­å¥åˆ—>");
         Token *t = peek();
         Symbol *s;
 
-        while (true) {
+        while ((t = peek()) && peek()->get_type() != Token::RBRACE) {
             if (t) {
                 switch (t->get_type()) {
                 case Token::IFTK:
@@ -640,6 +664,7 @@ namespace dyj{
                 case Token::SCANFTK:
                 case Token::PRINTFTK:
                 case Token::RETURNTK:
+                case Token::SEMICN:
                     TAKE(parse_statement);
                     continue;
                 }
@@ -651,7 +676,7 @@ namespace dyj{
     }
 
     Symbol *RecursiveDescentParser::parse_scanf(void) {
-        PARSE(Symbol::SCANF, "<¶ÁÓï¾ä>");
+        PARSE(Symbol::SCANF, "<è¯»è¯­å¥>");
         Token *t = peek();
         Symbol *s;
         GET(Token::SCANFTK);
@@ -667,13 +692,13 @@ namespace dyj{
     }
 
     Symbol *RecursiveDescentParser::parse_printf(void) {
-        PARSE(Symbol::SCANF, "<Ð´Óï¾ä>");
+        PARSE(Symbol::SCANF, "<å†™è¯­å¥>");
         Token *t = peek();
         Symbol *s;
         GET(Token::PRINTFTK);
         GET(Token::LPARENT);
         if (peek() && peek()->get_type() == Token::STRCON) {
-            GET(Token::STRCON);
+            TAKE(parse_string);
             if (peek() && peek()->get_type() == Token::COMMA) {
                 GET(Token::COMMA);
                 TAKE(parse_expression);
@@ -681,12 +706,13 @@ namespace dyj{
         } else {
             TAKE(parse_expression);
         }
+        GET(Token::RPARENT);
 
         RETURN_PARSE();
     }
 
     Symbol *RecursiveDescentParser::parse_return(void) {
-        PARSE(Symbol::RETURN, "<·µ»ØÓï¾ä>");
+        PARSE(Symbol::RETURN, "<è¿”å›žè¯­å¥>");
         Token *t = peek();
         Symbol *s;
 

@@ -57,8 +57,12 @@ namespace dyj {
         Symbol(void);
         Symbol(std::string _name);
 
-        virtual Terminal get_terminal(void) = 0;
-        virtual std::string to_string(void);
+        virtual Terminal get_terminal(void) const = 0;
+        virtual std::string to_string(void) const;
+        virtual Token *get_token(void) const = 0;
+
+    public:
+        virtual const Symbol &at(size_t _idx) const = 0;
 
     private:
         std::string name;
@@ -70,11 +74,15 @@ namespace dyj {
         TerminalSymbol(void);
         TerminalSymbol(Token *_token);
 
-        Terminal get_terminal(void);
-        std::string to_string(void);
+        Terminal get_terminal(void) const;
+        std::string to_string(void) const;
+        Token *get_token(void) const;
 
     private:
         Token *token;
+
+    public:
+        const Symbol &at(size_t _idx) const;
 
     };
 
@@ -83,11 +91,15 @@ namespace dyj {
         NonterminalSymbol(void);
         NonterminalSymbol(Symbol::Type, std::string, const std::vector<Symbol *> &);
 
-        Terminal get_terminal(void);
-        std::string to_string(void);
+        Terminal get_terminal(void) const;
+        std::string to_string(void) const;
+        Token *get_token(void) const;
 
     private:
         std::vector<Symbol *> symbols;
         Type type;
+
+    public:
+        const Symbol &at(size_t _idx) const;
     };
 }

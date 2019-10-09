@@ -16,6 +16,8 @@ namespace dyj {
         Token *peek(size_t _cnt = 0);
         Token *pop(void);
         Token *get(Token::Type _type);
+
+        bool ended(void);
         
     private:
         const std::vector<Token *> &tokens;
@@ -38,9 +40,6 @@ namespace dyj {
         Symbol *parse_operator_add(void);
         Symbol *parse_operator_multiply(void);
         Symbol *parse_operator_relation(void);
-        Symbol *parse_alpha(void);
-        Symbol *parse_numbers(void);
-        Symbol *parse_numbers_except_zero(void);
         Symbol *parse_characters(void);
         Symbol *parse_string(void);
         Symbol *parse_program(void);
@@ -48,7 +47,6 @@ namespace dyj {
         Symbol *parse_const_define(void);
         Symbol *parse_unsigned_integer(void);
         Symbol *parse_integer(void);
-        Symbol *parse_identifier(void);
         Symbol *parse_declare_header(void);
         Symbol *parse_variable_declare(void);
         Symbol *parse_variable_define(void);
