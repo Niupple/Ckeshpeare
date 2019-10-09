@@ -1,0 +1,3332 @@
+Hello World!
+int g_list [ 20 ] ; int abs ( int a ) { g_list [ 0 ] = g_list [ 0 ] + 1 ; if ( a < 0 ) { return ( - a ) ; } return ( a ) ; } void init ( ) { int i ; i = 0 ; while ( i < 10 ) { g_list [ i ] = 0 ; i = i + + 1 ; } g_list [ 1 ] = g_list [ 1 ] + 1 ; } void show ( ) { int i ; g_list [ 3 ] = 1 ; i = 0 ; while ( i < 4 ) { printf ( g_list [ i ] ) ; i = i + 1 ; } } int times ( int a , int b ) { g_list [ 2 ] = 1 ; return ( a * b ) ; } int sum4 ( int a , int b , int c , int d ) { g_list [ 3 ] = 1 + g_list [ 3 ] ; return ( a + b + c + d ) ; } void main ( ) { int a ; int theSum , i ; char f ; scanf ( a ) ; scanf ( f ) ; init ( ) ; if ( a < 0 ) { printf ( sum4 ( abs ( times ( 2 , - 2 ) ) , abs ( - 1 ) , abs ( - 3 ) , abs ( 2 ) ) ) ; return ; } printf ( sum4 ( abs ( times ( 2 , - 2 ) ) , abs ( - 1 ) , abs ( - 3 ) , abs ( 22 ) ) ) ; theSum = 0 ; if ( a > 10 ) { i = 0 ; do { theSum = theSum + i ; i = i + 1 ; } while ( i < a ) ; } else { if ( f + 0 == + + 0 ) { i = 0 ; while ( i < a + 3 ) { theSum = theSum + i ; i = i + 3 ; } ; } else { i = 0 ; while ( i < a + 3 ) { theSum = theSum - i ; i = i + 3 ; } ; } } printf ( theSum ) ; show ( ) ; return ; }
+INTTK int
+IDENFR g_list
+LBRACK [
+INTCON 20
+RBRACK ]
+SEMICN ;
+INTTK int
+IDENFR abs
+LPARENT (
+INTTK int
+IDENFR a
+RPARENT )
+LBRACE {
+IDENFR g_list
+LBRACK [
+INTCON 0
+RBRACK ]
+ASSIGN =
+IDENFR g_list
+LBRACK [
+INTCON 0
+RBRACK ]
+PLUS +
+INTCON 1
+SEMICN ;
+IFTK if
+LPARENT (
+IDENFR a
+LSS <
+INTCON 0
+RPARENT )
+LBRACE {
+RETURNTK return
+LPARENT (
+MINU -
+IDENFR a
+RPARENT )
+SEMICN ;
+RBRACE }
+RETURNTK return
+LPARENT (
+IDENFR a
+RPARENT )
+SEMICN ;
+RBRACE }
+VOIDTK void
+IDENFR init
+LPARENT (
+RPARENT )
+LBRACE {
+INTTK int
+IDENFR i
+SEMICN ;
+IDENFR i
+ASSIGN =
+INTCON 0
+SEMICN ;
+WHILETK while
+LPARENT (
+IDENFR i
+LSS <
+INTCON 10
+RPARENT )
+LBRACE {
+IDENFR g_list
+LBRACK [
+IDENFR i
+RBRACK ]
+ASSIGN =
+INTCON 0
+SEMICN ;
+IDENFR i
+ASSIGN =
+IDENFR i
+PLUS +
+PLUS +
+INTCON 1
+SEMICN ;
+RBRACE }
+IDENFR g_list
+LBRACK [
+INTCON 1
+RBRACK ]
+ASSIGN =
+IDENFR g_list
+LBRACK [
+INTCON 1
+RBRACK ]
+PLUS +
+INTCON 1
+SEMICN ;
+RBRACE }
+VOIDTK void
+IDENFR show
+LPARENT (
+RPARENT )
+LBRACE {
+INTTK int
+IDENFR i
+SEMICN ;
+IDENFR g_list
+LBRACK [
+INTCON 3
+RBRACK ]
+ASSIGN =
+INTCON 1
+SEMICN ;
+IDENFR i
+ASSIGN =
+INTCON 0
+SEMICN ;
+WHILETK while
+LPARENT (
+IDENFR i
+LSS <
+INTCON 4
+RPARENT )
+LBRACE {
+PRINTFTK printf
+LPARENT (
+IDENFR g_list
+LBRACK [
+IDENFR i
+RBRACK ]
+RPARENT )
+SEMICN ;
+IDENFR i
+ASSIGN =
+IDENFR i
+PLUS +
+INTCON 1
+SEMICN ;
+RBRACE }
+RBRACE }
+INTTK int
+IDENFR times
+LPARENT (
+INTTK int
+IDENFR a
+COMMA ,
+INTTK int
+IDENFR b
+RPARENT )
+LBRACE {
+IDENFR g_list
+LBRACK [
+INTCON 2
+RBRACK ]
+ASSIGN =
+INTCON 1
+SEMICN ;
+RETURNTK return
+LPARENT (
+IDENFR a
+MULT *
+IDENFR b
+RPARENT )
+SEMICN ;
+RBRACE }
+INTTK int
+IDENFR sum4
+LPARENT (
+INTTK int
+IDENFR a
+COMMA ,
+INTTK int
+IDENFR b
+COMMA ,
+INTTK int
+IDENFR c
+COMMA ,
+INTTK int
+IDENFR d
+RPARENT )
+LBRACE {
+IDENFR g_list
+LBRACK [
+INTCON 3
+RBRACK ]
+ASSIGN =
+INTCON 1
+PLUS +
+IDENFR g_list
+LBRACK [
+INTCON 3
+RBRACK ]
+SEMICN ;
+RETURNTK return
+LPARENT (
+IDENFR a
+PLUS +
+IDENFR b
+PLUS +
+IDENFR c
+PLUS +
+IDENFR d
+RPARENT )
+SEMICN ;
+RBRACE }
+VOIDTK void
+MAINTK main
+LPARENT (
+RPARENT )
+LBRACE {
+INTTK int
+IDENFR a
+SEMICN ;
+INTTK int
+IDENFR theSum
+COMMA ,
+IDENFR i
+SEMICN ;
+CHARTK char
+IDENFR f
+SEMICN ;
+SCANFTK scanf
+LPARENT (
+IDENFR a
+RPARENT )
+SEMICN ;
+SCANFTK scanf
+LPARENT (
+IDENFR f
+RPARENT )
+SEMICN ;
+IDENFR init
+LPARENT (
+RPARENT )
+SEMICN ;
+IFTK if
+LPARENT (
+IDENFR a
+LSS <
+INTCON 0
+RPARENT )
+LBRACE {
+PRINTFTK printf
+LPARENT (
+IDENFR sum4
+LPARENT (
+IDENFR abs
+LPARENT (
+IDENFR times
+LPARENT (
+INTCON 2
+COMMA ,
+MINU -
+INTCON 2
+RPARENT )
+RPARENT )
+COMMA ,
+IDENFR abs
+LPARENT (
+MINU -
+INTCON 1
+RPARENT )
+COMMA ,
+IDENFR abs
+LPARENT (
+MINU -
+INTCON 3
+RPARENT )
+COMMA ,
+IDENFR abs
+LPARENT (
+INTCON 2
+RPARENT )
+RPARENT )
+RPARENT )
+SEMICN ;
+RETURNTK return
+SEMICN ;
+RBRACE }
+PRINTFTK printf
+LPARENT (
+IDENFR sum4
+LPARENT (
+IDENFR abs
+LPARENT (
+IDENFR times
+LPARENT (
+INTCON 2
+COMMA ,
+MINU -
+INTCON 2
+RPARENT )
+RPARENT )
+COMMA ,
+IDENFR abs
+LPARENT (
+MINU -
+INTCON 1
+RPARENT )
+COMMA ,
+IDENFR abs
+LPARENT (
+MINU -
+INTCON 3
+RPARENT )
+COMMA ,
+IDENFR abs
+LPARENT (
+INTCON 22
+RPARENT )
+RPARENT )
+RPARENT )
+SEMICN ;
+IDENFR theSum
+ASSIGN =
+INTCON 0
+SEMICN ;
+IFTK if
+LPARENT (
+IDENFR a
+GRE >
+INTCON 10
+RPARENT )
+LBRACE {
+IDENFR i
+ASSIGN =
+INTCON 0
+SEMICN ;
+DOTK do
+LBRACE {
+IDENFR theSum
+ASSIGN =
+IDENFR theSum
+PLUS +
+IDENFR i
+SEMICN ;
+IDENFR i
+ASSIGN =
+IDENFR i
+PLUS +
+INTCON 1
+SEMICN ;
+RBRACE }
+WHILETK while
+LPARENT (
+IDENFR i
+LSS <
+IDENFR a
+RPARENT )
+SEMICN ;
+RBRACE }
+ELSETK else
+LBRACE {
+IFTK if
+LPARENT (
+IDENFR f
+PLUS +
+INTCON 0
+EQL ==
+PLUS +
+PLUS +
+INTCON 0
+RPARENT )
+LBRACE {
+IDENFR i
+ASSIGN =
+INTCON 0
+SEMICN ;
+WHILETK while
+LPARENT (
+IDENFR i
+LSS <
+IDENFR a
+PLUS +
+INTCON 3
+RPARENT )
+LBRACE {
+IDENFR theSum
+ASSIGN =
+IDENFR theSum
+PLUS +
+IDENFR i
+SEMICN ;
+IDENFR i
+ASSIGN =
+IDENFR i
+PLUS +
+INTCON 3
+SEMICN ;
+RBRACE }
+SEMICN ;
+RBRACE }
+ELSETK else
+LBRACE {
+IDENFR i
+ASSIGN =
+INTCON 0
+SEMICN ;
+WHILETK while
+LPARENT (
+IDENFR i
+LSS <
+IDENFR a
+PLUS +
+INTCON 3
+RPARENT )
+LBRACE {
+IDENFR theSum
+ASSIGN =
+IDENFR theSum
+MINU -
+IDENFR i
+SEMICN ;
+IDENFR i
+ASSIGN =
+IDENFR i
+PLUS +
+INTCON 3
+SEMICN ;
+RBRACE }
+SEMICN ;
+RBRACE }
+RBRACE }
+PRINTFTK printf
+LPARENT (
+IDENFR theSum
+RPARENT )
+SEMICN ;
+IDENFR show
+LPARENT (
+RPARENT )
+SEMICN ;
+RETURNTK return
+SEMICN ;
+RBRACE }
+parsing <程序>:
+taking:
+parsing <变量说明>:
+taking:
+parsing <变量定义>:
+taking:
+parsing :
+getting 7
+pop int
+got
+got
+getting 2
+pop g_list
+got
+getting 34
+pop [
+got
+taking:
+parsing <无符号整数>:
+getting 3
+pop 20
+got
+got
+getting 35
+pop ]
+got
+got
+getting 30
+pop ;
+got
+got
+parsing <有返回值函数定义>:
+taking:
+parsing <声明头部>:
+getting 7
+pop int
+got
+getting 2
+pop abs
+got
+got
+getting 32
+pop (
+got
+taking:
+parsing <参数表>:
+taking:
+parsing :
+getting 7
+pop int
+got
+got
+getting 2
+pop a
+got
+got
+getting 33
+pop )
+got
+getting 36
+pop {
+got
+taking:
+parsing <复合语句>:
+taking:
+parsing <语句列>:
+taking:
+parsing <语句>:
+taking:
+parsing <赋值语句>:
+getting 2
+pop g_list
+got
+getting 34
+pop [
+got
+taking:
+parsing <表达式>:
+taking:
+parsing <项>:
+taking:
+parsing <因子>:
+taking:
+parsing <整数>:
+taking:
+parsing <无符号整数>:
+getting 3
+pop 0
+got
+got
+got
+got
+got
+got
+getting 35
+pop ]
+got
+getting 29
+pop =
+got
+taking:
+parsing <表达式>:
+taking:
+parsing <项>:
+taking:
+parsing <因子>:
+getting 2
+pop g_list
+got
+getting 34
+pop [
+got
+taking:
+parsing <表达式>:
+taking:
+parsing <项>:
+taking:
+parsing <因子>:
+taking:
+parsing <整数>:
+taking:
+parsing <无符号整数>:
+getting 3
+pop 0
+got
+got
+got
+got
+got
+got
+getting 35
+pop ]
+got
+got
+got
+getting 19
+pop +
+got
+taking:
+parsing <项>:
+taking:
+parsing <因子>:
+taking:
+parsing <整数>:
+taking:
+parsing <无符号整数>:
+getting 3
+pop 1
+got
+got
+got
+got
+got
+got
+got
+getting 30
+pop ;
+got
+got
+taking:
+parsing <语句>:
+taking:
+parsing <条件语句>:
+getting 11
+pop if
+got
+getting 32
+pop (
+got
+taking:
+parsing <条件>:
+taking:
+parsing <表达式>:
+taking:
+parsing <项>:
+taking:
+parsing <因子>:
+getting 2
+pop a
+got
+got
+got
+got
+pop <
+taking:
+parsing <表达式>:
+taking:
+parsing <项>:
+taking:
+parsing <因子>:
+taking:
+parsing <整数>:
+taking:
+parsing <无符号整数>:
+getting 3
+pop 0
+got
+got
+got
+got
+got
+got
+got
+getting 33
+pop )
+got
+taking:
+parsing <语句>:
+getting 36
+pop {
+got
+taking:
+parsing <语句列>:
+taking:
+parsing <语句>:
+taking:
+parsing <返回语句>:
+getting 18
+pop return
+got
+getting 32
+pop (
+got
+taking:
+parsing <表达式>:
+getting 20
+pop -
+got
+taking:
+parsing <项>:
+taking:
+parsing <因子>:
+getting 2
+pop a
+got
+got
+got
+got
+getting 33
+pop )
+got
+got
+getting 30
+pop ;
+got
+got
+got
+getting 37
+pop }
+got
+got
+got
+got
+taking:
+parsing <语句>:
+taking:
+parsing <返回语句>:
+getting 18
+pop return
+got
+getting 32
+pop (
+got
+taking:
+parsing <表达式>:
+taking:
+parsing <项>:
+taking:
+parsing <因子>:
+getting 2
+pop a
+got
+got
+got
+got
+getting 33
+pop )
+got
+got
+getting 30
+pop ;
+got
+got
+got
+got
+getting 37
+pop }
+got
+parsing <无返回值函数定义>:
+getting 9
+pop void
+got
+getting 2
+pop init
+got
+getting 32
+pop (
+got
+taking:
+parsing <参数表>:
+got
+getting 33
+pop )
+got
+getting 36
+pop {
+got
+taking:
+parsing <复合语句>:
+taking:
+parsing <变量说明>:
+taking:
+parsing <变量定义>:
+taking:
+parsing :
+getting 7
+pop int
+got
+got
+getting 2
+pop i
+got
+got
+getting 30
+pop ;
+got
+got
+taking:
+parsing <语句列>:
+taking:
+parsing <语句>:
+taking:
+parsing <赋值语句>:
+getting 2
+pop i
+got
+getting 29
+pop =
+got
+taking:
+parsing <表达式>:
+taking:
+parsing <项>:
+taking:
+parsing <因子>:
+taking:
+parsing <整数>:
+taking:
+parsing <无符号整数>:
+getting 3
+pop 0
+got
+got
+got
+got
+got
+got
+got
+getting 30
+pop ;
+got
+got
+taking:
+parsing <语句>:
+taking:
+parsing <循环语句>:
+getting 14
+pop while
+got
+getting 32
+pop (
+got
+taking:
+parsing <条件>:
+taking:
+parsing <表达式>:
+taking:
+parsing <项>:
+taking:
+parsing <因子>:
+getting 2
+pop i
+got
+got
+got
+got
+pop <
+taking:
+parsing <表达式>:
+taking:
+parsing <项>:
+taking:
+parsing <因子>:
+taking:
+parsing <整数>:
+taking:
+parsing <无符号整数>:
+getting 3
+pop 10
+got
+got
+got
+got
+got
+got
+got
+getting 33
+pop )
+got
+taking:
+parsing <语句>:
+getting 36
+pop {
+got
+taking:
+parsing <语句列>:
+taking:
+parsing <语句>:
+taking:
+parsing <赋值语句>:
+getting 2
+pop g_list
+got
+getting 34
+pop [
+got
+taking:
+parsing <表达式>:
+taking:
+parsing <项>:
+taking:
+parsing <因子>:
+getting 2
+pop i
+got
+got
+got
+got
+getting 35
+pop ]
+got
+getting 29
+pop =
+got
+taking:
+parsing <表达式>:
+taking:
+parsing <项>:
+taking:
+parsing <因子>:
+taking:
+parsing <整数>:
+taking:
+parsing <无符号整数>:
+getting 3
+pop 0
+got
+got
+got
+got
+got
+got
+got
+getting 30
+pop ;
+got
+got
+taking:
+parsing <语句>:
+taking:
+parsing <赋值语句>:
+getting 2
+pop i
+got
+getting 29
+pop =
+got
+taking:
+parsing <表达式>:
+taking:
+parsing <项>:
+taking:
+parsing <因子>:
+getting 2
+pop i
+got
+got
+got
+getting 19
+pop +
+got
+taking:
+parsing <项>:
+taking:
+parsing <因子>:
+taking:
+parsing <整数>:
+getting 19
+pop +
+got
+taking:
+parsing <无符号整数>:
+getting 3
+pop 1
+got
+got
+got
+got
+got
+got
+got
+getting 30
+pop ;
+got
+got
+got
+getting 37
+pop }
+got
+got
+got
+got
+taking:
+parsing <语句>:
+taking:
+parsing <赋值语句>:
+getting 2
+pop g_list
+got
+getting 34
+pop [
+got
+taking:
+parsing <表达式>:
+taking:
+parsing <项>:
+taking:
+parsing <因子>:
+taking:
+parsing <整数>:
+taking:
+parsing <无符号整数>:
+getting 3
+pop 1
+got
+got
+got
+got
+got
+got
+getting 35
+pop ]
+got
+getting 29
+pop =
+got
+taking:
+parsing <表达式>:
+taking:
+parsing <项>:
+taking:
+parsing <因子>:
+getting 2
+pop g_list
+got
+getting 34
+pop [
+got
+taking:
+parsing <表达式>:
+taking:
+parsing <项>:
+taking:
+parsing <因子>:
+taking:
+parsing <整数>:
+taking:
+parsing <无符号整数>:
+getting 3
+pop 1
+got
+got
+got
+got
+got
+got
+getting 35
+pop ]
+got
+got
+got
+getting 19
+pop +
+got
+taking:
+parsing <项>:
+taking:
+parsing <因子>:
+taking:
+parsing <整数>:
+taking:
+parsing <无符号整数>:
+getting 3
+pop 1
+got
+got
+got
+got
+got
+got
+got
+getting 30
+pop ;
+got
+got
+got
+got
+getting 37
+pop }
+got
+parsing <无返回值函数定义>:
+getting 9
+pop void
+got
+getting 2
+pop show
+got
+getting 32
+pop (
+got
+taking:
+parsing <参数表>:
+got
+getting 33
+pop )
+got
+getting 36
+pop {
+got
+taking:
+parsing <复合语句>:
+taking:
+parsing <变量说明>:
+taking:
+parsing <变量定义>:
+taking:
+parsing :
+getting 7
+pop int
+got
+got
+getting 2
+pop i
+got
+got
+getting 30
+pop ;
+got
+got
+taking:
+parsing <语句列>:
+taking:
+parsing <语句>:
+taking:
+parsing <赋值语句>:
+getting 2
+pop g_list
+got
+getting 34
+pop [
+got
+taking:
+parsing <表达式>:
+taking:
+parsing <项>:
+taking:
+parsing <因子>:
+taking:
+parsing <整数>:
+taking:
+parsing <无符号整数>:
+getting 3
+pop 3
+got
+got
+got
+got
+got
+got
+getting 35
+pop ]
+got
+getting 29
+pop =
+got
+taking:
+parsing <表达式>:
+taking:
+parsing <项>:
+taking:
+parsing <因子>:
+taking:
+parsing <整数>:
+taking:
+parsing <无符号整数>:
+getting 3
+pop 1
+got
+got
+got
+got
+got
+got
+got
+getting 30
+pop ;
+got
+got
+taking:
+parsing <语句>:
+taking:
+parsing <赋值语句>:
+getting 2
+pop i
+got
+getting 29
+pop =
+got
+taking:
+parsing <表达式>:
+taking:
+parsing <项>:
+taking:
+parsing <因子>:
+taking:
+parsing <整数>:
+taking:
+parsing <无符号整数>:
+getting 3
+pop 0
+got
+got
+got
+got
+got
+got
+got
+getting 30
+pop ;
+got
+got
+taking:
+parsing <语句>:
+taking:
+parsing <循环语句>:
+getting 14
+pop while
+got
+getting 32
+pop (
+got
+taking:
+parsing <条件>:
+taking:
+parsing <表达式>:
+taking:
+parsing <项>:
+taking:
+parsing <因子>:
+getting 2
+pop i
+got
+got
+got
+got
+pop <
+taking:
+parsing <表达式>:
+taking:
+parsing <项>:
+taking:
+parsing <因子>:
+taking:
+parsing <整数>:
+taking:
+parsing <无符号整数>:
+getting 3
+pop 4
+got
+got
+got
+got
+got
+got
+got
+getting 33
+pop )
+got
+taking:
+parsing <语句>:
+getting 36
+pop {
+got
+taking:
+parsing <语句列>:
+taking:
+parsing <语句>:
+taking:
+parsing <写语句>:
+getting 17
+pop printf
+got
+getting 32
+pop (
+got
+taking:
+parsing <表达式>:
+taking:
+parsing <项>:
+taking:
+parsing <因子>:
+getting 2
+pop g_list
+got
+getting 34
+pop [
+got
+taking:
+parsing <表达式>:
+taking:
+parsing <项>:
+taking:
+parsing <因子>:
+getting 2
+pop i
+got
+got
+got
+got
+getting 35
+pop ]
+got
+got
+got
+got
+getting 33
+pop )
+got
+got
+getting 30
+pop ;
+got
+got
+taking:
+parsing <语句>:
+taking:
+parsing <赋值语句>:
+getting 2
+pop i
+got
+getting 29
+pop =
+got
+taking:
+parsing <表达式>:
+taking:
+parsing <项>:
+taking:
+parsing <因子>:
+getting 2
+pop i
+got
+got
+got
+getting 19
+pop +
+got
+taking:
+parsing <项>:
+taking:
+parsing <因子>:
+taking:
+parsing <整数>:
+taking:
+parsing <无符号整数>:
+getting 3
+pop 1
+got
+got
+got
+got
+got
+got
+got
+getting 30
+pop ;
+got
+got
+got
+getting 37
+pop }
+got
+got
+got
+got
+got
+got
+getting 37
+pop }
+got
+parsing <有返回值函数定义>:
+taking:
+parsing <声明头部>:
+getting 7
+pop int
+got
+getting 2
+pop times
+got
+got
+getting 32
+pop (
+got
+taking:
+parsing <参数表>:
+taking:
+parsing :
+getting 7
+pop int
+got
+got
+getting 2
+pop a
+got
+getting 31
+pop ,
+got
+taking:
+parsing :
+getting 7
+pop int
+got
+got
+getting 2
+pop b
+got
+got
+getting 33
+pop )
+got
+getting 36
+pop {
+got
+taking:
+parsing <复合语句>:
+taking:
+parsing <语句列>:
+taking:
+parsing <语句>:
+taking:
+parsing <赋值语句>:
+getting 2
+pop g_list
+got
+getting 34
+pop [
+got
+taking:
+parsing <表达式>:
+taking:
+parsing <项>:
+taking:
+parsing <因子>:
+taking:
+parsing <整数>:
+taking:
+parsing <无符号整数>:
+getting 3
+pop 2
+got
+got
+got
+got
+got
+got
+getting 35
+pop ]
+got
+getting 29
+pop =
+got
+taking:
+parsing <表达式>:
+taking:
+parsing <项>:
+taking:
+parsing <因子>:
+taking:
+parsing <整数>:
+taking:
+parsing <无符号整数>:
+getting 3
+pop 1
+got
+got
+got
+got
+got
+got
+got
+getting 30
+pop ;
+got
+got
+taking:
+parsing <语句>:
+taking:
+parsing <返回语句>:
+getting 18
+pop return
+got
+getting 32
+pop (
+got
+taking:
+parsing <表达式>:
+taking:
+parsing <项>:
+taking:
+parsing <因子>:
+getting 2
+pop a
+got
+got
+getting 21
+pop *
+got
+taking:
+parsing <因子>:
+getting 2
+pop b
+got
+got
+got
+got
+getting 33
+pop )
+got
+got
+getting 30
+pop ;
+got
+got
+got
+got
+getting 37
+pop }
+got
+parsing <有返回值函数定义>:
+taking:
+parsing <声明头部>:
+getting 7
+pop int
+got
+getting 2
+pop sum4
+got
+got
+getting 32
+pop (
+got
+taking:
+parsing <参数表>:
+taking:
+parsing :
+getting 7
+pop int
+got
+got
+getting 2
+pop a
+got
+getting 31
+pop ,
+got
+taking:
+parsing :
+getting 7
+pop int
+got
+got
+getting 2
+pop b
+got
+getting 31
+pop ,
+got
+taking:
+parsing :
+getting 7
+pop int
+got
+got
+getting 2
+pop c
+got
+getting 31
+pop ,
+got
+taking:
+parsing :
+getting 7
+pop int
+got
+got
+getting 2
+pop d
+got
+got
+getting 33
+pop )
+got
+getting 36
+pop {
+got
+taking:
+parsing <复合语句>:
+taking:
+parsing <语句列>:
+taking:
+parsing <语句>:
+taking:
+parsing <赋值语句>:
+getting 2
+pop g_list
+got
+getting 34
+pop [
+got
+taking:
+parsing <表达式>:
+taking:
+parsing <项>:
+taking:
+parsing <因子>:
+taking:
+parsing <整数>:
+taking:
+parsing <无符号整数>:
+getting 3
+pop 3
+got
+got
+got
+got
+got
+got
+getting 35
+pop ]
+got
+getting 29
+pop =
+got
+taking:
+parsing <表达式>:
+taking:
+parsing <项>:
+taking:
+parsing <因子>:
+taking:
+parsing <整数>:
+taking:
+parsing <无符号整数>:
+getting 3
+pop 1
+got
+got
+got
+got
+got
+getting 19
+pop +
+got
+taking:
+parsing <项>:
+taking:
+parsing <因子>:
+getting 2
+pop g_list
+got
+getting 34
+pop [
+got
+taking:
+parsing <表达式>:
+taking:
+parsing <项>:
+taking:
+parsing <因子>:
+taking:
+parsing <整数>:
+taking:
+parsing <无符号整数>:
+getting 3
+pop 3
+got
+got
+got
+got
+got
+got
+getting 35
+pop ]
+got
+got
+got
+got
+got
+getting 30
+pop ;
+got
+got
+taking:
+parsing <语句>:
+taking:
+parsing <返回语句>:
+getting 18
+pop return
+got
+getting 32
+pop (
+got
+taking:
+parsing <表达式>:
+taking:
+parsing <项>:
+taking:
+parsing <因子>:
+getting 2
+pop a
+got
+got
+got
+getting 19
+pop +
+got
+taking:
+parsing <项>:
+taking:
+parsing <因子>:
+getting 2
+pop b
+got
+got
+got
+getting 19
+pop +
+got
+taking:
+parsing <项>:
+taking:
+parsing <因子>:
+getting 2
+pop c
+got
+got
+got
+getting 19
+pop +
+got
+taking:
+parsing <项>:
+taking:
+parsing <因子>:
+getting 2
+pop d
+got
+got
+got
+got
+getting 33
+pop )
+got
+got
+getting 30
+pop ;
+got
+got
+got
+got
+getting 37
+pop }
+got
+taking:
+parsing <主函数>:
+getting 9
+pop void
+got
+getting 10
+pop main
+got
+getting 32
+pop (
+got
+getting 33
+pop )
+got
+getting 36
+pop {
+got
+taking:
+parsing <复合语句>:
+taking:
+parsing <变量说明>:
+taking:
+parsing <变量定义>:
+taking:
+parsing :
+getting 7
+pop int
+got
+got
+getting 2
+pop a
+got
+got
+getting 30
+pop ;
+got
+taking:
+parsing <变量定义>:
+taking:
+parsing :
+getting 7
+pop int
+got
+got
+getting 2
+pop theSum
+got
+getting 31
+pop ,
+got
+getting 2
+pop i
+got
+got
+getting 30
+pop ;
+got
+taking:
+parsing <变量定义>:
+taking:
+parsing :
+getting 8
+pop char
+got
+got
+getting 2
+pop f
+got
+got
+getting 30
+pop ;
+got
+got
+taking:
+parsing <语句列>:
+taking:
+parsing <语句>:
+taking:
+parsing <读语句>:
+getting 16
+pop scanf
+got
+getting 32
+pop (
+got
+getting 2
+pop a
+got
+getting 33
+pop )
+got
+got
+getting 30
+pop ;
+got
+got
+taking:
+parsing <语句>:
+taking:
+parsing <读语句>:
+getting 16
+pop scanf
+got
+getting 32
+pop (
+got
+getting 2
+pop f
+got
+getting 33
+pop )
+got
+got
+getting 30
+pop ;
+got
+got
+taking:
+parsing <语句>:
+taking:
+parsing <无返回值函数调用语句>:
+getting 2
+pop init
+got
+getting 32
+pop (
+got
+taking:
+parsing <值参数表>:
+got
+getting 33
+pop )
+got
+got
+getting 30
+pop ;
+got
+got
+taking:
+parsing <语句>:
+taking:
+parsing <条件语句>:
+getting 11
+pop if
+got
+getting 32
+pop (
+got
+taking:
+parsing <条件>:
+taking:
+parsing <表达式>:
+taking:
+parsing <项>:
+taking:
+parsing <因子>:
+getting 2
+pop a
+got
+got
+got
+got
+pop <
+taking:
+parsing <表达式>:
+taking:
+parsing <项>:
+taking:
+parsing <因子>:
+taking:
+parsing <整数>:
+taking:
+parsing <无符号整数>:
+getting 3
+pop 0
+got
+got
+got
+got
+got
+got
+got
+getting 33
+pop )
+got
+taking:
+parsing <语句>:
+getting 36
+pop {
+got
+taking:
+parsing <语句列>:
+taking:
+parsing <语句>:
+taking:
+parsing <写语句>:
+getting 17
+pop printf
+got
+getting 32
+pop (
+got
+taking:
+parsing <表达式>:
+taking:
+parsing <项>:
+taking:
+parsing <因子>:
+taking:
+parsing <有返回值函数调用语句>:
+getting 2
+pop sum4
+got
+getting 32
+pop (
+got
+taking:
+parsing <值参数表>:
+taking:
+parsing <表达式>:
+taking:
+parsing <项>:
+taking:
+parsing <因子>:
+taking:
+parsing <有返回值函数调用语句>:
+getting 2
+pop abs
+got
+getting 32
+pop (
+got
+taking:
+parsing <值参数表>:
+taking:
+parsing <表达式>:
+taking:
+parsing <项>:
+taking:
+parsing <因子>:
+taking:
+parsing <有返回值函数调用语句>:
+getting 2
+pop times
+got
+getting 32
+pop (
+got
+taking:
+parsing <值参数表>:
+taking:
+parsing <表达式>:
+taking:
+parsing <项>:
+taking:
+parsing <因子>:
+taking:
+parsing <整数>:
+taking:
+parsing <无符号整数>:
+getting 3
+pop 2
+got
+got
+got
+got
+got
+got
+getting 31
+pop ,
+got
+taking:
+parsing <表达式>:
+getting 20
+pop -
+got
+taking:
+parsing <项>:
+taking:
+parsing <因子>:
+taking:
+parsing <整数>:
+taking:
+parsing <无符号整数>:
+getting 3
+pop 2
+got
+got
+got
+got
+got
+got
+got
+getting 33
+pop )
+got
+got
+got
+got
+got
+got
+getting 33
+pop )
+got
+got
+got
+got
+got
+getting 31
+pop ,
+got
+taking:
+parsing <表达式>:
+taking:
+parsing <项>:
+taking:
+parsing <因子>:
+taking:
+parsing <有返回值函数调用语句>:
+getting 2
+pop abs
+got
+getting 32
+pop (
+got
+taking:
+parsing <值参数表>:
+taking:
+parsing <表达式>:
+getting 20
+pop -
+got
+taking:
+parsing <项>:
+taking:
+parsing <因子>:
+taking:
+parsing <整数>:
+taking:
+parsing <无符号整数>:
+getting 3
+pop 1
+got
+got
+got
+got
+got
+got
+got
+getting 33
+pop )
+got
+got
+got
+got
+got
+getting 31
+pop ,
+got
+taking:
+parsing <表达式>:
+taking:
+parsing <项>:
+taking:
+parsing <因子>:
+taking:
+parsing <有返回值函数调用语句>:
+getting 2
+pop abs
+got
+getting 32
+pop (
+got
+taking:
+parsing <值参数表>:
+taking:
+parsing <表达式>:
+getting 20
+pop -
+got
+taking:
+parsing <项>:
+taking:
+parsing <因子>:
+taking:
+parsing <整数>:
+taking:
+parsing <无符号整数>:
+getting 3
+pop 3
+got
+got
+got
+got
+got
+got
+got
+getting 33
+pop )
+got
+got
+got
+got
+got
+getting 31
+pop ,
+got
+taking:
+parsing <表达式>:
+taking:
+parsing <项>:
+taking:
+parsing <因子>:
+taking:
+parsing <有返回值函数调用语句>:
+getting 2
+pop abs
+got
+getting 32
+pop (
+got
+taking:
+parsing <值参数表>:
+taking:
+parsing <表达式>:
+taking:
+parsing <项>:
+taking:
+parsing <因子>:
+taking:
+parsing <整数>:
+taking:
+parsing <无符号整数>:
+getting 3
+pop 2
+got
+got
+got
+got
+got
+got
+got
+getting 33
+pop )
+got
+got
+got
+got
+got
+got
+getting 33
+pop )
+got
+got
+got
+got
+got
+getting 33
+pop )
+got
+got
+getting 30
+pop ;
+got
+got
+taking:
+parsing <语句>:
+taking:
+parsing <返回语句>:
+getting 18
+pop return
+got
+got
+getting 30
+pop ;
+got
+got
+got
+getting 37
+pop }
+got
+got
+got
+got
+taking:
+parsing <语句>:
+taking:
+parsing <写语句>:
+getting 17
+pop printf
+got
+getting 32
+pop (
+got
+taking:
+parsing <表达式>:
+taking:
+parsing <项>:
+taking:
+parsing <因子>:
+taking:
+parsing <有返回值函数调用语句>:
+getting 2
+pop sum4
+got
+getting 32
+pop (
+got
+taking:
+parsing <值参数表>:
+taking:
+parsing <表达式>:
+taking:
+parsing <项>:
+taking:
+parsing <因子>:
+taking:
+parsing <有返回值函数调用语句>:
+getting 2
+pop abs
+got
+getting 32
+pop (
+got
+taking:
+parsing <值参数表>:
+taking:
+parsing <表达式>:
+taking:
+parsing <项>:
+taking:
+parsing <因子>:
+taking:
+parsing <有返回值函数调用语句>:
+getting 2
+pop times
+got
+getting 32
+pop (
+got
+taking:
+parsing <值参数表>:
+taking:
+parsing <表达式>:
+taking:
+parsing <项>:
+taking:
+parsing <因子>:
+taking:
+parsing <整数>:
+taking:
+parsing <无符号整数>:
+getting 3
+pop 2
+got
+got
+got
+got
+got
+got
+getting 31
+pop ,
+got
+taking:
+parsing <表达式>:
+getting 20
+pop -
+got
+taking:
+parsing <项>:
+taking:
+parsing <因子>:
+taking:
+parsing <整数>:
+taking:
+parsing <无符号整数>:
+getting 3
+pop 2
+got
+got
+got
+got
+got
+got
+got
+getting 33
+pop )
+got
+got
+got
+got
+got
+got
+getting 33
+pop )
+got
+got
+got
+got
+got
+getting 31
+pop ,
+got
+taking:
+parsing <表达式>:
+taking:
+parsing <项>:
+taking:
+parsing <因子>:
+taking:
+parsing <有返回值函数调用语句>:
+getting 2
+pop abs
+got
+getting 32
+pop (
+got
+taking:
+parsing <值参数表>:
+taking:
+parsing <表达式>:
+getting 20
+pop -
+got
+taking:
+parsing <项>:
+taking:
+parsing <因子>:
+taking:
+parsing <整数>:
+taking:
+parsing <无符号整数>:
+getting 3
+pop 1
+got
+got
+got
+got
+got
+got
+got
+getting 33
+pop )
+got
+got
+got
+got
+got
+getting 31
+pop ,
+got
+taking:
+parsing <表达式>:
+taking:
+parsing <项>:
+taking:
+parsing <因子>:
+taking:
+parsing <有返回值函数调用语句>:
+getting 2
+pop abs
+got
+getting 32
+pop (
+got
+taking:
+parsing <值参数表>:
+taking:
+parsing <表达式>:
+getting 20
+pop -
+got
+taking:
+parsing <项>:
+taking:
+parsing <因子>:
+taking:
+parsing <整数>:
+taking:
+parsing <无符号整数>:
+getting 3
+pop 3
+got
+got
+got
+got
+got
+got
+got
+getting 33
+pop )
+got
+got
+got
+got
+got
+getting 31
+pop ,
+got
+taking:
+parsing <表达式>:
+taking:
+parsing <项>:
+taking:
+parsing <因子>:
+taking:
+parsing <有返回值函数调用语句>:
+getting 2
+pop abs
+got
+getting 32
+pop (
+got
+taking:
+parsing <值参数表>:
+taking:
+parsing <表达式>:
+taking:
+parsing <项>:
+taking:
+parsing <因子>:
+taking:
+parsing <整数>:
+taking:
+parsing <无符号整数>:
+getting 3
+pop 22
+got
+got
+got
+got
+got
+got
+got
+getting 33
+pop )
+got
+got
+got
+got
+got
+got
+getting 33
+pop )
+got
+got
+got
+got
+got
+getting 33
+pop )
+got
+got
+getting 30
+pop ;
+got
+got
+taking:
+parsing <语句>:
+taking:
+parsing <赋值语句>:
+getting 2
+pop theSum
+got
+getting 29
+pop =
+got
+taking:
+parsing <表达式>:
+taking:
+parsing <项>:
+taking:
+parsing <因子>:
+taking:
+parsing <整数>:
+taking:
+parsing <无符号整数>:
+getting 3
+pop 0
+got
+got
+got
+got
+got
+got
+got
+getting 30
+pop ;
+got
+got
+taking:
+parsing <语句>:
+taking:
+parsing <条件语句>:
+getting 11
+pop if
+got
+getting 32
+pop (
+got
+taking:
+parsing <条件>:
+taking:
+parsing <表达式>:
+taking:
+parsing <项>:
+taking:
+parsing <因子>:
+getting 2
+pop a
+got
+got
+got
+got
+pop >
+taking:
+parsing <表达式>:
+taking:
+parsing <项>:
+taking:
+parsing <因子>:
+taking:
+parsing <整数>:
+taking:
+parsing <无符号整数>:
+getting 3
+pop 10
+got
+got
+got
+got
+got
+got
+got
+getting 33
+pop )
+got
+taking:
+parsing <语句>:
+getting 36
+pop {
+got
+taking:
+parsing <语句列>:
+taking:
+parsing <语句>:
+taking:
+parsing <赋值语句>:
+getting 2
+pop i
+got
+getting 29
+pop =
+got
+taking:
+parsing <表达式>:
+taking:
+parsing <项>:
+taking:
+parsing <因子>:
+taking:
+parsing <整数>:
+taking:
+parsing <无符号整数>:
+getting 3
+pop 0
+got
+got
+got
+got
+got
+got
+got
+getting 30
+pop ;
+got
+got
+taking:
+parsing <语句>:
+taking:
+parsing <循环语句>:
+getting 13
+pop do
+got
+taking:
+parsing <语句>:
+getting 36
+pop {
+got
+taking:
+parsing <语句列>:
+taking:
+parsing <语句>:
+taking:
+parsing <赋值语句>:
+getting 2
+pop theSum
+got
+getting 29
+pop =
+got
+taking:
+parsing <表达式>:
+taking:
+parsing <项>:
+taking:
+parsing <因子>:
+getting 2
+pop theSum
+got
+got
+got
+getting 19
+pop +
+got
+taking:
+parsing <项>:
+taking:
+parsing <因子>:
+getting 2
+pop i
+got
+got
+got
+got
+got
+getting 30
+pop ;
+got
+got
+taking:
+parsing <语句>:
+taking:
+parsing <赋值语句>:
+getting 2
+pop i
+got
+getting 29
+pop =
+got
+taking:
+parsing <表达式>:
+taking:
+parsing <项>:
+taking:
+parsing <因子>:
+getting 2
+pop i
+got
+got
+got
+getting 19
+pop +
+got
+taking:
+parsing <项>:
+taking:
+parsing <因子>:
+taking:
+parsing <整数>:
+taking:
+parsing <无符号整数>:
+getting 3
+pop 1
+got
+got
+got
+got
+got
+got
+got
+getting 30
+pop ;
+got
+got
+got
+getting 37
+pop }
+got
+got
+getting 14
+pop while
+got
+getting 32
+pop (
+got
+taking:
+parsing <条件>:
+taking:
+parsing <表达式>:
+taking:
+parsing <项>:
+taking:
+parsing <因子>:
+getting 2
+pop i
+got
+got
+got
+got
+pop <
+taking:
+parsing <表达式>:
+taking:
+parsing <项>:
+taking:
+parsing <因子>:
+getting 2
+pop a
+got
+got
+got
+got
+got
+getting 33
+pop )
+got
+got
+got
+taking:
+parsing <语句>:
+getting 30
+pop ;
+got
+got
+got
+getting 37
+pop }
+got
+got
+getting 12
+pop else
+got
+taking:
+parsing <语句>:
+getting 36
+pop {
+got
+taking:
+parsing <语句列>:
+taking:
+parsing <语句>:
+taking:
+parsing <条件语句>:
+getting 11
+pop if
+got
+getting 32
+pop (
+got
+taking:
+parsing <条件>:
+taking:
+parsing <表达式>:
+taking:
+parsing <项>:
+taking:
+parsing <因子>:
+getting 2
+pop f
+got
+got
+got
+getting 19
+pop +
+got
+taking:
+parsing <项>:
+taking:
+parsing <因子>:
+taking:
+parsing <整数>:
+taking:
+parsing <无符号整数>:
+getting 3
+pop 0
+got
+got
+got
+got
+got
+got
+pop ==
+taking:
+parsing <表达式>:
+getting 19
+pop +
+got
+taking:
+parsing <项>:
+taking:
+parsing <因子>:
+taking:
+parsing <整数>:
+getting 19
+pop +
+got
+taking:
+parsing <无符号整数>:
+getting 3
+pop 0
+got
+got
+got
+got
+got
+got
+got
+getting 33
+pop )
+got
+taking:
+parsing <语句>:
+getting 36
+pop {
+got
+taking:
+parsing <语句列>:
+taking:
+parsing <语句>:
+taking:
+parsing <赋值语句>:
+getting 2
+pop i
+got
+getting 29
+pop =
+got
+taking:
+parsing <表达式>:
+taking:
+parsing <项>:
+taking:
+parsing <因子>:
+taking:
+parsing <整数>:
+taking:
+parsing <无符号整数>:
+getting 3
+pop 0
+got
+got
+got
+got
+got
+got
+got
+getting 30
+pop ;
+got
+got
+taking:
+parsing <语句>:
+taking:
+parsing <循环语句>:
+getting 14
+pop while
+got
+getting 32
+pop (
+got
+taking:
+parsing <条件>:
+taking:
+parsing <表达式>:
+taking:
+parsing <项>:
+taking:
+parsing <因子>:
+getting 2
+pop i
+got
+got
+got
+got
+pop <
+taking:
+parsing <表达式>:
+taking:
+parsing <项>:
+taking:
+parsing <因子>:
+getting 2
+pop a
+got
+got
+got
+getting 19
+pop +
+got
+taking:
+parsing <项>:
+taking:
+parsing <因子>:
+taking:
+parsing <整数>:
+taking:
+parsing <无符号整数>:
+getting 3
+pop 3
+got
+got
+got
+got
+got
+got
+got
+getting 33
+pop )
+got
+taking:
+parsing <语句>:
+getting 36
+pop {
+got
+taking:
+parsing <语句列>:
+taking:
+parsing <语句>:
+taking:
+parsing <赋值语句>:
+getting 2
+pop theSum
+got
+getting 29
+pop =
+got
+taking:
+parsing <表达式>:
+taking:
+parsing <项>:
+taking:
+parsing <因子>:
+getting 2
+pop theSum
+got
+got
+got
+getting 19
+pop +
+got
+taking:
+parsing <项>:
+taking:
+parsing <因子>:
+getting 2
+pop i
+got
+got
+got
+got
+got
+getting 30
+pop ;
+got
+got
+taking:
+parsing <语句>:
+taking:
+parsing <赋值语句>:
+getting 2
+pop i
+got
+getting 29
+pop =
+got
+taking:
+parsing <表达式>:
+taking:
+parsing <项>:
+taking:
+parsing <因子>:
+getting 2
+pop i
+got
+got
+got
+getting 19
+pop +
+got
+taking:
+parsing <项>:
+taking:
+parsing <因子>:
+taking:
+parsing <整数>:
+taking:
+parsing <无符号整数>:
+getting 3
+pop 3
+got
+got
+got
+got
+got
+got
+got
+getting 30
+pop ;
+got
+got
+got
+getting 37
+pop }
+got
+got
+got
+got
+taking:
+parsing <语句>:
+getting 30
+pop ;
+got
+got
+got
+getting 37
+pop }
+got
+got
+getting 12
+pop else
+got
+taking:
+parsing <语句>:
+getting 36
+pop {
+got
+taking:
+parsing <语句列>:
+taking:
+parsing <语句>:
+taking:
+parsing <赋值语句>:
+getting 2
+pop i
+got
+getting 29
+pop =
+got
+taking:
+parsing <表达式>:
+taking:
+parsing <项>:
+taking:
+parsing <因子>:
+taking:
+parsing <整数>:
+taking:
+parsing <无符号整数>:
+getting 3
+pop 0
+got
+got
+got
+got
+got
+got
+got
+getting 30
+pop ;
+got
+got
+taking:
+parsing <语句>:
+taking:
+parsing <循环语句>:
+getting 14
+pop while
+got
+getting 32
+pop (
+got
+taking:
+parsing <条件>:
+taking:
+parsing <表达式>:
+taking:
+parsing <项>:
+taking:
+parsing <因子>:
+getting 2
+pop i
+got
+got
+got
+got
+pop <
+taking:
+parsing <表达式>:
+taking:
+parsing <项>:
+taking:
+parsing <因子>:
+getting 2
+pop a
+got
+got
+got
+getting 19
+pop +
+got
+taking:
+parsing <项>:
+taking:
+parsing <因子>:
+taking:
+parsing <整数>:
+taking:
+parsing <无符号整数>:
+getting 3
+pop 3
+got
+got
+got
+got
+got
+got
+got
+getting 33
+pop )
+got
+taking:
+parsing <语句>:
+getting 36
+pop {
+got
+taking:
+parsing <语句列>:
+taking:
+parsing <语句>:
+taking:
+parsing <赋值语句>:
+getting 2
+pop theSum
+got
+getting 29
+pop =
+got
+taking:
+parsing <表达式>:
+taking:
+parsing <项>:
+taking:
+parsing <因子>:
+getting 2
+pop theSum
+got
+got
+got
+getting 20
+pop -
+got
+taking:
+parsing <项>:
+taking:
+parsing <因子>:
+getting 2
+pop i
+got
+got
+got
+got
+got
+getting 30
+pop ;
+got
+got
+taking:
+parsing <语句>:
+taking:
+parsing <赋值语句>:
+getting 2
+pop i
+got
+getting 29
+pop =
+got
+taking:
+parsing <表达式>:
+taking:
+parsing <项>:
+taking:
+parsing <因子>:
+getting 2
+pop i
+got
+got
+got
+getting 19
+pop +
+got
+taking:
+parsing <项>:
+taking:
+parsing <因子>:
+taking:
+parsing <整数>:
+taking:
+parsing <无符号整数>:
+getting 3
+pop 3
+got
+got
+got
+got
+got
+got
+got
+getting 30
+pop ;
+got
+got
+got
+getting 37
+pop }
+got
+got
+got
+got
+taking:
+parsing <语句>:
+getting 30
+pop ;
+got
+got
+got
+getting 37
+pop }
+got
+got
+got
+got
+got
+getting 37
+pop }
+got
+got
+got
+got
+taking:
+parsing <语句>:
+taking:
+parsing <写语句>:
+getting 17
+pop printf
+got
+getting 32
+pop (
+got
+taking:
+parsing <表达式>:
+taking:
+parsing <项>:
+taking:
+parsing <因子>:
+getting 2
+pop theSum
+got
+got
+got
+got
+getting 33
+pop )
+got
+got
+getting 30
+pop ;
+got
+got
+taking:
+parsing <语句>:
+taking:
+parsing <无返回值函数调用语句>:
+getting 2
+pop show
+got
+getting 32
+pop (
+got
+taking:
+parsing <值参数表>:
+got
+getting 33
+pop )
+got
+got
+getting 30
+pop ;
+got
+got
+taking:
+parsing <语句>:
+taking:
+parsing <返回语句>:
+getting 18
+pop return
+got
+got
+getting 30
+pop ;
+got
+got
+got
+got
+getting 37
+pop }
+got
+got

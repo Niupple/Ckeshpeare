@@ -31,7 +31,7 @@ namespace dyj {
 
     NonterminalSymbol::NonterminalSymbol(void) : type(DEFAULT) {}
 
-    NonterminalSymbol::NonterminalSymbol(Symbol::Type _type, std::string _name, const std::vector<Symbol *> &_tokens) : Symbol::Symbol(_name), type(_type), symbols(_tokens) {}
+    NonterminalSymbol::NonterminalSymbol(Symbol::Type _type, std::string _name, const std::vector<Symbol *> &_tokens) : Symbol::Symbol(_name), symbols(_tokens) , type(_type){}
 
     Symbol::Terminal NonterminalSymbol::get_terminal(void) const {
         return NONTERMINAL;

@@ -57,6 +57,8 @@ namespace dyj {
         case Token::NEQ:
         case Token::EQL:
             return true;
+        default:
+            return false;
         }
         return false;
     }

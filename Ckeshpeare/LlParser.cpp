@@ -114,6 +114,8 @@ namespace dyj{
             case Token::EQL:
                 symbols.push_back(new TerminalSymbol(pop()));
                 RETURN_PARSE();
+            default:
+                break;
             }
             return nullptr;
         } else {
@@ -148,7 +150,7 @@ namespace dyj{
         }
         if (peek(0) && (peek(0)->get_type() == Token::INTTK || peek(0)->get_type() == Token::CHARTK)
             && peek(1) && (peek(1)->get_type() == Token::IDENFR)
-            && peek(2) && (peek(2)->get_type() == Token::COMMA || peek(2)->get_type() == Token::SEMICN)) {
+            && peek(2) && (peek(2)->get_type() == Token::COMMA || peek(2)->get_type() == Token::SEMICN || peek(2)->get_type() == Token::LBRACK)) {
 
             TAKE(parse_variable_declare);
         }
@@ -235,7 +237,6 @@ namespace dyj{
     Symbol *RecursiveDescentParser::parse_declare_header(void) {
         PARSE(Symbol::DECLARE_HEADER, "<声明头部>");
         Token *t = peek();
-        Symbol *s;
         if (t && t->get_type() == Token::INTTK) {
             GET(Token::INTTK);
         } else if (t && t->get_type() == Token::CHARTK) {
@@ -532,7 +533,6 @@ namespace dyj{
 
     Symbol *RecursiveDescentParser::parse_condition(void) {
         PARSE(Symbol::CONDITION, "<条件>");
-        Token *t = peek();
         Symbol *s;
 
         TAKE(parse_expression);
@@ -593,7 +593,6 @@ namespace dyj{
 
     Symbol *RecursiveDescentParser::parse_step(void) {
         PARSE(Symbol::STEP, "<步长>");
-        Token *t = peek();
         Symbol *s;
         TAKE(parse_unsigned_integer);
         RETURN_PARSE();
@@ -642,6 +641,9 @@ namespace dyj{
                     GET(Token::COMMA);
                     TAKE(parse_expression);
                 }
+                break;
+            default:
+                break;
             }
         }
         RETURN_PARSE();
@@ -667,6 +669,8 @@ namespace dyj{
                 case Token::SEMICN:
                     TAKE(parse_statement);
                     continue;
+                default:
+                    break;
                 }
             }
             break;
@@ -678,7 +682,6 @@ namespace dyj{
     Symbol *RecursiveDescentParser::parse_scanf(void) {
         PARSE(Symbol::SCANF, "<读语句>");
         Token *t = peek();
-        Symbol *s;
         GET(Token::SCANFTK);
         GET(Token::LPARENT);
         GET(Token::IDENFR);
