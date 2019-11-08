@@ -1,5 +1,6 @@
 #pragma once
 #include <string>
+#include <utility>
 #include "Token.h"
 
 namespace dyj {
@@ -16,10 +17,13 @@ namespace dyj {
         virtual Status peek(char c) const = 0;
         virtual Token *get_token(void) = 0;
         virtual void clear(void) = 0;
+        void forward(char c);
     protected:
+
         MatcherBase();
         std::string buffer;
         Status status;
+        Location counter;
     };
 
     class IdentifierMatcher : public MatcherBase {
@@ -69,10 +73,12 @@ namespace dyj {
             DEFAULT,
             ZERO,
             ACCEPTING,
-            FAILED
+            FAILED,
+            ERROR
         };
         State state;
         void fail();
+        std::pair<State, Status> next_state(char c) const;
     };
 
     class CharConstantMatcher : public MatcherBase {
@@ -89,10 +95,13 @@ namespace dyj {
             LQUOTION,
             RQUOTION,
             ACCEPTING,
-            FAILED
+            FAILED,
+            ERROR,
+            ERQUOTION
         };
         State state;
         void fail();
+        std::pair<State, Status> next_state(char c) const;
     };
 
     class StringConstantMatcher : public MatcherBase {
@@ -109,10 +118,13 @@ namespace dyj {
             LQUOTION,
             CHARS,
             ACCEPTING,
-            FAILED
+            FAILED,
+            ERQUOTION,
+            ERROR
         };
         State state;
         void fail();
+        std::pair<State, Status> next_state(char c) const;
     };
 
     bool is_addition(char c);

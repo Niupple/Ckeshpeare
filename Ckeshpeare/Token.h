@@ -1,5 +1,6 @@
 #pragma once
 #include <string>
+#include "Location.h"
 
 namespace dyj {
     class Token {
@@ -48,14 +49,17 @@ namespace dyj {
         static bool is_relation(Token *_t);
 
         Token();
-        Token(Type _type, const std::string &_content);
+        Token(Type _type, const std::string &_content, Location _location, bool _is_error = false);
 
         Type get_type() const;
         std::string get_content() const;
         std::string to_string() const;
         bool operator == (const Token &_rhs) const;
+        Location get_location() const;
     private:
         Type type;
         std::string content;
+        Location location;
+        bool is_error;
     };
 }

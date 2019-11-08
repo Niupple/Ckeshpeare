@@ -78,6 +78,9 @@ namespace dyj {
 
     char Tokenizer::pop(void) {
         if (cur < content.size()) {
+            for (auto p : matchers) {
+                p->forward(content[cur]);
+            }
             return content[cur++];
         } else {
             return EOF;

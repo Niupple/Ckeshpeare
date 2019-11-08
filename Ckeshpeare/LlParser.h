@@ -4,6 +4,7 @@
 #include <map>
 #include "Token.h"
 #include "Symbol.h"
+#include "StackFullHouseManager.h"
 
 namespace dyj {
     class LlParser {
@@ -34,7 +35,8 @@ namespace dyj {
 
     private:
         Symbol *tree;
-        std::map<std::string, bool> function_table;
+        // std::map<std::string, bool> function_table;
+        StackFullHouseManager full_house_table;
 
     private:
         Symbol *parse_operator_add(void);
@@ -47,30 +49,30 @@ namespace dyj {
         Symbol *parse_const_define(void);
         Symbol *parse_unsigned_integer(void);
         Symbol *parse_integer(void);
-        Symbol *parse_declare_header(void);
+        Symbol *parse_declare_header(FullHouse::CalType &, std::string &);
         Symbol *parse_variable_declare(void);
         Symbol *parse_variable_define(void);
-        Symbol *parse_type_id(void);
+        Symbol *parse_type_id(FullHouse::CalType &ctype);
         Symbol *parse_function_with_return(void);
         Symbol *parse_function_without_return(void);
-        Symbol *parse_multiple_statement(void);
-        Symbol *parse_parameter_list(void);
+        Symbol *parse_multiple_statement(const FullHouse::CalType &ctin);
+        Symbol *parse_parameter_list(FullHouse *fh);
         Symbol *parse_main_function(void);
-        Symbol *parse_expression(void);
-        Symbol *parse_term(void);
-        Symbol *parse_factor(void);
-        Symbol *parse_statement(void);
+        Symbol *parse_expression(FullHouse::CalType &ctype);
+        Symbol *parse_term(FullHouse::CalType &ctype);
+        Symbol *parse_factor(FullHouse::CalType &ctype);
+        Symbol *parse_statement(const FullHouse::CalType &ctin);
         Symbol *parse_assign_statement(void);
-        Symbol *parse_if_statement(void);
+        Symbol *parse_if_statement(const FullHouse::CalType &ctin);
         Symbol *parse_condition(void);
-        Symbol *parse_loop_statement(void);
+        Symbol *parse_loop_statement(const FullHouse::CalType &ctin);
         Symbol *parse_step(void);
-        Symbol *parse_call_with_return(void);
-        Symbol *parse_call_without_return(void);
-        Symbol *parse_argument_list(void);
-        Symbol *parse_block(void);
+        Symbol *parse_call_with_return(FullHouse *&ret);
+        Symbol *parse_call_without_return(FullHouse *&ret);
+        Symbol *parse_argument_list(std::vector<FullHouse::CalType> &args);
+        Symbol *parse_block(const FullHouse::CalType &ctin);
         Symbol *parse_scanf(void);
         Symbol *parse_printf(void);
-        Symbol *parse_return(void);
+        Symbol *parse_return(FullHouse::CalType &ctype);
     };
 }

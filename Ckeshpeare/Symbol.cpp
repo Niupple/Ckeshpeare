@@ -51,7 +51,7 @@ namespace dyj {
     }
 
     Token *NonterminalSymbol::get_token(void) const {
-        return nullptr;
+        return symbols.back()->get_token();
     }
 
     const Symbol &NonterminalSymbol::at(size_t _idx) const {

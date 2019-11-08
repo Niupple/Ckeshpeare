@@ -65,9 +65,10 @@ namespace dyj {
 
     Token::Token() {
         type = Token::DEFAULT;
+        is_error = false;
     }
 
-    Token::Token(Type _type, const std::string &_content) : type(_type), content(_content) {}
+    Token::Token(Type _type, const std::string &_content, Location _location, bool _is_error) : type(_type), content(_content), location(_location), is_error(_is_error) {}
 
     Token::Type Token::get_type(void) const {
         return type;
@@ -83,6 +84,9 @@ namespace dyj {
 
     bool Token::operator==(const Token &_rhs) const    {
         return type == _rhs.type && content == _rhs.content;
+    }
+    Location Token::get_location() const {
+        return location;
     }
 }
 
