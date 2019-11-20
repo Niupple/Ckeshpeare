@@ -17,6 +17,7 @@ namespace dyj {
         void pop_layer(void);
         bool declare_full_house(FullHouse *fh);
         FullHouse *lookup_full_house(const std::string &name) const;
+        std::string get_code_name(const std::string &name) const;
 
     private:
         size_t counter;

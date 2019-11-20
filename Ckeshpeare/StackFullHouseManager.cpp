@@ -49,4 +49,20 @@ namespace dyj {
         return nullptr;
     }
 
+    std::string StackFullHouseManager::get_code_name(const std::string &name) const {
+        size_t level = index.size();
+        for (auto p = stack.rbegin(); p != stack.rend(); ++p) {
+            --level;
+            auto q = p->find(name);
+            if (q != p->end()) {
+                if (q->second->get_constant() == FullHouse::CONST) {
+                    return q->second->get_value();
+                } else {
+                    return q->second->get_name() + "@" + std::to_string(index[level]);
+                }
+            }
+        }
+        return "???";
+    }
+
 }

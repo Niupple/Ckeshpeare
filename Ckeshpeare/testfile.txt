@@ -1,16 +1,43 @@
-int g_list[20];
-int abs(int a){
-    if(a < 0){
-        return (-a);
-    }
-    return (a);
-}
-void main() {
+const int neg1 = -1, pos2 = +2;
+const char char_a = 'a', char_b = 'b';
+int test, haha[20];
+char hehe;
+void main(){
+    int txt;
+    char a, b, c, d;
+    printf("Hello World");
+    scanf(a, b, c, d);
+    scanf(test);
+    hehe = '/';
+    haha[1] = 233+1-1;
 
- int b;
-scanf(b);
- if('a' > b) {
-	printf("haha");
+    txt = 1*2*3;
+    printf("txt = ", txt);
+    txt = txt*neg1;
+    printf("txt = ", txt);
+    txt = 1-2;
+    printf("txt = ", txt);
+    txt = txt-2;
+    printf("txt = ", txt);
+    txt = pos2-txt;
+    printf("txt = ", txt);
+    txt = 2+(-2);
+    printf("txt = ", txt);
+    txt = 1*(2+3*(4-5));
+    printf("txt = ", txt);
+    txt = 2/3;
+    printf("txt = ", txt);
+
+    printf(char_a);
+    printf(b);
+    printf(c);
+    printf(d);
+    printf((char_a));
+    printf((b));
+    printf((c));
+    printf((d));
+    printf(haha[1]);
+    printf(test);
+    printf("isis: ", hehe);
 }
 
-}

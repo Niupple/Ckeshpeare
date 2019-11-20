@@ -1,7 +1,7 @@
 #include "FullHouse.h"
 
 namespace dyj {
-    FullHouse::FullHouse(std::string _name, CalType _cal, BehType _beh, ConstType _const) : arr_size(0), name(_name), calculation_type(_cal), behavioral_type(_beh), const_type(_const) {}
+    FullHouse::FullHouse(const std::string &_name, CalType _cal, BehType _beh, ConstType _const, const std::string &_value) : arr_size(0), name(_name), calculation_type(_cal), behavioral_type(_beh), const_type(_const), value(_value) {}
 
     void FullHouse::set_size(size_t _size) {
         arr_size = _size;
@@ -30,6 +30,10 @@ namespace dyj {
 
     std::string FullHouse::get_name() const {
         return name;
+    }
+
+    std::string FullHouse::get_value() const {
+        return value;
     }
 
     bool FullHouse::same_params(const std::vector<CalType> &_params) const {
