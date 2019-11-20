@@ -566,7 +566,7 @@ namespace dyj {
     }
 
     bool MipsGenerator::is_const(const std::string &name) {
-        return name.front() == '-' || isdigit(name.front());
+        return name.front() == '-' || name.front() == '+' || isdigit(name.front());
     }
 
     size_t align(size_t x) {
