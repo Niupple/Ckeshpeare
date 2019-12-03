@@ -24,7 +24,6 @@ namespace dyj {
     }
 
     std::string NonsenceGenerator::new_name(void) {
-        size_t a, b, c;
         std::uniform_int_distribution<size_t> ra(0, lhs.size() - 1), rb(0, mhs.size() - 1), rc(0, rhs.size() - 1);
         std::string tmp;
 

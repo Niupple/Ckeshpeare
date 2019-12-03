@@ -62,7 +62,6 @@ namespace dyj {
         virtual Token *get_token(void) const = 0;
 
     public:
-        virtual const Symbol &at(size_t _idx) const = 0;
 
     private:
         std::string name;
@@ -81,9 +80,6 @@ namespace dyj {
     private:
         Token *token;
 
-    public:
-        const Symbol &at(size_t _idx) const;
-
     };
 
     class NonterminalSymbol : public Symbol {
@@ -94,6 +90,7 @@ namespace dyj {
         Terminal get_terminal(void) const;
         std::string to_string(void) const;
         Token *get_token(void) const;
+        Symbol::Type get_type(void) const;
 
     private:
         std::vector<Symbol *> symbols;

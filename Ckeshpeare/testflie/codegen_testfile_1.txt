@@ -1,0 +1,66 @@
+int change1, change2, change3;
+int gets1(int var1, int var2)
+{
+    int i;
+    i = 0;
+    do
+    {
+        i = i + 1;
+        var1 = var2 + var1;
+    } while (i < var2);
+    change1 = var1;
+    return (change1 * var2 / (var2 + 1 - 1));
+}
+int gets2(int var1, int var2)
+{
+    int i;
+    for (i = 0; i < var2; i = i + 1)
+    {
+        var1 = var2 + var1;
+    }
+    change2 = var1;
+    return (var1 + var1 - var1);
+}
+int gets3(int var1, int var2)
+{
+    int i;
+    i = 0;
+    while (i < var2)
+    {
+        i = i + 1;
+        var1 = var2 + var1;
+    }
+    change3 = var1;
+    return (change3 + 0);
+}
+int gets4(int var1, int var2) { return (var1 + var2 * var2); }
+void main()
+{
+    const int const1 = -10, const2 = +10;
+    int i, k;
+    int testnum[10];
+    printf("const calculate test: ", (const1 / 10 + 1) * const2 + const2 / (const2 - 0));
+    scanf(i, k);
+    printf("+-*/This var I is ", i);
+    for (i = const1 + const2; i < const2; i = i + 1)
+    {
+        testnum[i] = i + 17060000;
+    }
+    printf("array test: testnum[9] = ", testnum[-1 - const1 / const2 * const2]);
+    printf("array test: testnum[0] = ", testnum[-1 - const1 / const2]);
+    printf("Let's start test!");
+    printf("Answer No.4 is : ", gets4(const1, k));
+    printf("Answer No.3 is : ", gets3(const1, k));
+    printf("Answer No.2 is : ", gets2(const1, k));
+    printf("Answer No.1 is : ", gets1(const1, k));
+    if (gets1(const1, k) == gets2(const1, k))
+        if (gets1(const1, k) == gets3(const1, k))
+            if (gets1(const1, k) == gets4(const1, k))
+                printf("Congratulations");
+            else
+                printf("Error1");
+        else
+            printf("Error2");
+    else
+        printf("Error3");
+}

@@ -25,8 +25,8 @@ namespace dyj {
         bool has_next(void);
 
     private:
-        Namer *tagger;
         bool in_function;
+        Namer *tagger;
         std::vector<size_t> bytes;
         std::map<std::string, size_t> local_name_to_pos;
         std::map<std::string, std::string> global_name_to_pos;

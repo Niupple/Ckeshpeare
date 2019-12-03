@@ -53,11 +53,10 @@ namespace dyj {
             case IR::LABEL:
                 parse_label();
                 break;
+            case IR::CALL:
             case IR::ARGUMENT:
                 parse_function_call();
                 break;
-            case IR::CALL:
-                assert(0);
             case IR::PARAM:
                 parse_param();
                 break;
@@ -120,7 +119,8 @@ namespace dyj {
         }
         //
         output += ".text\n";
-        output += "j __main__\n";
+        output += "jal __main__\n";
+        output += "j __main_end__\n";
         for (auto p : mips) {
             output += p->to_string() + "\n";
         }
@@ -155,12 +155,12 @@ namespace dyj {
             if (local_name_to_pos.find(var) != local_name_to_pos.end()) {
                 idx = local_name_to_pos.at(var);
                 addr = idx_to_addr(idx);
-                mips.push_back(new Immediate(I::LW, reg, Mips::SP, std::to_string(addr)));
+                mips.push_back(new Immediate(I::LW, reg, Mips::FP, std::to_string(addr)));
             } else {
                 idx = local_name_to_pos[var] = bytes.size();
                 bytes.push_back(4);
                 addr = idx_to_addr(idx);
-                mips.push_back(new Immediate(I::LW, reg, Mips::SP, std::to_string(addr)));
+                mips.push_back(new Immediate(I::LW, reg, Mips::FP, std::to_string(addr)));
             }
         } else {
             std::string label;
@@ -184,7 +184,7 @@ namespace dyj {
                 idx = local_name_to_pos.at(arr);
                 addr = idx_to_addr(idx);
                 mips.push_back(new Immediate(I::SLL, Mips::T0, aid, "2"));
-                mips.push_back(new Register(R::ADDU, Mips::GP, Mips::SP, Mips::T0));
+                mips.push_back(new Register(R::ADDU, Mips::GP, Mips::FP, Mips::T0));
                 mips.push_back(new Immediate(I::LW, dst, Mips::GP, std::to_string(addr)));
             } else {
                 DP("LOCAL ARRAY USED BEFORE DECLARE\n");
@@ -208,12 +208,12 @@ namespace dyj {
             if (local_name_to_pos.find(var) != local_name_to_pos.end()) {
                 idx = local_name_to_pos.at(var);
                 addr = idx_to_addr(idx);
-                mips.push_back(new Immediate(I::SW, reg, Mips::SP, std::to_string(addr)));
+                mips.push_back(new Immediate(I::SW, reg, Mips::FP, std::to_string(addr)));
             } else {
                 idx = local_name_to_pos[var] = bytes.size();
                 bytes.push_back(4);
                 addr = idx_to_addr(idx);
-                mips.push_back(new Immediate(I::SW, reg, Mips::SP, std::to_string(addr)));
+                mips.push_back(new Immediate(I::SW, reg, Mips::FP, std::to_string(addr)));
             }
         } else {
             std::string label;
@@ -236,7 +236,7 @@ namespace dyj {
                 idx = local_name_to_pos.at(arr);
                 addr = idx_to_addr(idx);
                 mips.push_back(new Immediate(I::SLL, Mips::T0, aid, "2"));
-                mips.push_back(new Register(R::ADDU, Mips::GP, Mips::SP, Mips::T0));
+                mips.push_back(new Register(R::ADDU, Mips::GP, Mips::FP, Mips::T0));
                 mips.push_back(new Immediate(I::SW, src, Mips::GP, std::to_string(addr)));
             } else {
                 DP("LOCAL ARRAY USED BEFORE DECLARE\n");
@@ -274,7 +274,7 @@ namespace dyj {
 
     int MipsGenerator::idx_to_addr(size_t idx) {
         size_t ret = 0;
-        for (size_t i = 0; i <= idx; ++i) {
+        for (size_t i = 0; i < idx; ++i) {
             ret += bytes[i];
         }
         return -((int)ret);
@@ -296,7 +296,7 @@ namespace dyj {
 
         if (ir->get_type() == Quaternary::PLUS) {
             if (is_const(s1)) {
-                swap(s1, s2);            
+                swap(s1, s2);
                 if (is_const(s1)) {
                     s1 = std::to_string(atoi(s1.c_str()) + atoi(s2.c_str()));
                     mips.push_back(new Immediate(I::LI, Mips::T0, Mips::ZERO, s1));
@@ -422,15 +422,15 @@ namespace dyj {
     void MipsGenerator::parse_jumps() {
         const Quaternary *ir = pop();
         string d, label;
-        
+
         label = ir->get_rhs();
         if (ir->get_type() == Quaternary::JUMP) {
             mips.push_back(new Jump(J::J, label));
         } else if (ir->get_type() == Quaternary::JUMP_IF) {
             d = ir->get_lhs();
             use(Mips::T0, d);
-            mips.push_back(new Immediate(I::BGTZ, Mips::T0, Mips::ZERO, label));
-        } else {
+            mips.push_back(new Immediate(I::BNE, Mips::T0, Mips::ZERO, label));
+        } else {    // JUMP_UNLESS
             d = ir->get_lhs();
             use(Mips::T0, d);
             mips.push_back(new Immediate(I::BEQ, Mips::T0, Mips::ZERO, label));
@@ -445,23 +445,70 @@ namespace dyj {
     }
 
     void MipsGenerator::parse_function_call() {
-        pop();
+        std::vector<std::string> args;
+        const Quaternary *q = peek();
+        int n_args = 0, frame_size = 0;
+
+        while (q->get_type() == Quaternary::ARGUMENT) {
+            q = pop();
+            args.push_back(q->get_lhs());
+            q = peek();
+        }
+        n_args = args.size();
+        frame_size = idx_to_addr(bytes.size());
+        mips.push_back(new Immediate(I::SW, Mips::SP, Mips::FP, std::to_string(frame_size)));
+        mips.push_back(new Immediate(I::ADDIU, Mips::SP, Mips::FP, std::to_string(frame_size - 4)));
+        for (int i = 0; i < n_args; ++i) {
+            use(Mips::T0, args[i]);
+            mips.push_back(new Immediate(I::SW, Mips::T0, Mips::SP, std::to_string(-i * 4)));
+            if (i < 4) {
+                mips.push_back(new Register(R::ADDU, Mips::args(i), Mips::T0, Mips::ZERO));
+            }
+        }
+        mips.push_back(new Immediate(I::SW, Mips::RA, Mips::SP, std::to_string(-n_args * 4)));
+        mips.push_back(new Immediate(I::ADDIU, Mips::FP, Mips::SP, std::to_string(-(n_args + 1) * 4)));
+        q = pop();
+        mips.push_back(new Jump(J::JAL, q->get_dest()));
+        mips.push_back(new Immediate(I::ADDIU, Mips::FP, Mips::SP, std::to_string(4 - frame_size)));
+        mips.push_back(new Immediate(I::LW, Mips::RA, Mips::SP, std::to_string(-n_args * 4)));
+        mips.push_back(new Immediate(I::LW, Mips::SP, Mips::FP, std::to_string(frame_size)));
+        if ((q = peek()) && q->get_type() == Quaternary::GET_RETURN) {
+            q = pop();
+            def(Mips::V0, q->get_dest());
+        }
     }
 
     void MipsGenerator::parse_param() {
-        pop();
+        const Quaternary *q = peek();
+        size_t i = 0;
+
+        while (q->get_type() == Quaternary::PARAM) {
+            q = pop();
+            if (i < 4) {
+                def(Mips::args(i), q->get_dest());
+            } else {
+                mips.push_back(new Immediate(I::LW, Mips::T0, Mips::SP, std::to_string(i * 4)));
+            }
+            q = peek();
+            ++i;
+        }
     }
 
     void MipsGenerator::parse_set_return() {
-        pop();
+        const Quaternary *ir = pop();
+
+        use(Mips::V0, ir->get_lhs());
     }
 
     void MipsGenerator::parse_get_return() {
-        pop();
+        const Quaternary *ir = pop();
+
+        def(Mips::V0, ir->get_dest());
     }
 
     void MipsGenerator::parse_return() {
         pop();
+        mips.push_back(new Register(R::JR, Mips::ZERO, Mips::RA, Mips::ZERO));
     }
 
     void MipsGenerator::parse_input() {
@@ -514,11 +561,13 @@ namespace dyj {
     void MipsGenerator::parse_entry() {
         pop();
         mips.push_back(new Jump(J::LABEL, "__main__"));
+        mips.push_back(new Register(R::ADDU, Mips::FP, Mips::SP, Mips::ZERO));
     }
 
     void MipsGenerator::parse_exit() {
         DP("heiheihei exit\n");
         pop();
+        mips.push_back(new Jump(J::LABEL, "__main_end__"));
         mips.push_back(new Immediate(I::ORI, Mips::V0, Mips::ZERO, SYS_EXIT));
         mips.push_back(new Jump(J::SYSCALL));
     }
@@ -535,6 +584,8 @@ namespace dyj {
             bytes.clear();
             local_name_to_pos.clear();
             break;
+        default:
+            assert(0);
         }
     }
 

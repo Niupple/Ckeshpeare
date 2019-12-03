@@ -48,6 +48,7 @@ namespace dyj {
     private:
         std::string place_tag(void);
         void place_tag(const std::string &name);
+        std::string get_escape(const string &str);
 
     private:
         Symbol *parse_operator_add(void);
@@ -80,7 +81,7 @@ namespace dyj {
         Symbol *parse_step(void);
         Symbol *parse_call_with_return(FullHouse *&ret);
         Symbol *parse_call_without_return(FullHouse *&ret);
-        Symbol *parse_argument_list(std::vector<FullHouse::CalType> &args);
+        Symbol *parse_argument_list(std::vector<FullHouse::CalType> &args, std::vector<std::string> &vars);
         Symbol *parse_block(const FullHouse::CalType &ctin);
         Symbol *parse_scanf(void);
         Symbol *parse_printf(void);

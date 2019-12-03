@@ -4,6 +4,7 @@
 #include <iostream>
 #include <string>
 #include <fstream>
+#include <cassert>
 #include "Tokenizer.h"
 #include "Token.h"
 #include "LlParser.h"
@@ -97,6 +98,7 @@ void codeGeneratingHomework() {
     using namespace dyj;
     using namespace std;
     ifstream fin("testfile.txt");
+    ofstream IRs("irs.txt");
     ofstream mips("mips.txt");
     Tokenizer &cTokenizer = Tokenizer::cTokenizer;
     string code, tmp, line, dest_code;
@@ -115,6 +117,7 @@ void codeGeneratingHomework() {
         }
     }
     std::cerr << code << std::endl;
+    // assert(0);
     cTokenizer.feed(std::move(code));
     while ((t = cTokenizer.get_token())) {
         tokens.push_back(t);
@@ -125,9 +128,7 @@ void codeGeneratingHomework() {
     Symbol *tree = parser.parse();
 
     for (auto e : dyj::rerr) {
-        if (e->get_type() != dyj::Error::UNKNOWN_ERROR) {
-            std::cout << e->to_string() << std::endl;
-        }
+        std::cout << e->to_string() << std::endl;
     }
     if (!dyj::rerr.empty()) {
         return;
@@ -141,6 +142,7 @@ void codeGeneratingHomework() {
     cout << "__________________IRS______________________" << endl;
     for (auto &c : irs) {
         cout << c.to_string() << endl;
+        IRs << c.to_string() << endl;
     }
     cout << "___________________________________________" << endl;
 

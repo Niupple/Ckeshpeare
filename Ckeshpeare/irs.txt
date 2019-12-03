@@ -1,0 +1,262 @@
+BEGIN   
+LABEL   test_same_const1
+COPY __t2 +0 
+COPY __t1 __t2 
+COPY __t0 __t1 
+SET_RETURN  __t0 
+RETURN   
+END   
+RETURN   
+BEGIN   
+LABEL   test_same_const2
+COPY __t5 1024 
+COPY __t4 __t5 
+COPY __t3 __t4 
+SET_RETURN  __t3 
+RETURN   
+END   
+RETURN   
+BEGIN   
+LABEL   getCh
+READC testCh@0  
+COPY __t8 testCh@0 
+COPY __t7 __t8 
+COPY __t6 __t7 
+SET_RETURN  __t6 
+RETURN   
+END   
+RETURN   
+ENTRY   
+BEGIN   
+VAR str@4 40 
+VAR abc@4 40 
+COPY __t10 0 
+COPY __t9 __t10 
+COPY i@4 __t9 
+LABEL   _old_fashioned_beautiful_year
+COPY __t13 i@4 
+COPY __t12 __t13 
+COPY __t11 __t12 
+COPY __t15 10 
+COPY __t14 __t15 
+LESS __t16 __t11 __t14
+JUMP_UNLESS  __t16 _colored_metal_cpu
+JUMP   _green_annoying_ps4
+LABEL   _blue_plastic_memory
+COPY __t19 i@4 
+COPY __t18 __t19 
+COPY __t17 __t18 
+COPY __t20 1 
+PLUS __t17 __t17 __t20
+COPY i@4 __t17 
+JUMP   _old_fashioned_beautiful_year
+LABEL   _green_annoying_ps4
+COPY __t23 i@4 
+COPY __t22 __t23 
+COPY __t21 __t22 
+COPY __t25 0 
+COPY __t24 __t25 
+ELEMENT str@4 __t21 __t24
+COPY __t28 i@4 
+COPY __t27 __t28 
+COPY __t26 __t27 
+COPY __t30 0 
+COPY __t29 __t30 
+ELEMENT abc@4 __t26 __t29
+JUMP   _blue_plastic_memory
+LABEL   _colored_metal_cpu
+PRINTS  --------Test const in different areas-------- 
+PRINTS  \n 
+COPY __t33 100 
+COPY __t32 __t33 
+COPY __t31 __t32 
+PRINTS  The local Num1 is :  
+PRINTI  __t31 
+PRINTS  \n 
+CALL test_same_const2  
+GET_RETURN __t36  
+COPY __t35 __t36 
+COPY __t34 __t35 
+COPY __t38 100 
+COPY __t37 __t38 
+PLUS __t34 __t34 __t37
+COPY __t40 100 
+COPY __t39 __t40 
+MINUS __t34 __t34 __t39
+PRINTS  The global Num1 is :  
+PRINTI  __t34 
+PRINTS  \n 
+CALL test_same_const1  
+GET_RETURN __t43  
+COPY __t42 __t43 
+COPY __t41 __t42 
+COPY __t45 100 
+COPY __t44 __t45 
+PLUS __t41 __t41 __t44
+COPY __t47 100 
+COPY __t46 __t47 
+MINUS __t41 __t41 __t46
+PRINTS  The function's Num1 is :  
+PRINTI  __t41 
+PRINTS  \n 
+PRINTS  --------Test finished-------- 
+PRINTS  \n 
+READC testch@4  
+PRINTS  --------Test var-------- 
+PRINTS  \n 
+COPY __t50 testch@4 
+COPY __t49 __t50 
+COPY __t48 __t49 
+PRINTS  The testch is :  
+PRINTC  __t48 
+PRINTS  \n 
+CALL getCh  
+GET_RETURN __t53  
+COPY __t52 __t53 
+COPY __t51 __t52 
+PRINTS  The testCh is :  
+PRINTC  __t51 
+PRINTS  \n 
+PRINTS  --------Test finished-------- 
+PRINTS  \n 
+COPY __t55 0 
+COPY __t54 __t55 
+COPY __t57 1 
+COPY __t56 __t57 
+ELEMENT str@4 __t54 __t56
+COPY __t59 1 
+COPY __t58 __t59 
+COPY __t61 2 
+COPY __t60 __t61 
+ELEMENT abc@4 __t58 __t60
+COPY __t63 2 
+COPY __t62 __t63 
+COPY __t65 3 
+COPY __t64 __t65 
+ELEMENT str@4 __t62 __t64
+COPY __t67 3 
+COPY __t66 __t67 
+COPY __t69 4 
+COPY __t68 __t69 
+ELEMENT abc@4 __t66 __t68
+COPY __t71 4 
+COPY __t70 __t71 
+COPY __t73 5 
+COPY __t72 __t73 
+ELEMENT str@4 __t70 __t72
+COPY __t75 5 
+COPY __t74 __t75 
+COPY __t77 6 
+COPY __t76 __t77 
+ELEMENT abc@4 __t74 __t76
+COPY __t85 4 
+COPY __t84 __t85 
+INDEX __t83 str@4 __t84
+COPY __t82 __t83 
+COPY __t81 __t82 
+INDEX __t80 abc@4 __t81
+COPY __t79 __t80 
+COPY __t78 __t79 
+COPY __t87 7 
+COPY __t86 __t87 
+ELEMENT str@4 __t78 __t86
+COPY __t104 2 
+COPY __t103 __t104 
+INDEX __t102 str@4 __t103
+COPY __t101 __t102 
+COPY __t100 __t101 
+INDEX __t99 abc@4 __t100
+COPY __t98 __t99 
+COPY __t97 __t98 
+INDEX __t96 str@4 __t97
+COPY __t95 __t96 
+COPY __t94 __t95 
+INDEX __t93 abc@4 __t94
+COPY __t92 __t93 
+COPY __t91 __t92 
+INDEX __t90 str@4 __t91
+COPY __t89 __t90 
+COPY __t88 __t89 
+COPY __t121 2 
+COPY __t120 __t121 
+INDEX __t119 str@4 __t120
+COPY __t118 __t119 
+COPY __t117 __t118 
+INDEX __t116 abc@4 __t117
+COPY __t115 __t116 
+COPY __t114 __t115 
+INDEX __t113 str@4 __t114
+COPY __t112 __t113 
+COPY __t111 __t112 
+INDEX __t110 abc@4 __t111
+COPY __t109 __t110 
+COPY __t108 __t109 
+INDEX __t107 str@4 __t108
+COPY __t106 __t107 
+COPY __t105 __t106 
+COPY __t134 2 
+COPY __t133 __t134 
+INDEX __t132 str@4 __t133
+COPY __t131 __t132 
+COPY __t130 __t131 
+INDEX __t129 abc@4 __t130
+COPY __t128 __t129 
+COPY __t127 __t128 
+INDEX __t126 str@4 __t127
+COPY __t125 __t126 
+COPY __t124 __t125 
+INDEX __t123 abc@4 __t124
+COPY __t122 __t123 
+PLUS __t105 __t105 __t122
+ELEMENT abc@4 __t88 __t105
+COPY __t145 4 
+COPY __t144 __t145 
+COPY __t149 1 
+COPY __t152 6 
+COPY __t155 5 
+COPY __t154 __t155 
+COPY __t159 1 
+NEGATE __t158 __t159 
+COPY __t160 1 
+TIME __t160 __t160 1
+PLUS __t158 __t158 __t160
+COPY __t161 1 
+PLUS __t158 __t158 __t161
+INDEX __t157 abc@4 __t158
+COPY __t156 __t157 
+PLUS __t154 __t154 __t156
+COPY __t162 5 
+MINUS __t154 __t154 __t162
+INDEX __t153 str@4 __t154
+TIME __t152 __t152 __t153
+DIVIDE __t152 __t152 2
+DIVIDE __t152 __t152 3
+COPY __t151 __t152 
+INDEX __t150 abc@4 __t151
+TIME __t149 __t149 __t150
+COPY __t148 __t149 
+INDEX __t147 str@4 __t148
+COPY __t146 __t147 
+PLUS __t144 __t144 __t146
+COPY __t169 2 
+COPY __t168 __t169 
+INDEX __t167 str@4 __t168
+COPY __t166 __t167 
+COPY __t165 __t166 
+INDEX __t164 abc@4 __t165
+COPY __t163 __t164 
+MINUS __t144 __t144 __t163
+INDEX __t143 abc@4 __t144
+COPY __t142 __t143 
+COPY __t141 __t142 
+INDEX __t140 str@4 __t141
+COPY __t139 __t140 
+COPY __t138 __t139 
+INDEX __t137 abc@4 __t138
+COPY __t136 __t137 
+COPY __t135 __t136 
+PRINTI  __t135 
+PRINTS  \n 
+RETURN   
+END   
+EXIT   

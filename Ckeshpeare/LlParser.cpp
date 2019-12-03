@@ -71,6 +71,7 @@ namespace dyj {
 #define GET(_token_type) do {\
         symbols.push_back(new TerminalSymbol(t = get(_token_type))); \
         if (!t) {\
+            rerr.push_back(new Error(Error::UNKNOWN_ERROR, peek()->get_location())); \
             return nullptr; \
         } \
     } while(0)
@@ -90,6 +91,17 @@ namespace dyj {
 
     void RecursiveDescentParser::place_tag(const std::string &name) {
         irs.emplace_back(Quaternary::LABEL, "", "", name);
+    }
+
+    std::string RecursiveDescentParser::get_escape(const string &str) {
+        std::string ret;
+        for (auto &c : str) {
+            ret.push_back(c);
+            if (c == '\\') {
+                ret.push_back('\\');
+            }
+        }
+        return ret;
     }
 
     Symbol *RecursiveDescentParser::parse_operator_add(void) {
@@ -243,7 +255,7 @@ namespace dyj {
                 name = t->get_content();
                 GET(Token::ASSIGN);
                 TAKE(parse_characters, value);
-                ret = full_house_table.declare_full_house(new FullHouse(t->get_content(), ctype, FullHouse::VARIABLE, FullHouse::CONST, value));
+                ret = full_house_table.declare_full_house(new FullHouse(name, ctype, FullHouse::VARIABLE, FullHouse::CONST, value));
                 if (!ret) {
                     rerr.push_back(new Error(Error::REDEFINITION, t->get_location()));
                 }
@@ -418,6 +430,7 @@ namespace dyj {
             rerr.push_back(new Error(Error::REDEFINITION, t->get_location()));
         }
         full_house_table.push_layer();
+        irs.emplace_back(Quaternary::BEGIN);
         place_tag(name);
         GET(Token::LPARENT);
         TAKE(parse_parameter_list, tmp);
@@ -429,6 +442,7 @@ namespace dyj {
         GET(Token::LBRACE);
         TAKE(parse_multiple_statement, ctype);
         GET(Token::RBRACE);
+        irs.emplace_back(Quaternary::END);
         full_house_table.pop_layer();
         irs.emplace_back(Quaternary::RETURN);
 
@@ -456,6 +470,7 @@ namespace dyj {
             rerr.push_back(new Error(Error::REDEFINITION, t->get_location()));
         }
         full_house_table.push_layer();
+        irs.emplace_back(Quaternary::BEGIN);
         place_tag(name);
         GET(Token::LPARENT);
         TAKE(parse_parameter_list, tmp);
@@ -467,6 +482,7 @@ namespace dyj {
         GET(Token::LBRACE);
         TAKE(parse_multiple_statement, ctype);
         GET(Token::RBRACE);
+        irs.emplace_back(Quaternary::END);
         full_house_table.pop_layer();
         irs.emplace_back(Quaternary::RETURN);
 
@@ -477,7 +493,6 @@ namespace dyj {
         PARSE(Symbol::MULTIPLE_STATEMENT, "<复合语句>");
         Token *t = peek();
         Symbol *s;
-        irs.emplace_back(Quaternary::BEGIN);
         if (t && t->get_type() == Token::CONSTTK) {
             TAKE(parse_const_declare);
         }
@@ -488,7 +503,6 @@ namespace dyj {
             TAKE(parse_variable_declare);
         }
         TAKE(parse_block, ctin);
-        irs.emplace_back(Quaternary::END);
         RETURN_PARSE();
     }
 
@@ -509,6 +523,7 @@ namespace dyj {
             GET(Token::IDENFR);
             name = t->get_content();
             ret = full_house_table.declare_full_house(new FullHouse(name, ctype, btype, ttype));
+            name = full_house_table.get_code_name(name);
             if (!ret) {
                 rerr.push_back(new Error(Error::REDEFINITION, t->get_location()));
             }
@@ -520,6 +535,7 @@ namespace dyj {
                 GET(Token::IDENFR);
                 name = t->get_content();
                 ret = full_house_table.declare_full_house(new FullHouse(name, ctype, btype, ttype));
+                name = full_house_table.get_code_name(name);
                 if (!ret) {
                     rerr.push_back(new Error(Error::REDEFINITION, t->get_location()));
                 }
@@ -545,7 +561,9 @@ namespace dyj {
         full_house_table.push_layer();
         GET(Token::LBRACE);
         irs.emplace_back(Quaternary::ENTRY);
+        irs.emplace_back(Quaternary::BEGIN);
         TAKE(parse_multiple_statement, FullHouse::VOID);
+        irs.emplace_back(Quaternary::END);
         irs.emplace_back(Quaternary::EXIT);
         GET(Token::RBRACE);
         full_house_table.pop_layer();
@@ -875,6 +893,7 @@ namespace dyj {
             place_tag(else_label);
             GET(Token::ELSETK);
             TAKE(parse_statement, ctin);
+            place_tag(end_label);
         } else {
             place_tag(else_label);
         }
@@ -936,9 +955,7 @@ namespace dyj {
         Token *t = peek();
         Symbol *s;
 
-        FullHouse *fh;
         std::string name, begin_label, end_label, lb, lc, temp;
-        FullHouse::CalType lhs, rhs;
 
         if (t && t->get_type() == Token::WHILETK) {
             GET(Token::WHILETK);
@@ -977,17 +994,17 @@ namespace dyj {
             GET(Token::LPARENT);
             TAKE(parse_assign_statement);
             GET(Token::SEMICN);
-            begin_label = place_tag();
             end_label = label_namer->new_name();
             lb = label_namer->new_name();
             lc = label_namer->new_name();
+            begin_label = place_tag();
             TAKE(parse_condition, temp);
             irs.emplace_back(Quaternary::JUMP_UNLESS, "", temp, end_label);
             irs.emplace_back(Quaternary::JUMP, "", "", lc);
             GET(Token::SEMICN);
             place_tag(lb);
-            irs.emplace_back(Quaternary::JUMP, "", "", begin_label);
             TAKE(parse_assign_statement);
+            irs.emplace_back(Quaternary::JUMP, "", "", begin_label);
             GET(Token::RPARENT);
             place_tag(lc);
             TAKE(parse_statement, ctin);
@@ -1015,6 +1032,7 @@ namespace dyj {
         FullHouse *fh;
         std::string name;
         std::vector<FullHouse::CalType> params;
+        std::vector<std::string> vars;
 
         GET(Token::IDENFR);
         name = t->get_content();
@@ -1023,13 +1041,18 @@ namespace dyj {
             rerr.push_back(new Error(Error::UNDEFINED, t->get_location()));
         } else if (fh->get_calculation() == FullHouse::VOID) {
             rerr.push_back(new Error(Error::UNKNOWN_ERROR, t->get_location()));
+        } else if (fh->get_behavior() != FullHouse::FUNCTION) {
+            rerr.push_back(new Error(Error::UNKNOWN_ERROR, t->get_location()));
         }
         GET(Token::LPARENT);
-        TAKE(parse_argument_list, params);
+        TAKE(parse_argument_list, params, vars);
         if (peek() && peek()->get_type() != Token::RPARENT) {
             rerr.push_back(new Error(Error::RPARENT_LOST, s->get_token()->get_location()));
         } else {
             GET(Token::RPARENT);
+        }
+        for (auto &var : vars) {
+            irs.emplace_back(Quaternary::ARGUMENT, "", var);
         }
         irs.emplace_back(Quaternary::CALL, name);
         if (fh && params.size() != fh->get_array_size()) {
@@ -1050,16 +1073,20 @@ namespace dyj {
         FullHouse *fh;
         std::string name;
         std::vector<FullHouse::CalType> params;
+        std::vector<std::string> vars;
 
         GET(Token::IDENFR);
         name = t->get_content();
         fh = full_house_table.lookup_full_house(name);
         GET(Token::LPARENT);
-        TAKE(parse_argument_list, params);
+        TAKE(parse_argument_list, params, vars);
         if (peek() && peek()->get_type() != Token::RPARENT) {
             rerr.push_back(new Error(Error::RPARENT_LOST, s->get_token()->get_location()));
         } else {
             GET(Token::RPARENT);
+        }
+        for (auto &var : vars) {
+            irs.emplace_back(Quaternary::ARGUMENT, "", var);
         }
         irs.emplace_back(Quaternary::CALL, name);
         if (params.size() != fh->get_array_size()) {
@@ -1072,16 +1099,16 @@ namespace dyj {
         RETURN_PARSE();
     }
 
-    Symbol *RecursiveDescentParser::parse_argument_list(std::vector<FullHouse::CalType> &args) {
+    Symbol *RecursiveDescentParser::parse_argument_list(std::vector<FullHouse::CalType> &args, std::vector<std::string> &vars) {
         PARSE(Symbol::ARGUMENT_LIST, "<值参数表>");
         Token *t = peek();
         Symbol *s;
 
         FullHouse::CalType ctype;
         std::string var;
-        std::vector<std::string> vars;
 
         args.clear();
+        vars.clear();
 
         if (t) {
             switch (t->get_type()) {
@@ -1100,9 +1127,9 @@ namespace dyj {
                     vars.push_back(var);
                     args.push_back(ctype);
                 }
-                for (auto v : vars) {
-                    irs.emplace_back(Quaternary::ARGUMENT, v);
-                }
+                /*for (auto v : vars) {
+                    irs.emplace_back(Quaternary::ARGUMENT, "", v);
+                }*/
                 break;
             default:
                 break;
@@ -1212,7 +1239,7 @@ namespace dyj {
             if (peek() && peek()->get_type() == Token::COMMA) {
                 GET(Token::COMMA);
                 TAKE(parse_expression, ctype, var);
-                irs.emplace_back(Quaternary::PRINTS, "", str);
+                irs.emplace_back(Quaternary::PRINTS, "", get_escape(str));
                 if (ctype == FullHouse::INT) {
                     irs.emplace_back(Quaternary::PRINTI, "", var);
                 } else {
@@ -1220,7 +1247,7 @@ namespace dyj {
                 }
                 irs.emplace_back(Quaternary::PRINTS, "", "\\n");
             } else {
-                irs.emplace_back(Quaternary::PRINTS, "", str);
+                irs.emplace_back(Quaternary::PRINTS, "", get_escape(str));
                 irs.emplace_back(Quaternary::PRINTS, "", "\\n");
             }
         } else {
@@ -1253,13 +1280,16 @@ namespace dyj {
         if (peek() && peek()->get_type() == Token::LPARENT) {
             GET(Token::LPARENT);
             TAKE(parse_expression, ctype, var);
-            irs.emplace_back(Quaternary::SET_RETURN, var);
+            irs.emplace_back(Quaternary::SET_RETURN, "", var);
             if (peek() && peek()->get_type() != Token::RPARENT) {
                 rerr.push_back(new Error(Error::RPARENT_LOST, s->get_token()->get_location()));
             } else {
                 GET(Token::RPARENT);
             }
+        } else {
+            ctype = FullHouse::VOID;
         }
+        irs.emplace_back(Quaternary::RETURN);
 
         RETURN_PARSE();
     }

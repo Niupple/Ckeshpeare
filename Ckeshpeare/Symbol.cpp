@@ -25,10 +25,6 @@ namespace dyj {
         return token;
     }
 
-    const Symbol &TerminalSymbol::at(size_t _idx) const {
-        return *this;
-    }
-
     NonterminalSymbol::NonterminalSymbol(void) : type(DEFAULT) {}
 
     NonterminalSymbol::NonterminalSymbol(Symbol::Type _type, std::string _name, const std::vector<Symbol *> &_tokens) : Symbol::Symbol(_name), symbols(_tokens) , type(_type){}
@@ -52,6 +48,10 @@ namespace dyj {
 
     Token *NonterminalSymbol::get_token(void) const {
         return symbols.back()->get_token();
+    }
+
+    Symbol::Type NonterminalSymbol::get_type(void) const {
+        return type;
     }
 
     const Symbol &NonterminalSymbol::at(size_t _idx) const {

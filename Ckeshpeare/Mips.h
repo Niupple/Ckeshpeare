@@ -41,6 +41,7 @@ namespace dyj {
         };
 
         Mips();
+        static Registers args(size_t i);
         virtual std::string to_string(void) const = 0;
 
     protected:
@@ -97,9 +98,9 @@ namespace dyj {
 
     private:
         static std::vector<std::string> repr;
-        std::string label;
         Type type;
         Registers rs, rt;
+        std::string label;
     };
 
     class Register : public Mips {
@@ -125,6 +126,7 @@ namespace dyj {
             MFLO,
             MTHI,
             MTLO,
+            JR,
         };
 
         Register() = delete;
@@ -134,6 +136,6 @@ namespace dyj {
     private:
         static std::vector<std::string> repr;
         Type type;
-        Registers rs, rt, rd;
+        Registers rd, rs, rt;
     };
 }

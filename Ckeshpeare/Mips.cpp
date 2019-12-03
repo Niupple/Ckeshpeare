@@ -7,6 +7,21 @@ namespace dyj {
         return "$" + std::to_string(r);
     }
 
+    Mips::Registers Mips::args(size_t i) {
+        switch (i) {
+        case 0:
+            return A0;
+        case 1:
+            return A1;
+        case 2:
+            return A2;
+        case 3:
+            return A3;
+        default:
+            return ZERO;
+        }
+    }
+
     Jump::Jump(Type _type, const std::string &_label) : type(_type), label(_label) {}
 
     std::string Jump::to_string(void) const {
@@ -42,10 +57,6 @@ namespace dyj {
         case SLTIU:
         case BEQ:
         case BNE:
-        case BLEZ:
-        case BGTZ:
-        case BLTZ:
-        case BGEZ:
         case SLL:
         case SRL:
         case SRA:
@@ -55,6 +66,10 @@ namespace dyj {
             return repr[type] + " " + reg(rs) + " " + label + "(" + reg(rt) + ")";
         case LI:
         case LA:
+        case BLEZ:
+        case BGTZ:
+        case BLTZ:
+        case BGEZ:
             return repr[type] + " " + reg(rs) + " " + label;
         }
     }
@@ -93,6 +108,9 @@ namespace dyj {
             case MUL:
             case DIV:
             case SLT:
+            case SLE:
+            case SEQ:
+            case SNE:
             case SLLV:
             case SRLV:
             case SRAV:
@@ -106,6 +124,8 @@ namespace dyj {
             case MTHI:
             case MTLO:
                 return repr[type] + " " + reg(rd);
+            case JR:
+                return repr[type] + " " + reg(rs);
         }
     }
 
@@ -130,6 +150,7 @@ namespace dyj {
         "mflo",
         "mthi",
         "mtlo",
+        "jr",
     };
 
 }

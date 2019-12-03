@@ -46,7 +46,7 @@ namespace dyj {
         mat.push_back(new KeywordMatcher("}", Token::RBRACE));
         mat.push_back(new IdentifierMatcher());
         //DP("mat len is %u\n", ct.matchers.size());
-        return std::move(ct);
+        return ct;
     }
 
     void Tokenizer::feed(const string &_content) {
