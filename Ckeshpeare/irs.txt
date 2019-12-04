@@ -1,262 +1,311 @@
 BEGIN   
-LABEL   test_same_const1
-COPY __t2 +0 
-COPY __t1 __t2 
-COPY __t0 __t1 
-SET_RETURN  __t0 
+LABEL   factorial
+PARAM n@1  
+LEQ __t5 n@1 1
+JUMP_UNLESS  __t5 _blue_royal_calendar
+SET_RETURN  1 
+RETURN   
+LABEL   _blue_royal_calendar
+COPY __t9 n@1 
+COPY __t12 n@1 
+MINUS __t12 __t12 1
+ARGUMENT  __t12 
+CALL factorial  
+GET_RETURN __t11  
+TIME __t8 __t9 __t11
+SET_RETURN  __t8 
 RETURN   
 END   
 RETURN   
 BEGIN   
-LABEL   test_same_const2
-COPY __t5 1024 
-COPY __t4 __t5 
-COPY __t3 __t4 
-SET_RETURN  __t3 
+LABEL   mod
+PARAM x@2  
+PARAM y@2  
+COPY __t16 x@2 
+COPY __t19 x@2 
+DIVIDE __t19 __t19 y@2
+TIME __t19 __t19 y@2
+MINUS x@2 __t16 __t19
+SET_RETURN  x@2 
 RETURN   
 END   
 RETURN   
 BEGIN   
-LABEL   getCh
-READC testCh@0  
-COPY __t8 testCh@0 
-COPY __t7 __t8 
-COPY __t6 __t7 
-SET_RETURN  __t6 
+LABEL   swap
+PARAM x@3  
+PARAM y@3  
+COPY __t26 x@3 
+PRINTS  x =  
+PRINTI  __t26 
+PRINTS  \n 
+COPY __t29 y@3 
+PRINTS  y =  
+PRINTI  __t29 
+PRINTS  \n 
+COPY temp@3 x@3 
+COPY x@3 y@3 
+COPY y@3 temp@3 
+COPY __t41 x@3 
+PRINTS  SWAP x =  
+PRINTI  __t41 
+PRINTS  \n 
+COPY __t44 y@3 
+PRINTS  SWAP y =  
+PRINTI  __t44 
+PRINTS  \n 
+END   
 RETURN   
+BEGIN   
+LABEL   full_num
+PARAM n@4  
+PARAM j@4  
+PARAM a@4  
+TIME __t47 n@4 100
+COPY __t50 j@4 
+TIME __t50 __t50 10
+PLUS __t47 __t47 __t50
+PLUS __t47 __t47 a@4
+SET_RETURN  __t47 
+RETURN   
+END   
+RETURN   
+BEGIN   
+LABEL   flower_num
+PARAM n@5  
+PARAM j@5  
+PARAM a@5  
+COPY __t55 n@5 
+TIME __t55 __t55 n@5
+TIME __t54 __t55 n@5
+COPY __t59 j@5 
+TIME __t59 __t59 j@5
+TIME __t59 __t59 j@5
+PLUS __t54 __t54 __t59
+COPY __t63 a@5 
+TIME __t63 __t63 a@5
+TIME __t63 __t63 a@5
+PLUS __t54 __t54 __t63
+SET_RETURN  __t54 
+RETURN   
+END   
+RETURN   
+BEGIN   
+LABEL   complete_flower_num
+VAR k@6 512 
+COPY j@6 2 
+LABEL   _green_good_looking_ssd
+LESS __t75 j@6 128
+JUMP_UNLESS  __t75 _red_freaking_machine
+JUMP   _stylish_good_looking_ps4
+LABEL   _red_weird_machine
+PLUS j@6 j@6 1
+JUMP   _green_good_looking_ssd
+LABEL   _stylish_good_looking_ps4
+NEGATE n@6 1 
+COPY s@6 j@6 
+COPY i@6 1 
+LABEL   _colorful_irratating_life
+LESS __t93 i@6 j@6
+JUMP_UNLESS  __t93 _cutting_edge_amusing_pants
+JUMP   _colorful_imperialist_trousers
+LABEL   _colored_stink_cpu
+PLUS i@6 i@6 1
+JUMP   _colorful_irratating_life
+LABEL   _colorful_imperialist_trousers
+DIVIDE __t99 j@6 i@6
+TIME x1@6 __t99 i@6
+COPY __t108 j@6 
+COPY __t111 i@6 
+ARGUMENT  __t108 
+ARGUMENT  __t111 
+CALL mod  
+GET_RETURN __t105  
+EQU __t116 0 __t105
+JUMP_UNLESS  __t116 _stylish_amusing_headset
+PLUS n@6 n@6 1
+MINUS s@6 s@6 i@6
+LEQ __t131 128 n@6
+JUMP_UNLESS  __t131 _red_interesting_apple
+PRINTS  OVERFLOW! 
+PRINTS  \n 
+JUMP   _old_fashioned_good_looking_ps4
+LABEL   _red_interesting_apple
+ELEMENT k@6 n@6 i@6
+LABEL   _old_fashioned_good_looking_ps4
+LABEL   _stylish_amusing_headset
+JUMP   _colored_stink_cpu
+LABEL   _cutting_edge_amusing_pants
+EQU __t143 0 s@6
+JUMP_UNLESS  __t143 _kinky_socialist_earphone
+COPY __t144 j@6 
+PRINTS  complete number:  
+PRINTI  __t144 
+PRINTS  \n 
+COPY i@6 0 
+LABEL   _shinny_beautiful_keyboard
+LEQ __t155 i@6 n@6
+JUMP_UNLESS  __t155 _smoothy_wooden_trip
+JUMP   _pale_metal_calendar
+LABEL   _smoothy_wonderful_pants
+PLUS i@6 i@6 1
+JUMP   _shinny_beautiful_keyboard
+LABEL   _pale_metal_calendar
+INDEX __t160 k@6 i@6
+PRINTS     
+PRINTI  __t160 
+PRINTS  \n 
+JUMP   _smoothy_wonderful_pants
+LABEL   _smoothy_wooden_trip
+PRINTS    
+PRINTS  \n 
+LABEL   _kinky_socialist_earphone
+JUMP   _red_weird_machine
+LABEL   _red_freaking_machine
+PRINTS  --------------------------------------------------------------- 
+PRINTS  \n 
+PRINTS  'water flower'number is: 
+PRINTS  \n 
+COPY y@6 0 
+COPY i@6 100 
+LABEL   _smoothy_royal_trousers
+COPY __t170 i@6 
+COPY __t173 100 
+PLUS __t173 __t173 128
+LESS __t177 __t170 __t173
+JUMP_UNLESS  __t177 _red_special_apple
+JUMP   _colorful_boring_headset
+LABEL   _shinny_freaking_year
+PLUS i@6 i@6 1
+JUMP   _smoothy_royal_trousers
+LABEL   _colorful_boring_headset
+DIVIDE n@6 i@6 100
+DIVIDE __t188 i@6 10
+COPY __t191 10 
+ARGUMENT  __t188 
+ARGUMENT  __t191 
+CALL mod  
+GET_RETURN j@6  
+COPY __t196 i@6 
+COPY __t199 10 
+ARGUMENT  __t196 
+ARGUMENT  __t199 
+CALL mod  
+GET_RETURN a@6  
+COPY __t204 n@6 
+COPY __t207 j@6 
+COPY __t210 a@6 
+ARGUMENT  __t204 
+ARGUMENT  __t207 
+ARGUMENT  __t210 
+CALL full_num  
+GET_RETURN __t201  
+COPY __t216 n@6 
+COPY __t219 j@6 
+COPY __t222 a@6 
+ARGUMENT  __t216 
+ARGUMENT  __t219 
+ARGUMENT  __t222 
+CALL flower_num  
+GET_RETURN __t213  
+EQU __t225 __t213 __t201
+JUMP_UNLESS  __t225 _kinky_dummy_coke
+ELEMENT k@6 y@6 i@6
+PLUS y@6 y@6 1
+LABEL   _kinky_dummy_coke
+JUMP   _shinny_freaking_year
+LABEL   _red_special_apple
+COPY i@6 0 
+LABEL   _blue_special_apple
+LESS __t244 i@6 y@6
+JUMP_UNLESS  __t244 _stylish_pretty_cpu
+JUMP   _red_pretty_day
+LABEL   _stylish_dummy_ssd
+PLUS i@6 i@6 1
+JUMP   _blue_special_apple
+LABEL   _red_pretty_day
+INDEX __t249 k@6 i@6
+PRINTS     
+PRINTI  __t249 
+PRINTS  \n 
+JUMP   _stylish_dummy_ssd
+LABEL   _stylish_pretty_cpu
+PRINTS    
+PRINTS  \n 
+PRINTS  --------------------------------------------------------------- 
+PRINTS  \n 
+COPY h@6 0 
+COPY leap@6 1 
+COPY m@6 2 
+LABEL   _yellow_wooden_thing
+LEQ __t267 m@6 128
+JUMP_UNLESS  __t267 _red_dummy_shirts
+JUMP   _blue_freaking_computer
+LABEL   _shinny_plastic_noodles
+PLUS m@6 m@6 1
+JUMP   _yellow_wooden_thing
+LABEL   _blue_freaking_computer
+DIVIDE k2@6 m@6 2
+COPY i@6 2 
+LABEL   _green_freaking_chicken
+LEQ __t283 i@6 k2@6
+JUMP_UNLESS  __t283 _shinny_amusing_thing
+JUMP   _pink_weird_trousers
+LABEL   _cutting_edge_plastic_person
+PLUS i@6 i@6 1
+JUMP   _green_freaking_chicken
+LABEL   _pink_weird_trousers
+DIVIDE __t289 m@6 i@6
+TIME x2@6 __t289 i@6
+COPY __t298 m@6 
+COPY __t301 i@6 
+ARGUMENT  __t298 
+ARGUMENT  __t301 
+CALL mod  
+GET_RETURN __t295  
+EQU __t306 0 __t295
+JUMP_UNLESS  __t306 _green_wooden_year
+COPY leap@6 0 
+LABEL   _green_wooden_year
+JUMP   _cutting_edge_plastic_person
+LABEL   _shinny_amusing_thing
+EQU __t314 1 leap@6
+JUMP_UNLESS  __t314 _kinky_boring_person
+COPY __t315 m@6 
+PRINTS    
+PRINTI  __t315 
+PRINTS  \n 
+PLUS h@6 h@6 1
+DIVIDE __t323 h@6 10
+TIME x2@6 __t323 10
+EQU __t333 h@6 x2@6
+JUMP_UNLESS  __t333 _kinky_boring_wire
+PRINTS    
+PRINTS  \n 
+LABEL   _kinky_boring_wire
+LABEL   _kinky_boring_person
+COPY leap@6 1 
+JUMP   _shinny_plastic_noodles
+LABEL   _red_dummy_shirts
+COPY __t336 h@6 
+PRINTS  The total is  
+PRINTI  __t336 
+PRINTS  \n 
 END   
 RETURN   
 ENTRY   
 BEGIN   
-VAR str@4 40 
-VAR abc@4 40 
-COPY __t10 0 
-COPY __t9 __t10 
-COPY i@4 __t9 
-LABEL   _old_fashioned_beautiful_year
-COPY __t13 i@4 
-COPY __t12 __t13 
-COPY __t11 __t12 
-COPY __t15 10 
-COPY __t14 __t15 
-LESS __t16 __t11 __t14
-JUMP_UNLESS  __t16 _colored_metal_cpu
-JUMP   _green_annoying_ps4
-LABEL   _blue_plastic_memory
-COPY __t19 i@4 
-COPY __t18 __t19 
-COPY __t17 __t18 
-COPY __t20 1 
-PLUS __t17 __t17 __t20
-COPY i@4 __t17 
-JUMP   _old_fashioned_beautiful_year
-LABEL   _green_annoying_ps4
-COPY __t23 i@4 
-COPY __t22 __t23 
-COPY __t21 __t22 
-COPY __t25 0 
-COPY __t24 __t25 
-ELEMENT str@4 __t21 __t24
-COPY __t28 i@4 
-COPY __t27 __t28 
-COPY __t26 __t27 
-COPY __t30 0 
-COPY __t29 __t30 
-ELEMENT abc@4 __t26 __t29
-JUMP   _blue_plastic_memory
-LABEL   _colored_metal_cpu
-PRINTS  --------Test const in different areas-------- 
+ARGUMENT  5 
+CALL factorial  
+GET_RETURN n@7  
+COPY __t344 n@7 
+PRINTS  5 !=  
+PRINTI  __t344 
 PRINTS  \n 
-COPY __t33 100 
-COPY __t32 __t33 
-COPY __t31 __t32 
-PRINTS  The local Num1 is :  
-PRINTI  __t31 
-PRINTS  \n 
-CALL test_same_const2  
-GET_RETURN __t36  
-COPY __t35 __t36 
-COPY __t34 __t35 
-COPY __t38 100 
-COPY __t37 __t38 
-PLUS __t34 __t34 __t37
-COPY __t40 100 
-COPY __t39 __t40 
-MINUS __t34 __t34 __t39
-PRINTS  The global Num1 is :  
-PRINTI  __t34 
-PRINTS  \n 
-CALL test_same_const1  
-GET_RETURN __t43  
-COPY __t42 __t43 
-COPY __t41 __t42 
-COPY __t45 100 
-COPY __t44 __t45 
-PLUS __t41 __t41 __t44
-COPY __t47 100 
-COPY __t46 __t47 
-MINUS __t41 __t41 __t46
-PRINTS  The function's Num1 is :  
-PRINTI  __t41 
-PRINTS  \n 
-PRINTS  --------Test finished-------- 
-PRINTS  \n 
-READC testch@4  
-PRINTS  --------Test var-------- 
-PRINTS  \n 
-COPY __t50 testch@4 
-COPY __t49 __t50 
-COPY __t48 __t49 
-PRINTS  The testch is :  
-PRINTC  __t48 
-PRINTS  \n 
-CALL getCh  
-GET_RETURN __t53  
-COPY __t52 __t53 
-COPY __t51 __t52 
-PRINTS  The testCh is :  
-PRINTC  __t51 
-PRINTS  \n 
-PRINTS  --------Test finished-------- 
-PRINTS  \n 
-COPY __t55 0 
-COPY __t54 __t55 
-COPY __t57 1 
-COPY __t56 __t57 
-ELEMENT str@4 __t54 __t56
-COPY __t59 1 
-COPY __t58 __t59 
-COPY __t61 2 
-COPY __t60 __t61 
-ELEMENT abc@4 __t58 __t60
-COPY __t63 2 
-COPY __t62 __t63 
-COPY __t65 3 
-COPY __t64 __t65 
-ELEMENT str@4 __t62 __t64
-COPY __t67 3 
-COPY __t66 __t67 
-COPY __t69 4 
-COPY __t68 __t69 
-ELEMENT abc@4 __t66 __t68
-COPY __t71 4 
-COPY __t70 __t71 
-COPY __t73 5 
-COPY __t72 __t73 
-ELEMENT str@4 __t70 __t72
-COPY __t75 5 
-COPY __t74 __t75 
-COPY __t77 6 
-COPY __t76 __t77 
-ELEMENT abc@4 __t74 __t76
-COPY __t85 4 
-COPY __t84 __t85 
-INDEX __t83 str@4 __t84
-COPY __t82 __t83 
-COPY __t81 __t82 
-INDEX __t80 abc@4 __t81
-COPY __t79 __t80 
-COPY __t78 __t79 
-COPY __t87 7 
-COPY __t86 __t87 
-ELEMENT str@4 __t78 __t86
-COPY __t104 2 
-COPY __t103 __t104 
-INDEX __t102 str@4 __t103
-COPY __t101 __t102 
-COPY __t100 __t101 
-INDEX __t99 abc@4 __t100
-COPY __t98 __t99 
-COPY __t97 __t98 
-INDEX __t96 str@4 __t97
-COPY __t95 __t96 
-COPY __t94 __t95 
-INDEX __t93 abc@4 __t94
-COPY __t92 __t93 
-COPY __t91 __t92 
-INDEX __t90 str@4 __t91
-COPY __t89 __t90 
-COPY __t88 __t89 
-COPY __t121 2 
-COPY __t120 __t121 
-INDEX __t119 str@4 __t120
-COPY __t118 __t119 
-COPY __t117 __t118 
-INDEX __t116 abc@4 __t117
-COPY __t115 __t116 
-COPY __t114 __t115 
-INDEX __t113 str@4 __t114
-COPY __t112 __t113 
-COPY __t111 __t112 
-INDEX __t110 abc@4 __t111
-COPY __t109 __t110 
-COPY __t108 __t109 
-INDEX __t107 str@4 __t108
-COPY __t106 __t107 
-COPY __t105 __t106 
-COPY __t134 2 
-COPY __t133 __t134 
-INDEX __t132 str@4 __t133
-COPY __t131 __t132 
-COPY __t130 __t131 
-INDEX __t129 abc@4 __t130
-COPY __t128 __t129 
-COPY __t127 __t128 
-INDEX __t126 str@4 __t127
-COPY __t125 __t126 
-COPY __t124 __t125 
-INDEX __t123 abc@4 __t124
-COPY __t122 __t123 
-PLUS __t105 __t105 __t122
-ELEMENT abc@4 __t88 __t105
-COPY __t145 4 
-COPY __t144 __t145 
-COPY __t149 1 
-COPY __t152 6 
-COPY __t155 5 
-COPY __t154 __t155 
-COPY __t159 1 
-NEGATE __t158 __t159 
-COPY __t160 1 
-TIME __t160 __t160 1
-PLUS __t158 __t158 __t160
-COPY __t161 1 
-PLUS __t158 __t158 __t161
-INDEX __t157 abc@4 __t158
-COPY __t156 __t157 
-PLUS __t154 __t154 __t156
-COPY __t162 5 
-MINUS __t154 __t154 __t162
-INDEX __t153 str@4 __t154
-TIME __t152 __t152 __t153
-DIVIDE __t152 __t152 2
-DIVIDE __t152 __t152 3
-COPY __t151 __t152 
-INDEX __t150 abc@4 __t151
-TIME __t149 __t149 __t150
-COPY __t148 __t149 
-INDEX __t147 str@4 __t148
-COPY __t146 __t147 
-PLUS __t144 __t144 __t146
-COPY __t169 2 
-COPY __t168 __t169 
-INDEX __t167 str@4 __t168
-COPY __t166 __t167 
-COPY __t165 __t166 
-INDEX __t164 abc@4 __t165
-COPY __t163 __t164 
-MINUS __t144 __t144 __t163
-INDEX __t143 abc@4 __t144
-COPY __t142 __t143 
-COPY __t141 __t142 
-INDEX __t140 str@4 __t141
-COPY __t139 __t140 
-COPY __t138 __t139 
-INDEX __t137 abc@4 __t138
-COPY __t136 __t137 
-COPY __t135 __t136 
-PRINTI  __t135 
-PRINTS  \n 
-RETURN   
+COPY __t347 5 
+COPY __t349 10 
+ARGUMENT  __t347 
+ARGUMENT  __t349 
+CALL swap  
+CALL complete_flower_num  
 END   
 EXIT   

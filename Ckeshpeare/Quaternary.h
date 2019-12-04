@@ -51,6 +51,9 @@ namespace dyj {
         string get_rhs(void) const;
         string to_string(void) const;
 
+    public:
+        bool is_jump(void) const;
+
     private:
         static std::vector<string> repr;
 

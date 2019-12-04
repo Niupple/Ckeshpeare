@@ -23,6 +23,25 @@ namespace dyj {
         return repr[type] + " " + dest + " " + lhs + " " + rhs;
     }
 
+    bool Quaternary::is_jump(void) const {
+        switch (type) {
+        case JUMP:
+        case JUMP_IF:
+        case JUMP_UNLESS:
+        case RETURN:
+        case CALL:
+        case PRINTC:
+        case PRINTF:
+        case PRINTI:
+        case PRINTS:
+        case READI:
+        case READC:
+            return true;
+        default:
+            return false;
+        }
+    }
+
     std::vector<std::string> Quaternary::repr {
         "PLUS",       // +
         "MINUS",      // -

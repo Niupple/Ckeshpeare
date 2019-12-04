@@ -443,8 +443,8 @@ namespace dyj {
         TAKE(parse_multiple_statement, ctype);
         GET(Token::RBRACE);
         irs.emplace_back(Quaternary::END);
-        full_house_table.pop_layer();
         irs.emplace_back(Quaternary::RETURN);
+        full_house_table.pop_layer();
 
         RETURN_PARSE();
     }
@@ -483,8 +483,8 @@ namespace dyj {
         TAKE(parse_multiple_statement, ctype);
         GET(Token::RBRACE);
         irs.emplace_back(Quaternary::END);
-        full_house_table.pop_layer();
         irs.emplace_back(Quaternary::RETURN);
+        full_house_table.pop_layer();
 
         RETURN_PARSE();
     }

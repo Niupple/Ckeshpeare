@@ -15,6 +15,8 @@ namespace dyj {
         void parse(void);
         void dump(std::string &output);
 
+        void peek_hole(void);
+
     private:
         const std::vector<Quaternary> &irs;
         std::vector<Mips *> mips;
@@ -64,10 +66,10 @@ namespace dyj {
         void parse_scope();
         void parse_def();
 
-    private:
-        static bool is_global(const std::string &name);
-        static bool is_const(const std::string &name);
     };
 
     size_t align(size_t x);
+    bool is_global(const std::string &name);
+    bool is_const(const std::string &name);
+    bool is_local(const std::string &name);
 }

@@ -1,683 +1,739 @@
 .data
-_red_imperialist_calendar: .space 4
-_cutting_edge_amazing_life: .asciiz "--------Test const in different areas--------"
-_green_wonderful_coke: .asciiz "--------Test finished--------"
-_cutting_edge_wooden_person: .asciiz "--------Test var--------"
-_shinny_civil_switch: .asciiz "The function's Num1 is : "
-_stylish_boring_apple: .asciiz "The global Num1 is : "
-_blue_dummy_tour: .asciiz "The local Num1 is : "
-_pale_weird_keyboard: .asciiz "The testCh is : "
-_colored_amazing_noodles: .asciiz "The testch is : "
-_smoothy_civil_year: .asciiz "\n"
+_kinky_wooden_cpu: .asciiz " "
+_kinky_extrordinary_grapes: .asciiz "  "
+_green_socialist_calendar: .asciiz "'water flower'number is:"
+_old_fashioned_wonderful_chicken: .asciiz "---------------------------------------------------------------"
+_shinny_interesting_grapes: .asciiz "5 != "
+_green_extrordinary_keyboard: .asciiz "OVERFLOW!"
+_kinky_awsome_year: .asciiz "SWAP x = "
+_pink_pretty_earphone: .asciiz "SWAP y = "
+_cutting_edge_wonderful_chinese: .asciiz "The total is "
+_blue_pretty_memory: .asciiz "\n"
+_colorful_amazing_machine: .asciiz "complete number: "
+_red_amusing_grapes: .asciiz "x = "
+_colorful_pretty_headset: .asciiz "y = "
 .text
 jal __main__
 j __main_end__
-test_same_const1:
-li $9 +0
-sw $9 0($30)
+factorial:
+sw $4 0($30)
 lw $9 0($30)
-sw $9 -4($30)
-lw $9 -4($30)
-sw $9 -8($30)
-lw $2 -8($30)
+li $10 1
+sle $8 $9 $10
+sw $8 -4($30)
+lw $8 -4($30)
+beq $8 $0 _blue_royal_calendar
+li $2 1
 jr $31
-jr $31
-test_same_const2:
-li $9 1024
-sw $9 0($30)
+_blue_royal_calendar:
 lw $9 0($30)
-sw $9 -4($30)
-lw $9 -4($30)
 sw $9 -8($30)
-lw $2 -8($30)
+lw $9 0($30)
+sw $9 -12($30)
+lw $9 -12($30)
+subiu $8 $9 1
+sw $8 -12($30)
+sw $29 -16($30)
+addiu $29 $30 -20
+lw $8 -12($30)
+sw $8 0($29)
+addu $4 $8 $0
+sw $31 -4($29)
+addiu $30 $29 -8
+jal factorial
+addiu $30 $29 20
+lw $31 -4($29)
+lw $29 -16($30)
+sw $2 -16($30)
+lw $9 -8($30)
+lw $10 -16($30)
+mul $8 $9 $10
+sw $8 -20($30)
+lw $2 -20($30)
 jr $31
 jr $31
-getCh:
-li $2 12
+mod:
+sw $4 0($30)
+sw $5 -4($30)
+lw $9 0($30)
+sw $9 -8($30)
+lw $9 0($30)
+sw $9 -12($30)
+lw $9 -12($30)
+lw $10 -4($30)
+div $8 $9 $10
+sw $8 -12($30)
+lw $9 -12($30)
+lw $10 -4($30)
+mul $8 $9 $10
+sw $8 -12($30)
+lw $9 -8($30)
+lw $10 -12($30)
+subu $8 $9 $10
+sw $8 0($30)
+lw $2 0($30)
+jr $31
+jr $31
+swap:
+sw $4 0($30)
+sw $5 -4($30)
+lw $9 0($30)
+sw $9 -8($30)
+li $2 4
+la $4 _red_amusing_grapes
 syscall
-sw $2 _red_imperialist_calendar($0)
-lw $9 _red_imperialist_calendar($0)
-sw $9 0($30)
-lw $9 0($30)
-sw $9 -4($30)
+lw $4 -8($30)
+li $2 1
+syscall
+li $2 4
+la $4 _blue_pretty_memory
+syscall
 lw $9 -4($30)
-sw $9 -8($30)
-lw $2 -8($30)
+sw $9 -12($30)
+li $2 4
+la $4 _colorful_pretty_headset
+syscall
+lw $4 -12($30)
+li $2 1
+syscall
+li $2 4
+la $4 _blue_pretty_memory
+syscall
+lw $9 0($30)
+sw $9 -16($30)
+lw $9 -4($30)
+sw $9 0($30)
+lw $9 -16($30)
+sw $9 -4($30)
+lw $9 0($30)
+sw $9 -20($30)
+li $2 4
+la $4 _kinky_awsome_year
+syscall
+lw $4 -20($30)
+li $2 1
+syscall
+li $2 4
+la $4 _blue_pretty_memory
+syscall
+lw $9 -4($30)
+sw $9 -24($30)
+li $2 4
+la $4 _pink_pretty_earphone
+syscall
+lw $4 -24($30)
+li $2 1
+syscall
+li $2 4
+la $4 _blue_pretty_memory
+syscall
 jr $31
+full_num:
+sw $4 0($30)
+sw $5 -4($30)
+sw $6 -8($30)
+lw $9 0($30)
+li $10 100
+mul $8 $9 $10
+sw $8 -12($30)
+lw $9 -4($30)
+sw $9 -16($30)
+lw $9 -16($30)
+li $10 10
+mul $8 $9 $10
+sw $8 -16($30)
+lw $9 -12($30)
+lw $10 -16($30)
+addu $8 $9 $10
+sw $8 -12($30)
+lw $9 -12($30)
+lw $10 -8($30)
+addu $8 $9 $10
+sw $8 -12($30)
+lw $2 -12($30)
+jr $31
+jr $31
+flower_num:
+sw $4 0($30)
+sw $5 -4($30)
+sw $6 -8($30)
+lw $9 0($30)
+sw $9 -12($30)
+lw $9 -12($30)
+lw $10 0($30)
+mul $8 $9 $10
+sw $8 -12($30)
+lw $9 -12($30)
+lw $10 0($30)
+mul $8 $9 $10
+sw $8 -16($30)
+lw $9 -4($30)
+sw $9 -20($30)
+lw $9 -20($30)
+lw $10 -4($30)
+mul $8 $9 $10
+sw $8 -20($30)
+lw $9 -20($30)
+lw $10 -4($30)
+mul $8 $9 $10
+sw $8 -20($30)
+lw $9 -16($30)
+lw $10 -20($30)
+addu $8 $9 $10
+sw $8 -16($30)
+lw $9 -8($30)
+sw $9 -24($30)
+lw $9 -24($30)
+lw $10 -8($30)
+mul $8 $9 $10
+sw $8 -24($30)
+lw $9 -24($30)
+lw $10 -8($30)
+mul $8 $9 $10
+sw $8 -24($30)
+lw $9 -16($30)
+lw $10 -24($30)
+addu $8 $9 $10
+sw $8 -16($30)
+lw $2 -16($30)
+jr $31
+jr $31
+complete_flower_num:
+li $9 2
+sw $9 -512($30)
+_green_good_looking_ssd:
+lw $9 -512($30)
+li $10 128
+slt $8 $9 $10
+sw $8 -516($30)
+lw $8 -516($30)
+beq $8 $0 _red_freaking_machine
+j _stylish_good_looking_ps4
+_red_weird_machine:
+lw $9 -512($30)
+addiu $8 $9 1
+sw $8 -512($30)
+j _green_good_looking_ssd
+_stylish_good_looking_ps4:
+li $9 1
+subu $9 $0 $9
+sw $9 -520($30)
+lw $9 -512($30)
+sw $9 -524($30)
+li $9 1
+sw $9 -528($30)
+_colorful_irratating_life:
+lw $9 -528($30)
+lw $10 -512($30)
+slt $8 $9 $10
+sw $8 -532($30)
+lw $8 -532($30)
+beq $8 $0 _cutting_edge_amusing_pants
+j _colorful_imperialist_trousers
+_colored_stink_cpu:
+lw $9 -528($30)
+addiu $8 $9 1
+sw $8 -528($30)
+j _colorful_irratating_life
+_colorful_imperialist_trousers:
+lw $9 -512($30)
+lw $10 -528($30)
+div $8 $9 $10
+sw $8 -536($30)
+lw $9 -536($30)
+lw $10 -528($30)
+mul $8 $9 $10
+sw $8 -540($30)
+lw $9 -512($30)
+sw $9 -544($30)
+lw $9 -528($30)
+sw $9 -548($30)
+sw $29 -552($30)
+addiu $29 $30 -556
+lw $8 -544($30)
+sw $8 0($29)
+addu $4 $8 $0
+lw $8 -548($30)
+sw $8 -4($29)
+addu $5 $8 $0
+sw $31 -8($29)
+addiu $30 $29 -12
+jal mod
+addiu $30 $29 556
+lw $31 -8($29)
+lw $29 -552($30)
+sw $2 -552($30)
+li $9 0
+lw $10 -552($30)
+seq $8 $9 $10
+sw $8 -556($30)
+lw $8 -556($30)
+beq $8 $0 _stylish_amusing_headset
+lw $9 -520($30)
+addiu $8 $9 1
+sw $8 -520($30)
+lw $9 -524($30)
+lw $10 -528($30)
+subu $8 $9 $10
+sw $8 -524($30)
+li $9 128
+lw $10 -520($30)
+sle $8 $9 $10
+sw $8 -560($30)
+lw $8 -560($30)
+beq $8 $0 _red_interesting_apple
+li $2 4
+la $4 _green_extrordinary_keyboard
+syscall
+li $2 4
+la $4 _blue_pretty_memory
+syscall
+j _old_fashioned_good_looking_ps4
+_red_interesting_apple:
+lw $9 -520($30)
+lw $10 -528($30)
+sll $8 $9 2
+addu $28 $30 $8
+sw $10 0($28)
+_old_fashioned_good_looking_ps4:
+_stylish_amusing_headset:
+j _colored_stink_cpu
+_cutting_edge_amusing_pants:
+li $9 0
+lw $10 -524($30)
+seq $8 $9 $10
+sw $8 -564($30)
+lw $8 -564($30)
+beq $8 $0 _kinky_socialist_earphone
+lw $9 -512($30)
+sw $9 -568($30)
+li $2 4
+la $4 _colorful_amazing_machine
+syscall
+lw $4 -568($30)
+li $2 1
+syscall
+li $2 4
+la $4 _blue_pretty_memory
+syscall
+li $9 0
+sw $9 -528($30)
+_shinny_beautiful_keyboard:
+lw $9 -528($30)
+lw $10 -520($30)
+sle $8 $9 $10
+sw $8 -572($30)
+lw $8 -572($30)
+beq $8 $0 _smoothy_wooden_trip
+j _pale_metal_calendar
+_smoothy_wonderful_pants:
+lw $9 -528($30)
+addiu $8 $9 1
+sw $8 -528($30)
+j _shinny_beautiful_keyboard
+_pale_metal_calendar:
+lw $10 -528($30)
+sll $8 $10 2
+addu $28 $30 $8
+lw $9 0($28)
+sw $9 -576($30)
+li $2 4
+la $4 _kinky_extrordinary_grapes
+syscall
+lw $4 -576($30)
+li $2 1
+syscall
+li $2 4
+la $4 _blue_pretty_memory
+syscall
+j _smoothy_wonderful_pants
+_smoothy_wooden_trip:
+li $2 4
+la $4 _kinky_wooden_cpu
+syscall
+li $2 4
+la $4 _blue_pretty_memory
+syscall
+_kinky_socialist_earphone:
+j _red_weird_machine
+_red_freaking_machine:
+li $2 4
+la $4 _old_fashioned_wonderful_chicken
+syscall
+li $2 4
+la $4 _blue_pretty_memory
+syscall
+li $2 4
+la $4 _green_socialist_calendar
+syscall
+li $2 4
+la $4 _blue_pretty_memory
+syscall
+li $9 0
+sw $9 -580($30)
+li $9 100
+sw $9 -528($30)
+_smoothy_royal_trousers:
+lw $9 -528($30)
+sw $9 -584($30)
+li $9 100
+sw $9 -588($30)
+lw $9 -588($30)
+addiu $8 $9 128
+sw $8 -588($30)
+lw $9 -584($30)
+lw $10 -588($30)
+slt $8 $9 $10
+sw $8 -592($30)
+lw $8 -592($30)
+beq $8 $0 _red_special_apple
+j _colorful_boring_headset
+_shinny_freaking_year:
+lw $9 -528($30)
+addiu $8 $9 1
+sw $8 -528($30)
+j _smoothy_royal_trousers
+_colorful_boring_headset:
+lw $9 -528($30)
+li $10 100
+div $8 $9 $10
+sw $8 -520($30)
+lw $9 -528($30)
+li $10 10
+div $8 $9 $10
+sw $8 -596($30)
+li $9 10
+sw $9 -600($30)
+sw $29 -604($30)
+addiu $29 $30 -608
+lw $8 -596($30)
+sw $8 0($29)
+addu $4 $8 $0
+lw $8 -600($30)
+sw $8 -4($29)
+addu $5 $8 $0
+sw $31 -8($29)
+addiu $30 $29 -12
+jal mod
+addiu $30 $29 608
+lw $31 -8($29)
+lw $29 -604($30)
+sw $2 -512($30)
+lw $9 -528($30)
+sw $9 -604($30)
+li $9 10
+sw $9 -608($30)
+sw $29 -612($30)
+addiu $29 $30 -616
+lw $8 -604($30)
+sw $8 0($29)
+addu $4 $8 $0
+lw $8 -608($30)
+sw $8 -4($29)
+addu $5 $8 $0
+sw $31 -8($29)
+addiu $30 $29 -12
+jal mod
+addiu $30 $29 616
+lw $31 -8($29)
+lw $29 -612($30)
+sw $2 -612($30)
+lw $9 -520($30)
+sw $9 -616($30)
+lw $9 -512($30)
+sw $9 -620($30)
+lw $9 -612($30)
+sw $9 -624($30)
+sw $29 -628($30)
+addiu $29 $30 -632
+lw $8 -616($30)
+sw $8 0($29)
+addu $4 $8 $0
+lw $8 -620($30)
+sw $8 -4($29)
+addu $5 $8 $0
+lw $8 -624($30)
+sw $8 -8($29)
+addu $6 $8 $0
+sw $31 -12($29)
+addiu $30 $29 -16
+jal full_num
+addiu $30 $29 632
+lw $31 -12($29)
+lw $29 -628($30)
+sw $2 -628($30)
+lw $9 -520($30)
+sw $9 -632($30)
+lw $9 -512($30)
+sw $9 -636($30)
+lw $9 -612($30)
+sw $9 -640($30)
+sw $29 -644($30)
+addiu $29 $30 -648
+lw $8 -632($30)
+sw $8 0($29)
+addu $4 $8 $0
+lw $8 -636($30)
+sw $8 -4($29)
+addu $5 $8 $0
+lw $8 -640($30)
+sw $8 -8($29)
+addu $6 $8 $0
+sw $31 -12($29)
+addiu $30 $29 -16
+jal flower_num
+addiu $30 $29 648
+lw $31 -12($29)
+lw $29 -644($30)
+sw $2 -644($30)
+lw $9 -644($30)
+lw $10 -628($30)
+seq $8 $9 $10
+sw $8 -648($30)
+lw $8 -648($30)
+beq $8 $0 _kinky_dummy_coke
+lw $9 -580($30)
+lw $10 -528($30)
+sll $8 $9 2
+addu $28 $30 $8
+sw $10 0($28)
+lw $9 -580($30)
+addiu $8 $9 1
+sw $8 -580($30)
+_kinky_dummy_coke:
+j _shinny_freaking_year
+_red_special_apple:
+li $9 0
+sw $9 -528($30)
+_blue_special_apple:
+lw $9 -528($30)
+lw $10 -580($30)
+slt $8 $9 $10
+sw $8 -652($30)
+lw $8 -652($30)
+beq $8 $0 _stylish_pretty_cpu
+j _red_pretty_day
+_stylish_dummy_ssd:
+lw $9 -528($30)
+addiu $8 $9 1
+sw $8 -528($30)
+j _blue_special_apple
+_red_pretty_day:
+lw $10 -528($30)
+sll $8 $10 2
+addu $28 $30 $8
+lw $9 0($28)
+sw $9 -656($30)
+li $2 4
+la $4 _kinky_extrordinary_grapes
+syscall
+lw $4 -656($30)
+li $2 1
+syscall
+li $2 4
+la $4 _blue_pretty_memory
+syscall
+j _stylish_dummy_ssd
+_stylish_pretty_cpu:
+li $2 4
+la $4 _kinky_wooden_cpu
+syscall
+li $2 4
+la $4 _blue_pretty_memory
+syscall
+li $2 4
+la $4 _old_fashioned_wonderful_chicken
+syscall
+li $2 4
+la $4 _blue_pretty_memory
+syscall
+li $9 0
+sw $9 -660($30)
+li $9 1
+sw $9 -664($30)
+li $9 2
+sw $9 -668($30)
+_yellow_wooden_thing:
+lw $9 -668($30)
+li $10 128
+sle $8 $9 $10
+sw $8 -672($30)
+lw $8 -672($30)
+beq $8 $0 _red_dummy_shirts
+j _blue_freaking_computer
+_shinny_plastic_noodles:
+lw $9 -668($30)
+addiu $8 $9 1
+sw $8 -668($30)
+j _yellow_wooden_thing
+_blue_freaking_computer:
+lw $9 -668($30)
+li $10 2
+div $8 $9 $10
+sw $8 -676($30)
+li $9 2
+sw $9 -528($30)
+_green_freaking_chicken:
+lw $9 -528($30)
+lw $10 -676($30)
+sle $8 $9 $10
+sw $8 -680($30)
+lw $8 -680($30)
+beq $8 $0 _shinny_amusing_thing
+j _pink_weird_trousers
+_cutting_edge_plastic_person:
+lw $9 -528($30)
+addiu $8 $9 1
+sw $8 -528($30)
+j _green_freaking_chicken
+_pink_weird_trousers:
+lw $9 -668($30)
+lw $10 -528($30)
+div $8 $9 $10
+sw $8 -684($30)
+lw $9 -684($30)
+lw $10 -528($30)
+mul $8 $9 $10
+sw $8 -688($30)
+lw $9 -668($30)
+sw $9 -692($30)
+lw $9 -528($30)
+sw $9 -696($30)
+sw $29 -700($30)
+addiu $29 $30 -704
+lw $8 -692($30)
+sw $8 0($29)
+addu $4 $8 $0
+lw $8 -696($30)
+sw $8 -4($29)
+addu $5 $8 $0
+sw $31 -8($29)
+addiu $30 $29 -12
+jal mod
+addiu $30 $29 704
+lw $31 -8($29)
+lw $29 -700($30)
+sw $2 -700($30)
+li $9 0
+lw $10 -700($30)
+seq $8 $9 $10
+sw $8 -704($30)
+lw $8 -704($30)
+beq $8 $0 _green_wooden_year
+li $9 0
+sw $9 -664($30)
+_green_wooden_year:
+j _cutting_edge_plastic_person
+_shinny_amusing_thing:
+li $9 1
+lw $10 -664($30)
+seq $8 $9 $10
+sw $8 -708($30)
+lw $8 -708($30)
+beq $8 $0 _kinky_boring_person
+lw $9 -668($30)
+sw $9 -712($30)
+li $2 4
+la $4 _kinky_wooden_cpu
+syscall
+lw $4 -712($30)
+li $2 1
+syscall
+li $2 4
+la $4 _blue_pretty_memory
+syscall
+lw $9 -660($30)
+addiu $8 $9 1
+sw $8 -660($30)
+lw $9 -660($30)
+li $10 10
+div $8 $9 $10
+sw $8 -716($30)
+lw $9 -716($30)
+li $10 10
+mul $8 $9 $10
+sw $8 -688($30)
+lw $9 -660($30)
+lw $10 -688($30)
+seq $8 $9 $10
+sw $8 -720($30)
+lw $8 -720($30)
+beq $8 $0 _kinky_boring_wire
+li $2 4
+la $4 _kinky_wooden_cpu
+syscall
+li $2 4
+la $4 _blue_pretty_memory
+syscall
+_kinky_boring_wire:
+_kinky_boring_person:
+li $9 1
+sw $9 -664($30)
+j _shinny_plastic_noodles
+_red_dummy_shirts:
+lw $9 -660($30)
+sw $9 -724($30)
+li $2 4
+la $4 _cutting_edge_wonderful_chinese
+syscall
+lw $4 -724($30)
+li $2 1
+syscall
+li $2 4
+la $4 _blue_pretty_memory
+syscall
 jr $31
 __main__:
 addu $30 $29 $0
-li $9 0
-sw $9 -80($30)
-lw $9 -80($30)
-sw $9 -84($30)
-lw $9 -84($30)
-sw $9 -88($30)
-_old_fashioned_beautiful_year:
-lw $9 -88($30)
-sw $9 -92($30)
-lw $9 -92($30)
-sw $9 -96($30)
-lw $9 -96($30)
-sw $9 -100($30)
+sw $29 0($30)
+addiu $29 $30 -4
+li $8 5
+sw $8 0($29)
+addu $4 $8 $0
+sw $31 -4($29)
+addiu $30 $29 -8
+jal factorial
+addiu $30 $29 4
+lw $31 -4($29)
+lw $29 0($30)
+sw $2 0($30)
+lw $9 0($30)
+sw $9 -4($30)
+li $2 4
+la $4 _shinny_interesting_grapes
+syscall
+lw $4 -4($30)
+li $2 1
+syscall
+li $2 4
+la $4 _blue_pretty_memory
+syscall
+li $9 5
+sw $9 -8($30)
 li $9 10
-sw $9 -104($30)
-lw $9 -104($30)
-sw $9 -108($30)
-lw $9 -100($30)
-lw $10 -108($30)
-slt $8 $9 $10
-sw $8 -112($30)
-lw $8 -112($30)
-beq $8 $0 _colored_metal_cpu
-j _green_annoying_ps4
-_blue_plastic_memory:
-lw $9 -88($30)
-sw $9 -116($30)
-lw $9 -116($30)
-sw $9 -120($30)
-lw $9 -120($30)
-sw $9 -124($30)
-li $9 1
-sw $9 -128($30)
-lw $9 -124($30)
-lw $10 -128($30)
-addu $8 $9 $10
-sw $8 -124($30)
-lw $9 -124($30)
-sw $9 -88($30)
-j _old_fashioned_beautiful_year
-_green_annoying_ps4:
-lw $9 -88($30)
-sw $9 -132($30)
-lw $9 -132($30)
-sw $9 -136($30)
-lw $9 -136($30)
-sw $9 -140($30)
-li $9 0
-sw $9 -144($30)
-lw $9 -144($30)
-sw $9 -148($30)
-lw $9 -140($30)
-lw $10 -148($30)
-sll $8 $9 2
-addu $28 $30 $8
-sw $10 0($28)
-lw $9 -88($30)
-sw $9 -152($30)
-lw $9 -152($30)
-sw $9 -156($30)
-lw $9 -156($30)
-sw $9 -160($30)
-li $9 0
-sw $9 -164($30)
-lw $9 -164($30)
-sw $9 -168($30)
-lw $9 -160($30)
-lw $10 -168($30)
-sll $8 $9 2
-addu $28 $30 $8
-sw $10 18446744073709551576($28)
-j _blue_plastic_memory
-_colored_metal_cpu:
-li $2 4
-la $4 _cutting_edge_amazing_life
-syscall
-li $2 4
-la $4 _smoothy_civil_year
-syscall
-li $9 100
-sw $9 -172($30)
-lw $9 -172($30)
-sw $9 -176($30)
-lw $9 -176($30)
-sw $9 -180($30)
-li $2 4
-la $4 _blue_dummy_tour
-syscall
-lw $4 -180($30)
-li $2 1
-syscall
-li $2 4
-la $4 _smoothy_civil_year
-syscall
-sw $29 -184($30)
-addiu $29 $30 -188
+sw $9 -12($30)
+sw $29 -16($30)
+addiu $29 $30 -20
+lw $8 -8($30)
+sw $8 0($29)
+addu $4 $8 $0
+lw $8 -12($30)
+sw $8 -4($29)
+addu $5 $8 $0
+sw $31 -8($29)
+addiu $30 $29 -12
+jal swap
+addiu $30 $29 20
+lw $31 -8($29)
+lw $29 -16($30)
+sw $29 -16($30)
+addiu $29 $30 -20
 sw $31 0($29)
 addiu $30 $29 -4
-jal test_same_const2
-addiu $30 $29 188
+jal complete_flower_num
+addiu $30 $29 20
 lw $31 0($29)
-lw $29 -184($30)
-sw $2 -184($30)
-lw $9 -184($30)
-sw $9 -188($30)
-lw $9 -188($30)
-sw $9 -192($30)
-li $9 100
-sw $9 -196($30)
-lw $9 -196($30)
-sw $9 -200($30)
-lw $9 -192($30)
-lw $10 -200($30)
-addu $8 $9 $10
-sw $8 -192($30)
-li $9 100
-sw $9 -204($30)
-lw $9 -204($30)
-sw $9 -208($30)
-lw $9 -192($30)
-lw $10 -208($30)
-subu $8 $9 $10
-sw $8 -192($30)
-li $2 4
-la $4 _stylish_boring_apple
-syscall
-lw $4 -192($30)
-li $2 1
-syscall
-li $2 4
-la $4 _smoothy_civil_year
-syscall
-sw $29 -212($30)
-addiu $29 $30 -216
-sw $31 0($29)
-addiu $30 $29 -4
-jal test_same_const1
-addiu $30 $29 216
-lw $31 0($29)
-lw $29 -212($30)
-sw $2 -212($30)
-lw $9 -212($30)
-sw $9 -216($30)
-lw $9 -216($30)
-sw $9 -220($30)
-li $9 100
-sw $9 -224($30)
-lw $9 -224($30)
-sw $9 -228($30)
-lw $9 -220($30)
-lw $10 -228($30)
-addu $8 $9 $10
-sw $8 -220($30)
-li $9 100
-sw $9 -232($30)
-lw $9 -232($30)
-sw $9 -236($30)
-lw $9 -220($30)
-lw $10 -236($30)
-subu $8 $9 $10
-sw $8 -220($30)
-li $2 4
-la $4 _shinny_civil_switch
-syscall
-lw $4 -220($30)
-li $2 1
-syscall
-li $2 4
-la $4 _smoothy_civil_year
-syscall
-li $2 4
-la $4 _green_wonderful_coke
-syscall
-li $2 4
-la $4 _smoothy_civil_year
-syscall
-li $2 12
-syscall
-sw $2 -240($30)
-li $2 4
-la $4 _cutting_edge_wooden_person
-syscall
-li $2 4
-la $4 _smoothy_civil_year
-syscall
-lw $9 -240($30)
-sw $9 -244($30)
-lw $9 -244($30)
-sw $9 -248($30)
-lw $9 -248($30)
-sw $9 -252($30)
-li $2 4
-la $4 _colored_amazing_noodles
-syscall
-lw $4 -252($30)
-li $2 11
-syscall
-li $2 4
-la $4 _smoothy_civil_year
-syscall
-sw $29 -256($30)
-addiu $29 $30 -260
-sw $31 0($29)
-addiu $30 $29 -4
-jal getCh
-addiu $30 $29 260
-lw $31 0($29)
-lw $29 -256($30)
-sw $2 -256($30)
-lw $9 -256($30)
-sw $9 -260($30)
-lw $9 -260($30)
-sw $9 -264($30)
-li $2 4
-la $4 _pale_weird_keyboard
-syscall
-lw $4 -264($30)
-li $2 11
-syscall
-li $2 4
-la $4 _smoothy_civil_year
-syscall
-li $2 4
-la $4 _green_wonderful_coke
-syscall
-li $2 4
-la $4 _smoothy_civil_year
-syscall
-li $9 0
-sw $9 -268($30)
-lw $9 -268($30)
-sw $9 -272($30)
-li $9 1
-sw $9 -276($30)
-lw $9 -276($30)
-sw $9 -280($30)
-lw $9 -272($30)
-lw $10 -280($30)
-sll $8 $9 2
-addu $28 $30 $8
-sw $10 0($28)
-li $9 1
-sw $9 -284($30)
-lw $9 -284($30)
-sw $9 -288($30)
-li $9 2
-sw $9 -292($30)
-lw $9 -292($30)
-sw $9 -296($30)
-lw $9 -288($30)
-lw $10 -296($30)
-sll $8 $9 2
-addu $28 $30 $8
-sw $10 18446744073709551576($28)
-li $9 2
-sw $9 -300($30)
-lw $9 -300($30)
-sw $9 -304($30)
-li $9 3
-sw $9 -308($30)
-lw $9 -308($30)
-sw $9 -312($30)
-lw $9 -304($30)
-lw $10 -312($30)
-sll $8 $9 2
-addu $28 $30 $8
-sw $10 0($28)
-li $9 3
-sw $9 -316($30)
-lw $9 -316($30)
-sw $9 -320($30)
-li $9 4
-sw $9 -324($30)
-lw $9 -324($30)
-sw $9 -328($30)
-lw $9 -320($30)
-lw $10 -328($30)
-sll $8 $9 2
-addu $28 $30 $8
-sw $10 18446744073709551576($28)
-li $9 4
-sw $9 -332($30)
-lw $9 -332($30)
-sw $9 -336($30)
-li $9 5
-sw $9 -340($30)
-lw $9 -340($30)
-sw $9 -344($30)
-lw $9 -336($30)
-lw $10 -344($30)
-sll $8 $9 2
-addu $28 $30 $8
-sw $10 0($28)
-li $9 5
-sw $9 -348($30)
-lw $9 -348($30)
-sw $9 -352($30)
-li $9 6
-sw $9 -356($30)
-lw $9 -356($30)
-sw $9 -360($30)
-lw $9 -352($30)
-lw $10 -360($30)
-sll $8 $9 2
-addu $28 $30 $8
-sw $10 18446744073709551576($28)
-li $9 4
-sw $9 -364($30)
-lw $9 -364($30)
-sw $9 -368($30)
-lw $10 -368($30)
-sll $8 $10 2
-addu $28 $30 $8
-lw $9 0($28)
-sw $9 -372($30)
-lw $9 -372($30)
-sw $9 -376($30)
-lw $9 -376($30)
-sw $9 -380($30)
-lw $10 -380($30)
-sll $8 $10 2
-addu $28 $30 $8
-lw $9 -40($28)
-sw $9 -384($30)
-lw $9 -384($30)
-sw $9 -388($30)
-lw $9 -388($30)
-sw $9 -392($30)
-li $9 7
-sw $9 -396($30)
-lw $9 -396($30)
-sw $9 -400($30)
-lw $9 -392($30)
-lw $10 -400($30)
-sll $8 $9 2
-addu $28 $30 $8
-sw $10 0($28)
-li $9 2
-sw $9 -404($30)
-lw $9 -404($30)
-sw $9 -408($30)
-lw $10 -408($30)
-sll $8 $10 2
-addu $28 $30 $8
-lw $9 0($28)
-sw $9 -412($30)
-lw $9 -412($30)
-sw $9 -416($30)
-lw $9 -416($30)
-sw $9 -420($30)
-lw $10 -420($30)
-sll $8 $10 2
-addu $28 $30 $8
-lw $9 -40($28)
-sw $9 -424($30)
-lw $9 -424($30)
-sw $9 -428($30)
-lw $9 -428($30)
-sw $9 -432($30)
-lw $10 -432($30)
-sll $8 $10 2
-addu $28 $30 $8
-lw $9 0($28)
-sw $9 -436($30)
-lw $9 -436($30)
-sw $9 -440($30)
-lw $9 -440($30)
-sw $9 -444($30)
-lw $10 -444($30)
-sll $8 $10 2
-addu $28 $30 $8
-lw $9 -40($28)
-sw $9 -448($30)
-lw $9 -448($30)
-sw $9 -452($30)
-lw $9 -452($30)
-sw $9 -456($30)
-lw $10 -456($30)
-sll $8 $10 2
-addu $28 $30 $8
-lw $9 0($28)
-sw $9 -460($30)
-lw $9 -460($30)
-sw $9 -464($30)
-lw $9 -464($30)
-sw $9 -468($30)
-li $9 2
-sw $9 -472($30)
-lw $9 -472($30)
-sw $9 -476($30)
-lw $10 -476($30)
-sll $8 $10 2
-addu $28 $30 $8
-lw $9 0($28)
-sw $9 -480($30)
-lw $9 -480($30)
-sw $9 -484($30)
-lw $9 -484($30)
-sw $9 -488($30)
-lw $10 -488($30)
-sll $8 $10 2
-addu $28 $30 $8
-lw $9 -40($28)
-sw $9 -492($30)
-lw $9 -492($30)
-sw $9 -496($30)
-lw $9 -496($30)
-sw $9 -500($30)
-lw $10 -500($30)
-sll $8 $10 2
-addu $28 $30 $8
-lw $9 0($28)
-sw $9 -504($30)
-lw $9 -504($30)
-sw $9 -508($30)
-lw $9 -508($30)
-sw $9 -512($30)
-lw $10 -512($30)
-sll $8 $10 2
-addu $28 $30 $8
-lw $9 -40($28)
-sw $9 -516($30)
-lw $9 -516($30)
-sw $9 -520($30)
-lw $9 -520($30)
-sw $9 -524($30)
-lw $10 -524($30)
-sll $8 $10 2
-addu $28 $30 $8
-lw $9 0($28)
-sw $9 -528($30)
-lw $9 -528($30)
-sw $9 -532($30)
-lw $9 -532($30)
-sw $9 -536($30)
-li $9 2
-sw $9 -540($30)
-lw $9 -540($30)
-sw $9 -544($30)
-lw $10 -544($30)
-sll $8 $10 2
-addu $28 $30 $8
-lw $9 0($28)
-sw $9 -548($30)
-lw $9 -548($30)
-sw $9 -552($30)
-lw $9 -552($30)
-sw $9 -556($30)
-lw $10 -556($30)
-sll $8 $10 2
-addu $28 $30 $8
-lw $9 -40($28)
-sw $9 -560($30)
-lw $9 -560($30)
-sw $9 -564($30)
-lw $9 -564($30)
-sw $9 -568($30)
-lw $10 -568($30)
-sll $8 $10 2
-addu $28 $30 $8
-lw $9 0($28)
-sw $9 -572($30)
-lw $9 -572($30)
-sw $9 -576($30)
-lw $9 -576($30)
-sw $9 -580($30)
-lw $10 -580($30)
-sll $8 $10 2
-addu $28 $30 $8
-lw $9 -40($28)
-sw $9 -584($30)
-lw $9 -584($30)
-sw $9 -588($30)
-lw $9 -536($30)
-lw $10 -588($30)
-addu $8 $9 $10
-sw $8 -536($30)
-lw $9 -468($30)
-lw $10 -536($30)
-sll $8 $9 2
-addu $28 $30 $8
-sw $10 18446744073709551576($28)
-li $9 4
-sw $9 -592($30)
-lw $9 -592($30)
-sw $9 -596($30)
-li $9 1
-sw $9 -600($30)
-li $9 6
-sw $9 -604($30)
-li $9 5
-sw $9 -608($30)
-lw $9 -608($30)
-sw $9 -612($30)
-li $9 1
-sw $9 -616($30)
-lw $9 -616($30)
-subu $9 $0 $9
-sw $9 -620($30)
-li $9 1
-sw $9 -624($30)
-lw $9 -624($30)
-li $10 1
-mul $8 $9 $10
-sw $8 -624($30)
-lw $9 -620($30)
-lw $10 -624($30)
-addu $8 $9 $10
-sw $8 -620($30)
-li $9 1
-sw $9 -628($30)
-lw $9 -620($30)
-lw $10 -628($30)
-addu $8 $9 $10
-sw $8 -620($30)
-lw $10 -620($30)
-sll $8 $10 2
-addu $28 $30 $8
-lw $9 -40($28)
-sw $9 -632($30)
-lw $9 -632($30)
-sw $9 -636($30)
-lw $9 -612($30)
-lw $10 -636($30)
-addu $8 $9 $10
-sw $8 -612($30)
-li $9 5
-sw $9 -640($30)
-lw $9 -612($30)
-lw $10 -640($30)
-subu $8 $9 $10
-sw $8 -612($30)
-lw $10 -612($30)
-sll $8 $10 2
-addu $28 $30 $8
-lw $9 0($28)
-sw $9 -644($30)
-lw $9 -604($30)
-lw $10 -644($30)
-mul $8 $9 $10
-sw $8 -604($30)
-lw $9 -604($30)
-li $10 2
-div $8 $9 $10
-sw $8 -604($30)
-lw $9 -604($30)
-li $10 3
-div $8 $9 $10
-sw $8 -604($30)
-lw $9 -604($30)
-sw $9 -648($30)
-lw $10 -648($30)
-sll $8 $10 2
-addu $28 $30 $8
-lw $9 -40($28)
-sw $9 -652($30)
-lw $9 -600($30)
-lw $10 -652($30)
-mul $8 $9 $10
-sw $8 -600($30)
-lw $9 -600($30)
-sw $9 -656($30)
-lw $10 -656($30)
-sll $8 $10 2
-addu $28 $30 $8
-lw $9 0($28)
-sw $9 -660($30)
-lw $9 -660($30)
-sw $9 -664($30)
-lw $9 -596($30)
-lw $10 -664($30)
-addu $8 $9 $10
-sw $8 -596($30)
-li $9 2
-sw $9 -668($30)
-lw $9 -668($30)
-sw $9 -672($30)
-lw $10 -672($30)
-sll $8 $10 2
-addu $28 $30 $8
-lw $9 0($28)
-sw $9 -676($30)
-lw $9 -676($30)
-sw $9 -680($30)
-lw $9 -680($30)
-sw $9 -684($30)
-lw $10 -684($30)
-sll $8 $10 2
-addu $28 $30 $8
-lw $9 -40($28)
-sw $9 -688($30)
-lw $9 -688($30)
-sw $9 -692($30)
-lw $9 -596($30)
-lw $10 -692($30)
-subu $8 $9 $10
-sw $8 -596($30)
-lw $10 -596($30)
-sll $8 $10 2
-addu $28 $30 $8
-lw $9 -40($28)
-sw $9 -696($30)
-lw $9 -696($30)
-sw $9 -700($30)
-lw $9 -700($30)
-sw $9 -704($30)
-lw $10 -704($30)
-sll $8 $10 2
-addu $28 $30 $8
-lw $9 0($28)
-sw $9 -708($30)
-lw $9 -708($30)
-sw $9 -712($30)
-lw $9 -712($30)
-sw $9 -716($30)
-lw $10 -716($30)
-sll $8 $10 2
-addu $28 $30 $8
-lw $9 -40($28)
-sw $9 -720($30)
-lw $9 -720($30)
-sw $9 -724($30)
-lw $9 -724($30)
-sw $9 -728($30)
-lw $4 -728($30)
-li $2 1
-syscall
-li $2 4
-la $4 _smoothy_civil_year
-syscall
-jr $31
+lw $29 -16($30)
 __main_end__:
 ori $2 $0 10
 syscall

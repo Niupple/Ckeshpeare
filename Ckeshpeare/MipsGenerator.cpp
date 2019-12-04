@@ -126,6 +126,10 @@ namespace dyj {
         }
     }
 
+    void MipsGenerator::peek_hole(void) {
+        std::vector<Mips *> old = std::move(mips);
+    }
+
     const Quaternary *MipsGenerator::peek(void) {
         if (counter < irs.size()) {
             return &irs[counter];
@@ -606,9 +610,9 @@ namespace dyj {
         }
     }
 
-    bool MipsGenerator::is_global(const std::string &name) {
+    bool is_global(const std::string &name) {
         size_t pos = name.find_last_of('@');
-        DP("%s\n", name.c_str());
+        //DP("%s\n", name.c_str());
         if (pos == std::string::npos) {
             return false;
         } else {
@@ -616,8 +620,12 @@ namespace dyj {
         }
     }
 
-    bool MipsGenerator::is_const(const std::string &name) {
+    bool is_const(const std::string &name) {
         return name.front() == '-' || name.front() == '+' || isdigit(name.front());
+    }
+
+    bool is_local(const std::string &name) {
+        return !is_global(name) && name.substr(0, 3) == "__t";
     }
 
     size_t align(size_t x) {

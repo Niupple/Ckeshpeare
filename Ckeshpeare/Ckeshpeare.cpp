@@ -11,6 +11,7 @@
 #include "ErrorRecorder.h"
 #include "Quaternary.h"
 #include "MipsGenerator.h"
+#include "IrOptimizer.h"
 #include "debug.h"
 
 void tokenizeHomework() {
@@ -160,9 +161,82 @@ void codeGeneratingHomework() {
     cout << "___________________________________________" << endl;
 }
 
+void codeOptimizingHomework() {
+    using namespace dyj;
+    using namespace std;
+    ifstream fin("testfile.txt");
+    ofstream IRs("irs.txt");
+    ofstream mips("mips.txt");
+    Tokenizer &cTokenizer = Tokenizer::cTokenizer;
+    string code, tmp, line, dest_code;
+    vector<Token *> tokens;
+    vector<string> lines;
+    vector<Quaternary> irs;
+    Token *t;
+    char c;
+
+    while ((c = fin.get()) != EOF) {
+        code += c;
+        line += c;
+        if (c == '\n') {
+            lines.push_back(line);
+            line.clear();
+        }
+    }
+    std::cerr << code << std::endl;
+    // assert(0);
+    cTokenizer.feed(std::move(code));
+    while ((t = cTokenizer.get_token())) {
+        tokens.push_back(t);
+        std::cerr << t->to_string() << std::endl;
+    }
+
+    RecursiveDescentParser parser(tokens);
+    Symbol *tree = parser.parse();
+
+    for (auto e : dyj::rerr) {
+        std::cout << e->to_string() << std::endl;
+    }
+    if (!dyj::rerr.empty()) {
+        return;
+    }
+
+    if (tree) {
+        cout << tree->to_string() << endl;
+    }
+    irs = parser.get_irs();
+
+    while (ir_peek_hole(irs)) {
+        DP("ONE MORE TIME");
+    }
+
+    FlowGraph fg;
+    fg.load_and_cut(irs);
+
+    //cout << "__________________IRS______________________" << endl;
+    for (auto &c : irs) {
+    //    cout << c.to_string() << endl;
+        IRs << c.to_string() << endl;
+    }
+    //cout << "___________________________________________" << endl;
+
+    MipsGenerator engine(irs, parser.get_label_namer());
+    DP("engine built\n");
+    engine.parse();
+    DP("parse done\n");
+    engine.dump(dest_code);
+    DP("dump done\n");
+
+    mips << dest_code;
+
+    cout << "__________________MIPS_____________________" << endl;
+    cout << dest_code;
+    cout << "___________________________________________" << endl;
+}
+
 int main() {
     //tokenizeHomework();
     //parseHomework();
     //errorHandlingHomework();
-    codeGeneratingHomework();
+    codeOptimizingHomework();
 }
