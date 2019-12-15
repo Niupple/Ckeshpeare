@@ -1,6 +1,7 @@
 #pragma once
 #include <string>
 #include <vector>
+#include <set>
 
 namespace dyj {
     using std::string;
@@ -22,7 +23,7 @@ namespace dyj {
             JUMP,       // unconditioned jump
             JUMP_IF,    // jump on true
             JUMP_UNLESS,// jump on false
-            LABEL,      // sheer label
+            LABEL,      // just label
             ARGUMENT,   // set a variable to argument
             CALL,       // call a function
             PARAM,      // retrive parameters
@@ -43,13 +44,18 @@ namespace dyj {
         };
 
         Quaternary() = delete;
-        Quaternary(Type _type, const string &a = "", const string &b = "", const string &c = "");
+        Quaternary(Type _type, const string &a = "", const string &b = "", const string &c = "", int _block_id = -1);
 
         Type get_type(void) const;
         string get_dest(void) const;
         string get_lhs(void) const;
         string get_rhs(void) const;
         string to_string(void) const;
+        int get_block_id(void) const;
+
+    public:
+        std::set<std::string> get_defs(void) const;
+        std::set<std::string> get_uses(void) const;
 
     public:
         bool is_jump(void) const;
@@ -60,6 +66,10 @@ namespace dyj {
     private:
         Type type;
         string dest, lhs, rhs;
+        int block_id;
 
     };
+
+    typedef std::vector<Quaternary> IrList;
+
 }

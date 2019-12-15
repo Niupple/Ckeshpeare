@@ -120,4 +120,40 @@ namespace dyj {
         "life",
         "thing"
     };
+
+
+    bool is_global(const std::string &name) {
+        size_t pos = name.find_last_of('@');
+        //DP("%s\n", name.c_str());
+        if (pos == std::string::npos) {
+            return false;
+        } else {
+            return name.substr(pos) == "@0";
+        }
+    }
+
+    bool is_local(const std::string &name) {
+        return is_user(name) & !is_global(name);
+    }
+
+    bool is_user(const std::string &name) {
+        return name.find_last_of('@') != std::string::npos;
+    }
+
+    bool is_const(const std::string &name) {
+        return name.size() > 0 && (name.front() == '-' || name.front() == '+' || isdigit(name.front()));
+    }
+
+    bool is_value(const std::string &name) {
+        return is_const(name) || is_variable(name);
+    }
+
+    bool is_temp(const std::string &name) {
+        return name.size() > 0 && !is_user(name) && name.substr(0, 3) == "__t";
+    }
+
+    bool is_variable(const std::string &name) {
+        return is_temp(name) || is_user(name);
+    }
+
 }

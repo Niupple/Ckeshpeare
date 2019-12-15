@@ -40,35 +40,11 @@ namespace dyj {
             RA
         };
 
-        Mips();
-        static Registers args(size_t i);
-        virtual std::string to_string(void) const = 0;
-
-    protected:
-        static std::string reg(Registers r);
-    };
-
-    class Jump : public Mips {
-    public:
         enum Type {
             J,
             JAL,
             LABEL,
             SYSCALL,
-        };
-        Jump() = delete;
-        Jump(Type _type, const std::string &_label = "");
-        std::string to_string(void) const override;
-
-    private:
-        static std::vector<std::string> repr;
-        Type type;
-        std::string label;
-    };
-
-    class Immediate : public Mips {
-    public:
-        enum Type {
             ADDIU,
             SUBIU,
             ANDI,
@@ -90,22 +66,6 @@ namespace dyj {
             SLL,
             SRL,
             SRA,
-        };
-
-        Immediate() = delete;
-        Immediate(Type _type, Registers _rs, Registers _rt, const std::string &_label);
-        std::string to_string(void) const override;
-
-    private:
-        static std::vector<std::string> repr;
-        Type type;
-        Registers rs, rt;
-        std::string label;
-    };
-
-    class Register : public Mips {
-    public:
-        enum Type {
             ADDU,
             SUBU,
             MULT,
@@ -129,13 +89,74 @@ namespace dyj {
             JR,
         };
 
-        Register() = delete;
-        Register(Type _type, Registers rd, Registers rs, Registers rt);
-        std::string to_string(void) const override;
+        Mips();
+        Mips(Type _type, Registers rd = ZERO, Registers rs = ZERO, Registers rt = ZERO, const std::string &__label = "");
+        static Registers args(size_t i);
+        std::string to_string(void) const;
+
+        Mips::Type get_type(void) const;
+        Mips::Registers get_rd(void) const;
+        Mips::Registers get_rs(void) const;
+        Mips::Registers get_rt(void) const;
+        std::string get_label(void) const;
+
+    public:
+        static Mips j(const std::string &label);
+        static Mips jal(const std::string &label);
+        static Mips label(const std::string &label);
+        static Mips syscall();
+        static Mips addiu(Registers rd, Registers rs, const std::string &label);
+        static Mips subiu(Registers rd, Registers rs, const std::string &label);
+        static Mips andi(Registers rd, Registers rs, const std::string &label);
+        static Mips ori(Registers rd, Registers rs, const std::string &label);
+        static Mips xori(Registers rd, Registers rs, const std::string &label);
+        static Mips lui(Registers rd, Registers rs, const std::string &label);
+        static Mips slti(Registers rd, Registers rs, const std::string &label);
+        static Mips sltiu(Registers rd, Registers rs, const std::string &label);
+        static Mips beq(Registers rs, Registers rt, const std::string &label);
+        static Mips bne(Registers rs, Registers rt, const std::string &label);
+        static Mips sll(Registers rd, Registers rs, const std::string &label);
+        static Mips srl(Registers rd, Registers rs, const std::string &label);
+        static Mips sra(Registers rd, Registers rs, const std::string &label);
+        static Mips lw(Registers rt, Registers base, const std::string &label);
+        static Mips sw(Registers rt, Registers base, const std::string &label);
+        static Mips li(Registers rs, const std::string &label);
+        static Mips la(Registers rs, const std::string &label);
+        static Mips blez(Registers rs, const std::string &label);
+        static Mips bgtz(Registers rs, const std::string &label);
+        static Mips bltz(Registers rs, const std::string &label);
+        static Mips bgez(Registers rs, const std::string &label);
+        static Mips addu(Registers rd, Registers rs, Registers rt);
+        static Mips subu(Registers rd, Registers rs, Registers rt);
+        static Mips mult(Registers rd, Registers rs, Registers rt);
+        static Mips mul(Registers rd, Registers rs, Registers rt);
+        static Mips div(Registers rd, Registers rs, Registers rt);
+        static Mips slt(Registers rd, Registers rs, Registers rt);
+        static Mips sle(Registers rd, Registers rs, Registers rt);
+        static Mips seq(Registers rd, Registers rs, Registers rt);
+        static Mips sne(Registers rd, Registers rs, Registers rt);
+        static Mips sllv(Registers rd, Registers rs, Registers rt);
+        static Mips srlv(Registers rd, Registers rs, Registers rt);
+        static Mips srav(Registers rd, Registers rs, Registers rt);
+        static Mips And(Registers rd, Registers rs, Registers rt);
+        static Mips Or(Registers rd, Registers rs, Registers rt);
+        static Mips Xor(Registers rd, Registers rs, Registers rt);
+        static Mips nor(Registers rd, Registers rs, Registers rt);
+        static Mips jr(Registers rs);
+
+    public:
+        bool is_jump(void) const;
 
     private:
-        static std::vector<std::string> repr;
         Type type;
-        Registers rd, rs, rt;
+        Registers rs, rt, rd;
+        std::string _label;
+        static std::vector<std::string> repr;
+        static std::string reg(Registers r);
     };
+
+    typedef Mips Jump;
+    typedef Mips Immediate;
+    typedef Mips Register;
+
 }

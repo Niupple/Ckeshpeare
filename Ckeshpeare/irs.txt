@@ -1,311 +1,295 @@
-BEGIN   
-LABEL   factorial
-PARAM n@1  
-LEQ __t5 n@1 1
-JUMP_UNLESS  __t5 _blue_royal_calendar
-SET_RETURN  1 
-RETURN   
-LABEL   _blue_royal_calendar
-COPY __t9 n@1 
-COPY __t12 n@1 
-MINUS __t12 __t12 1
-ARGUMENT  __t12 
-CALL factorial  
-GET_RETURN __t11  
-TIME __t8 __t9 __t11
-SET_RETURN  __t8 
-RETURN   
-END   
-RETURN   
-BEGIN   
-LABEL   mod
-PARAM x@2  
-PARAM y@2  
-COPY __t16 x@2 
-COPY __t19 x@2 
-DIVIDE __t19 __t19 y@2
-TIME __t19 __t19 y@2
-MINUS x@2 __t16 __t19
-SET_RETURN  x@2 
-RETURN   
-END   
-RETURN   
-BEGIN   
-LABEL   swap
-PARAM x@3  
-PARAM y@3  
-COPY __t26 x@3 
-PRINTS  x =  
-PRINTI  __t26 
-PRINTS  \n 
-COPY __t29 y@3 
-PRINTS  y =  
-PRINTI  __t29 
-PRINTS  \n 
-COPY temp@3 x@3 
-COPY x@3 y@3 
-COPY y@3 temp@3 
-COPY __t41 x@3 
-PRINTS  SWAP x =  
-PRINTI  __t41 
-PRINTS  \n 
-COPY __t44 y@3 
-PRINTS  SWAP y =  
-PRINTI  __t44 
-PRINTS  \n 
-END   
-RETURN   
-BEGIN   
-LABEL   full_num
-PARAM n@4  
-PARAM j@4  
-PARAM a@4  
-TIME __t47 n@4 100
-COPY __t50 j@4 
-TIME __t50 __t50 10
-PLUS __t47 __t47 __t50
-PLUS __t47 __t47 a@4
-SET_RETURN  __t47 
-RETURN   
-END   
-RETURN   
-BEGIN   
-LABEL   flower_num
-PARAM n@5  
-PARAM j@5  
-PARAM a@5  
-COPY __t55 n@5 
-TIME __t55 __t55 n@5
-TIME __t54 __t55 n@5
-COPY __t59 j@5 
-TIME __t59 __t59 j@5
-TIME __t59 __t59 j@5
-PLUS __t54 __t54 __t59
-COPY __t63 a@5 
-TIME __t63 __t63 a@5
-TIME __t63 __t63 a@5
-PLUS __t54 __t54 __t63
-SET_RETURN  __t54 
-RETURN   
-END   
-RETURN   
-BEGIN   
-LABEL   complete_flower_num
-VAR k@6 512 
-COPY j@6 2 
-LABEL   _green_good_looking_ssd
-LESS __t75 j@6 128
-JUMP_UNLESS  __t75 _red_freaking_machine
-JUMP   _stylish_good_looking_ps4
-LABEL   _red_weird_machine
-PLUS j@6 j@6 1
-JUMP   _green_good_looking_ssd
-LABEL   _stylish_good_looking_ps4
-NEGATE n@6 1 
-COPY s@6 j@6 
-COPY i@6 1 
-LABEL   _colorful_irratating_life
-LESS __t93 i@6 j@6
-JUMP_UNLESS  __t93 _cutting_edge_amusing_pants
-JUMP   _colorful_imperialist_trousers
-LABEL   _colored_stink_cpu
-PLUS i@6 i@6 1
-JUMP   _colorful_irratating_life
-LABEL   _colorful_imperialist_trousers
-DIVIDE __t99 j@6 i@6
-TIME x1@6 __t99 i@6
-COPY __t108 j@6 
-COPY __t111 i@6 
-ARGUMENT  __t108 
-ARGUMENT  __t111 
-CALL mod  
-GET_RETURN __t105  
-EQU __t116 0 __t105
-JUMP_UNLESS  __t116 _stylish_amusing_headset
-PLUS n@6 n@6 1
-MINUS s@6 s@6 i@6
-LEQ __t131 128 n@6
-JUMP_UNLESS  __t131 _red_interesting_apple
-PRINTS  OVERFLOW! 
-PRINTS  \n 
-JUMP   _old_fashioned_good_looking_ps4
-LABEL   _red_interesting_apple
-ELEMENT k@6 n@6 i@6
-LABEL   _old_fashioned_good_looking_ps4
-LABEL   _stylish_amusing_headset
-JUMP   _colored_stink_cpu
-LABEL   _cutting_edge_amusing_pants
-EQU __t143 0 s@6
-JUMP_UNLESS  __t143 _kinky_socialist_earphone
-COPY __t144 j@6 
-PRINTS  complete number:  
-PRINTI  __t144 
-PRINTS  \n 
-COPY i@6 0 
-LABEL   _shinny_beautiful_keyboard
-LEQ __t155 i@6 n@6
-JUMP_UNLESS  __t155 _smoothy_wooden_trip
-JUMP   _pale_metal_calendar
-LABEL   _smoothy_wonderful_pants
-PLUS i@6 i@6 1
-JUMP   _shinny_beautiful_keyboard
-LABEL   _pale_metal_calendar
-INDEX __t160 k@6 i@6
-PRINTS     
-PRINTI  __t160 
-PRINTS  \n 
-JUMP   _smoothy_wonderful_pants
-LABEL   _smoothy_wooden_trip
-PRINTS    
-PRINTS  \n 
-LABEL   _kinky_socialist_earphone
-JUMP   _red_weird_machine
-LABEL   _red_freaking_machine
-PRINTS  --------------------------------------------------------------- 
-PRINTS  \n 
-PRINTS  'water flower'number is: 
-PRINTS  \n 
-COPY y@6 0 
-COPY i@6 100 
-LABEL   _smoothy_royal_trousers
-COPY __t170 i@6 
-COPY __t173 100 
-PLUS __t173 __t173 128
-LESS __t177 __t170 __t173
-JUMP_UNLESS  __t177 _red_special_apple
-JUMP   _colorful_boring_headset
-LABEL   _shinny_freaking_year
-PLUS i@6 i@6 1
-JUMP   _smoothy_royal_trousers
-LABEL   _colorful_boring_headset
-DIVIDE n@6 i@6 100
-DIVIDE __t188 i@6 10
-COPY __t191 10 
-ARGUMENT  __t188 
-ARGUMENT  __t191 
-CALL mod  
-GET_RETURN j@6  
-COPY __t196 i@6 
-COPY __t199 10 
-ARGUMENT  __t196 
-ARGUMENT  __t199 
-CALL mod  
-GET_RETURN a@6  
-COPY __t204 n@6 
-COPY __t207 j@6 
-COPY __t210 a@6 
-ARGUMENT  __t204 
-ARGUMENT  __t207 
-ARGUMENT  __t210 
-CALL full_num  
-GET_RETURN __t201  
-COPY __t216 n@6 
-COPY __t219 j@6 
-COPY __t222 a@6 
-ARGUMENT  __t216 
-ARGUMENT  __t219 
-ARGUMENT  __t222 
-CALL flower_num  
-GET_RETURN __t213  
-EQU __t225 __t213 __t201
-JUMP_UNLESS  __t225 _kinky_dummy_coke
-ELEMENT k@6 y@6 i@6
-PLUS y@6 y@6 1
-LABEL   _kinky_dummy_coke
-JUMP   _shinny_freaking_year
-LABEL   _red_special_apple
-COPY i@6 0 
-LABEL   _blue_special_apple
-LESS __t244 i@6 y@6
-JUMP_UNLESS  __t244 _stylish_pretty_cpu
-JUMP   _red_pretty_day
-LABEL   _stylish_dummy_ssd
-PLUS i@6 i@6 1
-JUMP   _blue_special_apple
-LABEL   _red_pretty_day
-INDEX __t249 k@6 i@6
-PRINTS     
-PRINTI  __t249 
-PRINTS  \n 
-JUMP   _stylish_dummy_ssd
-LABEL   _stylish_pretty_cpu
-PRINTS    
-PRINTS  \n 
-PRINTS  --------------------------------------------------------------- 
-PRINTS  \n 
-COPY h@6 0 
-COPY leap@6 1 
-COPY m@6 2 
-LABEL   _yellow_wooden_thing
-LEQ __t267 m@6 128
-JUMP_UNLESS  __t267 _red_dummy_shirts
-JUMP   _blue_freaking_computer
-LABEL   _shinny_plastic_noodles
-PLUS m@6 m@6 1
-JUMP   _yellow_wooden_thing
-LABEL   _blue_freaking_computer
-DIVIDE k2@6 m@6 2
-COPY i@6 2 
-LABEL   _green_freaking_chicken
-LEQ __t283 i@6 k2@6
-JUMP_UNLESS  __t283 _shinny_amusing_thing
-JUMP   _pink_weird_trousers
-LABEL   _cutting_edge_plastic_person
-PLUS i@6 i@6 1
-JUMP   _green_freaking_chicken
-LABEL   _pink_weird_trousers
-DIVIDE __t289 m@6 i@6
-TIME x2@6 __t289 i@6
-COPY __t298 m@6 
-COPY __t301 i@6 
-ARGUMENT  __t298 
-ARGUMENT  __t301 
-CALL mod  
-GET_RETURN __t295  
-EQU __t306 0 __t295
-JUMP_UNLESS  __t306 _green_wooden_year
-COPY leap@6 0 
-LABEL   _green_wooden_year
-JUMP   _cutting_edge_plastic_person
-LABEL   _shinny_amusing_thing
-EQU __t314 1 leap@6
-JUMP_UNLESS  __t314 _kinky_boring_person
-COPY __t315 m@6 
-PRINTS    
-PRINTI  __t315 
-PRINTS  \n 
-PLUS h@6 h@6 1
-DIVIDE __t323 h@6 10
-TIME x2@6 __t323 10
-EQU __t333 h@6 x2@6
-JUMP_UNLESS  __t333 _kinky_boring_wire
-PRINTS    
-PRINTS  \n 
-LABEL   _kinky_boring_wire
-LABEL   _kinky_boring_person
-COPY leap@6 1 
-JUMP   _shinny_plastic_noodles
-LABEL   _red_dummy_shirts
-COPY __t336 h@6 
-PRINTS  The total is  
-PRINTI  __t336 
-PRINTS  \n 
-END   
-RETURN   
-ENTRY   
-BEGIN   
-ARGUMENT  5 
-CALL factorial  
-GET_RETURN n@7  
-COPY __t344 n@7 
-PRINTS  5 !=  
-PRINTI  __t344 
-PRINTS  \n 
-COPY __t347 5 
-COPY __t349 10 
-ARGUMENT  __t347 
-ARGUMENT  __t349 
-CALL swap  
-CALL complete_flower_num  
-END   
-EXIT   
+0 BEGIN   
+1 LABEL   factorial
+1 PARAM n@1  
+1 LEQ __t5 n@1 1
+1 JUMP_UNLESS  __t5 _colorful_royal_chicken
+2 SET_RETURN  1 
+2 RETURN   
+3 LABEL   _colorful_royal_chicken
+3 COPY __t9 n@1 
+3 COPY __t12 n@1 
+3 MINUS __t12 __t12 1
+3 ARGUMENT  __t12 
+3 CALL factorial  
+3 GET_RETURN __t11  
+3 TIME __t8 __t9 __t11
+3 SET_RETURN  __t8 
+3 RETURN   
+4 END   
+5 ENTRY   
+5 BEGIN   
+5 ARGUMENT  5 
+5 CALL factorial  
+5 GET_RETURN n@7  
+5 COPY __t344 n@7 
+5 PRINTS  5 !=  
+5 PRINTI  __t344 
+5 PRINTS  \n 
+5 COPY __t347 5 
+5 COPY __t349 10 
+5 COPY x@3@7 __t347 
+5 COPY y@3@7 __t349 
+5 COPY __t413 x@3@7 
+5 PRINTS  x =  
+5 PRINTI  __t413 
+5 PRINTS  \n 
+5 COPY __t416 y@3@7 
+5 PRINTS  y =  
+5 PRINTI  __t416 
+5 PRINTS  \n 
+5 COPY temp@3@7 x@3@7 
+5 COPY x@3@7 y@3@7 
+5 COPY y@3@7 temp@3@7 
+5 COPY __t428 x@3@7 
+5 PRINTS  SWAP x =  
+5 PRINTI  __t428 
+5 PRINTS  \n 
+5 COPY __t431 y@3@7 
+5 PRINTS  SWAP y =  
+5 PRINTI  __t431 
+5 PRINTS  \n 
+6 LABEL   _red_wonderful_shirts
+6 VAR k@6@8 512 
+6 COPY j@6@8 2 
+7 LABEL   _shinny_beautiful_tour
+7 LESS __t440 j@6@8 128
+7 JUMP_UNLESS  __t440 _red_wooden_thing
+8 JUMP   _blue_irratating_tour
+9 LABEL   _stylish_metal_apple
+9 PLUS j@6@8 j@6@8 1
+9 JUMP   _shinny_beautiful_tour
+10 LABEL   _blue_irratating_tour
+10 NEGATE n@6@8 1 
+10 COPY s@6@8 j@6@8 
+10 COPY i@6@8 1 
+11 LABEL   _kinky_extrordinary_noodles
+11 LESS __t458 i@6@8 j@6@8
+11 JUMP_UNLESS  __t458 _smoothy_interesting_calendar
+12 JUMP   _colored_dummy_cpu
+13 LABEL   _pale_plastic_tour
+13 PLUS i@6@8 i@6@8 1
+13 JUMP   _kinky_extrordinary_noodles
+14 LABEL   _colored_dummy_cpu
+14 DIVIDE __t467 j@6@8 i@6@8
+14 TIME x1@6@8 __t467 i@6@8
+14 COPY __t472 j@6@8 
+14 COPY __t475 i@6@8 
+14 COPY x@2@1@8 __t472 
+14 COPY y@2@1@8 __t475 
+14 COPY __t478 x@2@1@8 
+14 COPY __t480 x@2@1@8 
+14 DIVIDE __t480 __t480 y@2@1@8
+14 TIME __t480 __t480 y@2@1@8
+14 MINUS x@2@1@8 __t478 __t480
+14 SET_RETURN  x@2@1@8 
+15 LABEL   _yellow_freaking_person
+15 GET_RETURN __t488  
+15 EQU __t491 0 __t488
+15 JUMP_UNLESS  __t491 _colorful_plastic_noodles
+16 PLUS n@6@8 n@6@8 1
+16 MINUS s@6@8 s@6@8 i@6@8
+16 LEQ __t506 128 n@6@8
+16 JUMP_UNLESS  __t506 _green_annoying_memory
+17 PRINTS  OVERFLOW! 
+17 PRINTS  \n 
+17 JUMP   _yellow_wooden_headset
+18 LABEL   _green_annoying_memory
+18 ELEMENT k@6@8 n@6@8 i@6@8
+19 LABEL   _yellow_wooden_headset
+20 LABEL   _colorful_plastic_noodles
+20 JUMP   _pale_plastic_tour
+21 LABEL   _smoothy_interesting_calendar
+21 EQU __t518 0 s@6@8
+21 JUMP_UNLESS  __t518 _pink_boring_cpu
+22 COPY __t521 j@6@8 
+22 PRINTS  complete number:  
+22 PRINTI  __t521 
+22 PRINTS  \n 
+22 COPY i@6@8 0 
+23 LABEL   _old_fashioned_good_looking_grapes
+23 LEQ __t530 i@6@8 n@6@8
+23 JUMP_UNLESS  __t530 _stylish_pretty_coke
+24 JUMP   _blue_civil_life
+25 LABEL   _pink_interesting_shirts
+25 PLUS i@6@8 i@6@8 1
+25 JUMP   _old_fashioned_good_looking_grapes
+26 LABEL   _blue_civil_life
+26 INDEX __t540 k@6@8 i@6@8
+26 PRINTS     
+26 PRINTI  __t540 
+26 PRINTS  \n 
+26 JUMP   _pink_interesting_shirts
+27 LABEL   _stylish_pretty_coke
+27 PRINTS    
+27 PRINTS  \n 
+28 LABEL   _pink_boring_cpu
+28 JUMP   _stylish_metal_apple
+29 LABEL   _red_wooden_thing
+29 PRINTS  --------------------------------------------------------------- 
+29 PRINTS  \n 
+29 PRINTS  'water flower'number is: 
+29 PRINTS  \n 
+29 COPY y@6@8 0 
+29 COPY i@6@8 100 
+30 LABEL   _yellow_plastic_computer
+30 COPY __t547 i@6@8 
+30 COPY __t549 100 
+30 PLUS __t549 __t549 128
+30 LESS __t552 __t547 __t549
+30 JUMP_UNLESS  __t552 _blue_annoying_earphone
+31 JUMP   _stylish_good_looking_computer
+32 LABEL   _old_fashioned_interesting_coke
+32 PLUS i@6@8 i@6@8 1
+32 JUMP   _yellow_plastic_computer
+33 LABEL   _stylish_good_looking_computer
+33 DIVIDE n@6@8 i@6@8 100
+33 DIVIDE __t562 i@6@8 10
+33 COPY __t564 10 
+33 COPY x@2@2@8 __t562 
+33 COPY y@2@2@8 __t564 
+33 COPY __t567 x@2@2@8 
+33 COPY __t569 x@2@2@8 
+33 DIVIDE __t569 __t569 y@2@2@8
+33 TIME __t569 __t569 y@2@2@8
+33 MINUS x@2@2@8 __t567 __t569
+33 SET_RETURN  x@2@2@8 
+34 LABEL   _colored_imperialist_noodles
+34 GET_RETURN j@6@8  
+34 COPY __t580 i@6@8 
+34 COPY __t582 10 
+34 COPY x@2@3@8 __t580 
+34 COPY y@2@3@8 __t582 
+34 COPY __t585 x@2@3@8 
+34 COPY __t587 x@2@3@8 
+34 DIVIDE __t587 __t587 y@2@3@8
+34 TIME __t587 __t587 y@2@3@8
+34 MINUS x@2@3@8 __t585 __t587
+34 SET_RETURN  x@2@3@8 
+35 LABEL   _colorful_amazing_headset
+35 GET_RETURN a@6@8  
+35 COPY __t598 n@6@8 
+35 COPY __t601 j@6@8 
+35 COPY __t604 a@6@8 
+35 COPY n@4@4@8 __t598 
+35 COPY j@4@4@8 __t601 
+35 COPY a@4@4@8 __t604 
+35 TIME __t607 n@4@4@8 100
+35 COPY __t609 j@4@4@8 
+35 TIME __t609 __t609 10
+35 PLUS __t607 __t607 __t609
+35 PLUS __t607 __t607 a@4@4@8
+35 SET_RETURN  __t607 
+36 LABEL   _stylish_metal_headset
+36 GET_RETURN __t614  
+36 COPY __t617 n@6@8 
+36 COPY __t620 j@6@8 
+36 COPY __t623 a@6@8 
+36 COPY n@5@5@8 __t617 
+36 COPY j@5@5@8 __t620 
+36 COPY a@5@5@8 __t623 
+36 COPY __t625 n@5@5@8 
+36 TIME __t625 __t625 n@5@5@8
+36 TIME __t628 __t625 n@5@5@8
+36 COPY __t630 j@5@5@8 
+36 TIME __t630 __t630 j@5@5@8
+36 TIME __t630 __t630 j@5@5@8
+36 PLUS __t628 __t628 __t630
+36 COPY __t634 a@5@5@8 
+36 TIME __t634 __t634 a@5@5@8
+36 TIME __t634 __t634 a@5@5@8
+36 PLUS __t628 __t628 __t634
+36 SET_RETURN  __t628 
+37 LABEL   _blue_extrordinary_cpu
+37 GET_RETURN __t639  
+37 EQU __t640 __t639 __t614
+37 JUMP_UNLESS  __t640 _cutting_edge_royal_keyboard
+38 ELEMENT k@6@8 y@6@8 i@6@8
+38 PLUS y@6@8 y@6@8 1
+39 LABEL   _cutting_edge_royal_keyboard
+39 JUMP   _old_fashioned_interesting_coke
+40 LABEL   _blue_annoying_earphone
+40 COPY i@6@8 0 
+41 LABEL   _stylish_boring_noodles
+41 LESS __t659 i@6@8 y@6@8
+41 JUMP_UNLESS  __t659 _pale_beautiful_machine
+42 JUMP   _cutting_edge_wonderful_thing
+43 LABEL   _old_fashioned_good_looking_headset_and_yellow_socialist_calendar
+43 PLUS i@6@8 i@6@8 1
+43 JUMP   _stylish_boring_noodles
+44 LABEL   _cutting_edge_wonderful_thing
+44 INDEX __t669 k@6@8 i@6@8
+44 PRINTS     
+44 PRINTI  __t669 
+44 PRINTS  \n 
+44 JUMP   _old_fashioned_good_looking_headset_and_yellow_socialist_calendar
+45 LABEL   _pale_beautiful_machine
+45 PRINTS    
+45 PRINTS  \n 
+45 PRINTS  --------------------------------------------------------------- 
+45 PRINTS  \n 
+45 COPY h@6@8 0 
+45 COPY leap@6@8 1 
+45 COPY m@6@8 2 
+46 LABEL   _shinny_irratating_chinese
+46 LEQ __t682 m@6@8 128
+46 JUMP_UNLESS  __t682 _yellow_metal_machine
+47 JUMP   _old_fashioned_stink_switch
+48 LABEL   _blue_plastic_grapes
+48 PLUS m@6@8 m@6@8 1
+48 JUMP   _shinny_irratating_chinese
+49 LABEL   _old_fashioned_stink_switch
+49 DIVIDE k2@6@8 m@6@8 2
+49 COPY i@6@8 2 
+50 LABEL   _stylish_freaking_calendar
+50 LEQ __t698 i@6@8 k2@6@8
+50 JUMP_UNLESS  __t698 _yellow_pretty_chicken
+51 JUMP   _yellow_dummy_headset
+52 LABEL   _pink_irratating_calendar
+52 PLUS i@6@8 i@6@8 1
+52 JUMP   _stylish_freaking_calendar
+53 LABEL   _yellow_dummy_headset
+53 DIVIDE __t707 m@6@8 i@6@8
+53 TIME x2@6@8 __t707 i@6@8
+53 COPY __t712 m@6@8 
+53 COPY __t715 i@6@8 
+53 COPY x@2@6@8 __t712 
+53 COPY y@2@6@8 __t715 
+53 COPY __t718 x@2@6@8 
+53 COPY __t720 x@2@6@8 
+53 DIVIDE __t720 __t720 y@2@6@8
+53 TIME __t720 __t720 y@2@6@8
+53 MINUS x@2@6@8 __t718 __t720
+53 SET_RETURN  x@2@6@8 
+54 LABEL   _colorful_wonderful_chicken
+54 GET_RETURN __t728  
+54 EQU __t731 0 __t728
+54 JUMP_UNLESS  __t731 _shinny_extrordinary_headset
+55 COPY leap@6@8 0 
+56 LABEL   _shinny_extrordinary_headset
+56 JUMP   _pink_irratating_calendar
+57 LABEL   _yellow_pretty_chicken
+57 EQU __t739 1 leap@6@8
+57 JUMP_UNLESS  __t739 _green_socialist_trousers
+58 COPY __t742 m@6@8 
+58 PRINTS    
+58 PRINTI  __t742 
+58 PRINTS  \n 
+58 PLUS h@6@8 h@6@8 1
+58 DIVIDE __t750 h@6@8 10
+58 TIME x2@6@8 __t750 10
+58 EQU __t758 h@6@8 x2@6@8
+58 JUMP_UNLESS  __t758 _green_special_thing
+59 PRINTS    
+59 PRINTS  \n 
+60 LABEL   _green_special_thing
+61 LABEL   _green_socialist_trousers
+61 COPY leap@6@8 1 
+61 JUMP   _blue_plastic_grapes
+62 LABEL   _yellow_metal_machine
+62 COPY __t763 h@6@8 
+62 PRINTS  The total is  
+62 PRINTI  __t763 
+62 PRINTS  \n 
+63 LABEL   _colorful_special_chinese
+63 END   
+63 EXIT   

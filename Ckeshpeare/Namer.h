@@ -41,4 +41,12 @@ namespace dyj {
         std::unordered_set<std::string> used;
         static std::vector<std::string> lhs, mhs, rhs;
     };
+
+    bool is_global(const std::string &name);
+    bool is_local(const std::string &name);
+    bool is_user(const std::string &name);
+    bool is_temp(const std::string &name);
+    bool is_variable(const std::string &name);
+    bool is_const(const std::string &name);
+    bool is_value(const std::string &name);
 }

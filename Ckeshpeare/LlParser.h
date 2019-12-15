@@ -36,6 +36,7 @@ namespace dyj {
         Symbol *get_tree(void);
 
         Namer *get_label_namer(void);
+        Namer *get_var_namer(void);
 
         std::vector<Quaternary> get_irs(void);
 

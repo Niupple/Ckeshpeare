@@ -56,6 +56,10 @@ namespace dyj {
         return label_namer;
     }
 
+    Namer *RecursiveDescentParser::get_var_namer(void) {
+        return temp_namer;
+    }
+
     std::vector<Quaternary> RecursiveDescentParser::get_irs(void) {
         return irs;
     }
