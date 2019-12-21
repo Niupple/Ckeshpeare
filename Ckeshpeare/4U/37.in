@@ -1,0 +1,17 @@
+const int a=1;
+
+int testa(int a) {
+	return (a*a);	
+}
+int testb(int b) {
+	return (b*b*b);
+}
+int testc(int c) {
+	return (c*c*c*c);
+}
+int testd(int d) {
+	return (d*d*d*d*d);
+}
+void main() {
+	printf("final:",1*a+testa(1*a+testa(1*a+testa(1*a+testa(1*a+testa(1*a+testa(1*a+testa(1*a+testa(1*a+testa(1*a+testa(1*a+testa(1*a+testa(1*a+testa(1*a+testa(1*a+testa(1*a+testa(1*a+testa(1*a+testa(1*a+testa(1*a+testa(1*a+testa(1*a+testa(1*a+testa(1*a+testa(1*a+testa(1*a+testa(1*a+testa(1*a+testa(1*a+testa(1*a+testa(1*a+testa(1*a+testa(1*a+testa(1*a+testa(1*a+testa(1*a+testa(1*a+testa(1*a+testa(1*a+testa(1*a+testa(1*a+testa(1*a+testa(1*a+testa(1*a+testa(1*a+testa(1*a+testa(1*a+testa(1*a+testa(1*a+testa(1*a+testa(1*a+testa(1*a+testa(1*a+testa(1*a+testa(1*a+testa(1*a+testa(1*a+testa(1*a+testa(1*a+testa(1*a+testa(1*a+testa(1*a+testa(1*a+testa(1*a+testa(1*a+testa(1*a+testa(a)))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))));
+}

@@ -1,0 +1,37 @@
+MARS 4.5  Copyright 2003-2014 Pete Sanderson and Kenneth Vollmar
+
+826239904
+1
+A
+-1
+10
+a
+3
+c
+test_if_right,the char is _
+the count1 is 17
+the count2 is 52
+the count3 is 93
+the test_while is 122
+array_int[i]:1
+array_char[i]:1
+result:49
+array_int[i]:6
+array_char[i]:1
+result:343
+array_int[i]:11
+array_char[i]:/
+result:860
+array_int[i]:16
+array_char[i]:-
+result:1580
+array_int[i]:21
+array_char[i]:K
+result:3155
+test_array is 3155
+R
+
+-100
+L
+ !#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\]^_`abcdefghijklmnopqrstuvwxyz{|}~
+

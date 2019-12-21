@@ -1,0 +1,31 @@
+const int con_glob_1 = 10;
+int var_glob_2;
+
+int foo0(int a) {
+	const int b = 10;
+	int c;
+	
+	c = b + a;
+	return (c*2);
+}
+
+int foo1(int a, int b) {
+	int c;
+	c = foo0(a);
+	c = c + b;
+
+	return (c);
+}
+
+void foo2(char b) {
+	printf("para in is: ", b);
+}
+
+void main() {
+	
+	var_glob_2 = foo1(con_glob_1, 18) + 1;
+	
+	printf("var_glob_2: ", var_glob_2);
+	
+	foo2('a');
+}

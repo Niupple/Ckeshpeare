@@ -1,0 +1,29 @@
+const int a0 = -5;
+int test, arr[10];
+
+void main(){
+	int a,c;
+	int arr[11];
+	int expr;
+	char cc;
+	
+	a = 1;
+	c = 2;
+	printf(a+c);
+
+	arr[3] = 10;
+	
+    printf("Hello \n World");
+	test=123;
+	expr=444;
+	
+	test = test * arr[3] + a0;
+	arr[4] = test;
+	
+    printf("hello",arr[4]);
+	printf(a0);
+	printf(1);
+	
+	expr = a + 'd' - ('c') + 20 + 2 * expr - expr / 4 + arr[4];
+	
+}

@@ -1,0 +1,91 @@
+const int bbb = 123, ccc = -789;
+const char ddd = '5';
+int test,goo[10];
+void main(){
+
+	const char lla = 'z', llb = '+';
+	int locala,localb,localc,locald,a,b,ooo[5];
+	char c,d,e,f;
+	a = 57;
+	b = 1;
+	e = 'p';
+	for(locala=5;locala;locala=locala-1){
+		printf(b);;
+		b=b+1;
+	}
+	while (b != (e)) {
+		a = a*2;
+		c = c+b*2;;
+		printf(a);
+		b = b +1;
+	}
+	locala = 10;
+	do{
+		locala = locala/2;
+		printf(locala);
+
+		printf("hihihi:",locala-(a+b+c*lla*test)*b*ccc/(c+lla*ddd-llb));
+
+
+		test = -bbb*f+45*(-lla/e)/(+localb*2-ccc)*(locala+(-localc))*lla;
+		printf("test:      ",test);
+	}while (locala);
+	printf(-(a+b+c)*b*ccc/(c+lla*ddd-llb));
+	printf(7*llb*'a');
+	test = +55;
+	locala = -789+999/ddd;
+	localb = -'c'*'a';
+	localc = -1-1-1-1-1-1-1-(ddd+a*c-b);
+	locald = -'-'*9;
+	c = 'a';
+	d = '+';
+	e = '-';
+	f = '*';
+	test = -bbb*f+45*(-lla/e)/(+localb*2-ccc)*(locala+(-localc))*lla;
+	printf(-(test+10-bbb)/d);
+	printf(test);
+	printf(-locala);
+	printf("c: ",c);
+	printf("d: ",d+e*f);
+	printf(ddd*llb);
+	printf(lla);
+	printf(ccc-10+ddd);
+	printf(c+1);
+	printf("Hello World");
+	test = -9090;
+	printf(test);
+	printf("HEllo\twho are u?");
+	printf((lla+locala+locald)/localb*localc);
+	printf("a:",a);
+	ooo[2*a+1-'p'] = 14;
+	ooo[2*a+0-'p'] = lla*90-llb;
+	ooo[2*a+2-'p'] = -9*a;
+	ooo[2*a-1-'p'] = 'o';
+	ooo[2] = 2*a;
+	test = 2*a;
+	printf("");
+	b = ooo[b]*2;
+	printf("b:",b);
+	printf("ooo[b]:", ooo[b]);
+	printf("b:",b);
+	b = -9*(ooo['b'-'a'*2+'c']+87*(ooo[1+(1-2)+1]*ooo[ooo[2]-ooo[1]]));
+	printf(b);
+	printf("");
+	b = ooo[0];
+	printf("ooo[0]",b);
+	b = ooo[1];
+	printf("ooo[1]",b);
+	b = ooo[2];
+	printf("ooo[2]",b);
+	b = ooo[3];
+	printf("ooo[3]",b);
+	b = ooo[4];
+	printf("ooo[4]",b);
+
+}
+
+
+//useless 
+
+
+

@@ -1,0 +1,17 @@
+int a,b;
+void fakeSwap(int x, int y) {
+	int temp;
+	temp = x;
+	x = y;
+	y = temp;
+}
+void main(){
+	a = 10;
+	b = 20;
+	printf("a:",a);
+	printf("b:",b);
+	fakeSwap(10,20);
+	printf("a:",a);
+	printf("b:",b);
+	
+}

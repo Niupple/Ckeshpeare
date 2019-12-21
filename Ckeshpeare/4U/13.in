@@ -1,0 +1,20 @@
+const int con_glob_1 = 10;
+int var_glob_2;
+
+int fibo(int n) {
+	if (n == 1) {
+		return (1);
+	}
+	if (n == 2) {
+		return (1);
+	}
+	
+	return (fibo(n-1) + fibo(n-2));
+	
+}
+
+void main() {
+	int n;
+	n = 8;
+	printf("test fibo: ", fibo(n));
+}

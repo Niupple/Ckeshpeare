@@ -1,0 +1,9 @@
+int add(int x, int y) {
+	return (x+y);
+}
+int mul(int x, int y) {
+	return (x*y);
+}
+void main(){
+	printf(add(mul(3,add(2,3)),4));
+}

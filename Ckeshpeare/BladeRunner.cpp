@@ -139,6 +139,8 @@ namespace dyj {
             case Quaternary::EXIT:
                 flag = false;
                 break;
+            case Quaternary::COMMENT:
+                break;
             }
             ++pc;
         }

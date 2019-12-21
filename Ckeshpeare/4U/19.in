@@ -1,0 +1,54 @@
+const int MAX_NUM = 128 ;
+char same_char_1;
+char same_char_2;
+
+
+void printGlobChar() {
+	printf("global same_char_1: ", same_char_1);
+	printf("global same_char_2: ", same_char_2);
+}
+
+char testCharFun() {
+
+	return ('a');
+}
+
+char testCharExpr()
+{
+  char charArr[5];
+  char same_char_1;
+  char same_char_2;
+  int expr_1;
+  int expr_2;
+  
+  same_char_1 = 'a';
+  same_char_2 = 'b';
+  
+  charArr[3] = same_char_1;
+  if ((charArr[3]) == ('a')) {
+	printf("charArr[3] = ", charArr[3]);
+  }
+  
+  printf("local same_char_1: ", same_char_1);
+  printf("local same_char_2: ", same_char_2);
+  
+  expr_1 = -1 * (same_char_2 - same_char_1) + 5;
+  printf("expr_1 = ", expr_1);
+  
+  expr_2 = - 'a' + same_char_2 + testCharFun();
+  printf("expr_2 = ", expr_2);
+  
+  return (same_char_1);
+}
+
+
+
+void main()
+{
+   same_char_1 = 'z';
+   same_char_2 = 'y';
+   
+   testCharExpr();
+   
+   printGlobChar();
+}

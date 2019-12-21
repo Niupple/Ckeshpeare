@@ -1,0 +1,10 @@
+const int a=1;
+void test(){
+	int a;
+	a = 2;
+	printf(a);
+}
+void main(){
+	test();
+	printf(a);
+}

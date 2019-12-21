@@ -1,0 +1,54 @@
+const int a=10000,b=20,c=-45;
+const char d='-',e='*',f='9';
+void main(){
+int var0,var1,var2,var3;
+var3 = e+(d+c+d/d/e/(e/(c-(e/(f-f-f-(f/(b+a*c+(f*c+(d-e+-988)))))))));
+printf(var3);
+if (a/b+6/c-d/3+5*-6*-7*-8*f*b/(d-e)<40*2-78*c*9*10/f/d-(55-66/2/4*78/3*a*b/e))
+var3 = a-(d*a-(b-f/b+(a*a/(e+c+(b*e/a/(f/(d*d*b*(b/c/e/-988))))))));
+printf(var3);
+var2 = e-a+(a+e/(f-b/c*(d-(f+(c/e+(a*(b-(e/b+b-(a-(f*d*c+-988))))))))));
+printf(var2);
+var0 = e+(e*(e/a*(b/(b+b*a+b*(c*(a*(e-(d/(b-(c+d/(c+(e-(e+b+-988)))))))))))));
+printf(var0);
+var0 = f/(d+(e/d+(e+b+(b+f-(e*(d*c/(f*(c*a+c+e-d-(b*a*a*-988)))))))));
+printf(var0);
+var1 = c+(b/c-a-c-a/(b+a*b-(f/b-e+(c*(e/a/a*(b-(f+(c/f*-988))))))));
+printf(var1);
+var3 = (b+(d-(d/b*f*f+(b-e-a+d*c/e*(b-(d+(d-(a-(f*(c*c-(a*-988)))))))))));
+printf(var3);
+var3 = b/(f-e/(f/(a-a*a+(a*(c/a*b/(a*e+(a-(d-b+b+a*a*e+-988))))))));
+printf(var3);
+var2 = b-(b/e/(c+f-e-e-e/(c-(b*(f/d-(d/e/b*(b*(e+a/d-(e+-988)))))))));
+printf(var2);
+var3 = (c/(f+a/c*d+f*(b/(f*(d/(b+d+(e/(f-b-e/a+(d-e+c-(b/-988))))))))));
+printf(var3);
+}
+
+
+
+
+
+
+
+var2 = (d-b/(c/d*d*(a+c/b-(c+a*e/(c*(f-f*d-e/(e/a/(a-c/d-c/b*(b/(a+e+f*(e-b/(f/(a+c/a*c*b+c*(e*(b*e/(b/(e/(b/f-(d/(f/(a-(f-(a*(b+(e+-988)))))))))))))))))))))))));
+printf(var2);
+var0 = (e/(f*(e/a/(f*f/c+(d*(c/a/c/(b/(c/f-(a-(f*b/e*(d+f+(b*c-(b+(e/f-(b*f/(e+(b-(b-(e*c-(e*(b*b+f-b+e*b-(a+b*(d/f-e+(f-(f*b-b-(f+f*-988))))))))))))))))))))))))));
+printf(var0);
+var3 = (e-f+e-(d-a/(f-(e/(e+b-(a/a/(c/d-(e*(a+f/(a*f*(c-b+(b*(a*c-(c-b/d+e*b+c*(c/(b*(e+a/(c/(c*c/(c/(e*(e+(a*d+f+(f/e-(b-(a/d+(c+e/b--988)))))))))))))))))))))))))));
+printf(var3);
+var1 = a-f-(e+(d-e*(c*(d*(e*(a-(f*f-(e*(f/(f+(d+(f/(a*(f+c*(c+e/(e-(b/a+f/(f*a-c*(c-(b/(d-(e-a+(e/(b*(e-(a*e*(d+f-(a-f/a/f+(f-a/(f-(c-(d-(f*-988)))))))))))))))))))))))))))))))));
+printf(var1);
+var3 = e+c/a/(f/e+c/a+(c-(d*c+(c-(e-(b/a+(c/(b/d-c-(b*a+d*(d-a*(a+f+(e/e*a-(b+f*e*(f/a-f/b+e+d*f*(c-c/b/e*(a*e*(c-(e+(e-(d*(c+(a/-988))))))))))))))))))))));
+printf(var3);
+var2 = (c-(a/(a*(c+(c-a-d*(a+(a-f+c*(b*a+e*f*b*(d-b/e*(a/(a/(f+(f-(a/(a+(a-c-(a*(c*(c+f*(d-(a+e*(d/(f/(b-e/d*c*a/b+(b/(b/f*(c/b+f/(f*(b--988)))))))))))))))))))))))))))));
+printf(var2);
+var1 = (f-(b-a+b/e*(f-(a*(e-(d/f+c*(a-c/(e*a-f+d*a+(f+a-(e/(d-d*(e+(b/d*f/(b+(c-(f/a/f*(b*(c*d/(c/(e*(d+(b+a/f-(f+a-c/c-d/(c-(f/(c+b+-988))))))))))))))))))))))))));
+printf(var1);
+var1 = (f/c/d-d+(d-(e+a*(a-(c-(b-c/(d-(f*a-d*e+c-f-(c-b-c-(f+a*(e+b/(d/(f/c+(f-(e*a*(f+f*a/f*(a-f+(a*(d+c*(c*(c/(c*e/(a*(b*d/c/(d/(a/-988))))))))))))))))))))))))));
+printf(var1);
+var3 = (e-a+a*e-(c/d-a-c+(d/d/(a-d-b/(d-a-a+(e*a*(a/a/(c/c*(b-c+(c*c+e+c-d/e/(d-c*(f-c-(f/(a+a+d+(b*b+e-(d/(e/e/(d+(d+(f/(b*(d/(f/-988)))))))))))))))))))))));
+printf(var3);
+var3 = (f-(a+c/(b*c/(d/c*(c+(d+a/a*(d/(b/(a+(d/a*b/c-(f*(e*e*b/(c-(f/(d+d-(d*a+(f*(e*(e+c-(a-d-c*b/(a-(a-b+e*f*f*(b*b-(d+(e-(d/d-(d+(d*-988))))))))))))))))))))))))))));
+printf(var3);
+}

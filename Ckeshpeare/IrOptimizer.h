@@ -106,6 +106,7 @@ namespace dyj {
         std::string translate_label(const std::string &label);
 
         std::vector<Function *> functions;
+        IrList header;
         IrList irs;
         IrList main_function;
         IrList output;

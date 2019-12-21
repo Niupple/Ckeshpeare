@@ -1,0 +1,39 @@
+MARS 4.5  Copyright 2003-2014 Pete Sanderson and Kenneth Vollmar
+
++
+100
+1
+30
+
+current i:7
+testnum[i]:3
+
+current i:6
+testnum[i]:5
+
+current i:5
+testnum[i]:8
+
+current i:4
+testnum[i]:13
+
+current i:3
+testnum[i]:21
+
+current i:2
+testnum[i]:34
+
+current i:1
+testnum[i]:55
+testnum[2] = 34
+testnum[2] = 34
+testnum[1] = 55
+testnum[3] = 21
+testnum[3] = 21
+testnum[0] = 89
+4
+1
+1
+1
+4950
+

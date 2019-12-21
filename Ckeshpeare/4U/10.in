@@ -1,0 +1,16 @@
+void main() {
+	int a;
+	int c;
+	char b;
+	char d;
+	a = 1;
+	b ='a';
+	c = 2;
+	d = 'b';
+	printf(a+1);
+	printf(b+1);
+	printf(c+1);
+	printf(d+1);
+	printf(a+c);
+	printf(b+d);
+}

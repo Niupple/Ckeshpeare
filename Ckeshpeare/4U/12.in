@@ -1,0 +1,45 @@
+const int con_glob_1 = 10;
+int var_glob_2;
+
+void testIfElse(int choice) {
+	if (choice) {
+		printf("test IF state and single condit success");
+	}
+	else {
+		printf("test ELSE state success");
+	}
+	printf("");
+}
+
+void testCondition(int choice) {
+	if (choice < 10) {
+		printf("test LSS condit success");
+	}
+	if (choice <= 10) {
+		printf("test LEQ condit success");
+	}
+	if (choice > 20) {
+		printf("test GRE condit success");
+	}
+	if (choice >= 20) {
+		printf("test GEQ condit success");
+	}
+	if (choice == 15) {
+		printf("test EQL condit success");
+	}
+	
+	printf("");
+
+}
+void main() {
+	
+	testIfElse(1);
+	testIfElse(0);
+	
+	testCondition(5);
+	testCondition(10);
+	testCondition(28);
+	testCondition(20);
+	testCondition(15);
+	
+}

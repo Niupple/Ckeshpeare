@@ -1,0 +1,52 @@
+void main(){
+	const int a = 10;
+	const int b = 5;
+	char c;
+	c = '5';
+	if(a>b){
+		printf("a > b");
+	}else{
+		printf("a <= b");
+	}
+	if(a<b){
+
+	}else{
+		printf("a not less than b");
+	}
+
+	if(a>=a){
+		printf("1self yes");
+	}else{
+		printf("1self no");
+	}
+
+	if(b<=a){
+		printf("2222 yes");
+	}else{
+		printf("2222 no");
+	}
+
+	if(a-b<b-a){
+		printf("-aaa");
+	}else{
+		printf("-bbb");
+	}
+
+
+	if(-a>b){
+		printf("-a > b");
+	}else{
+		printf("-a <= b");
+	}
+	if(b==c-'0'){
+		printf("line21 y");
+	}else{
+		printf("line23 n");
+	}
+	if(b!=c+1-1){
+		printf("b!=c");
+	}else{
+		printf("b==c");
+	}
+
+}

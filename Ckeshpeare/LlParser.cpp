@@ -89,12 +89,12 @@ namespace dyj {
 
     std::string RecursiveDescentParser::place_tag(void) {
         std::string name = label_namer->new_name();
-        irs.emplace_back(Quaternary::LABEL, "", "", name);
+        buffer.emplace_back(Quaternary::LABEL, "", "", name);
         return name;
     }
 
     void RecursiveDescentParser::place_tag(const std::string &name) {
-        irs.emplace_back(Quaternary::LABEL, "", "", name);
+        buffer.emplace_back(Quaternary::LABEL, "", "", name);
     }
 
     std::string RecursiveDescentParser::get_escape(const string &str) {
@@ -106,6 +106,11 @@ namespace dyj {
             }
         }
         return ret;
+    }
+
+    void RecursiveDescentParser::dump_buffer(void) {
+        irs.insert(irs.end(), buffer.begin(), buffer.end());
+        buffer.clear();
     }
 
     Symbol *RecursiveDescentParser::parse_operator_add(void) {
@@ -197,6 +202,7 @@ namespace dyj {
             }
         }
         TAKE(parse_main_function);
+        dump_buffer();
         RETURN_PARSE();
     }
 
@@ -359,7 +365,7 @@ namespace dyj {
                 rerr.push_back(new Error(Error::REDEFINITION, t->get_location()));
             }
             name = full_house_table.get_code_name(name);
-            irs.emplace_back(Quaternary::VAR, name, std::to_string(size * 4));
+            buffer.emplace_back(Quaternary::VAR, name, std::to_string(size * 4));
         } else {
             btype = FullHouse::VARIABLE;
             ret = full_house_table.declare_full_house(new FullHouse(name, ctype, btype, ttype));
@@ -388,7 +394,7 @@ namespace dyj {
                     rerr.push_back(new Error(Error::REDEFINITION, t->get_location()));
                 }
                 name = full_house_table.get_code_name(name);
-                irs.emplace_back(Quaternary::VAR, name, std::to_string(size * 4));
+                buffer.emplace_back(Quaternary::VAR, name, std::to_string(size * 4));
             } else {
                 btype = FullHouse::VARIABLE;
                 ret = full_house_table.declare_full_house(new FullHouse(name, ctype, btype, ttype));
@@ -434,7 +440,7 @@ namespace dyj {
             rerr.push_back(new Error(Error::REDEFINITION, t->get_location()));
         }
         full_house_table.push_layer();
-        irs.emplace_back(Quaternary::BEGIN);
+        buffer.emplace_back(Quaternary::BEGIN);
         place_tag(name);
         GET(Token::LPARENT);
         TAKE(parse_parameter_list, tmp);
@@ -446,8 +452,8 @@ namespace dyj {
         GET(Token::LBRACE);
         TAKE(parse_multiple_statement, ctype);
         GET(Token::RBRACE);
-        irs.emplace_back(Quaternary::END);
-        irs.emplace_back(Quaternary::RETURN);
+        buffer.emplace_back(Quaternary::END);
+        buffer.emplace_back(Quaternary::RETURN);
         full_house_table.pop_layer();
 
         RETURN_PARSE();
@@ -474,7 +480,7 @@ namespace dyj {
             rerr.push_back(new Error(Error::REDEFINITION, t->get_location()));
         }
         full_house_table.push_layer();
-        irs.emplace_back(Quaternary::BEGIN);
+        buffer.emplace_back(Quaternary::BEGIN);
         place_tag(name);
         GET(Token::LPARENT);
         TAKE(parse_parameter_list, tmp);
@@ -486,8 +492,8 @@ namespace dyj {
         GET(Token::LBRACE);
         TAKE(parse_multiple_statement, ctype);
         GET(Token::RBRACE);
-        irs.emplace_back(Quaternary::END);
-        irs.emplace_back(Quaternary::RETURN);
+        buffer.emplace_back(Quaternary::END);
+        buffer.emplace_back(Quaternary::RETURN);
         full_house_table.pop_layer();
 
         RETURN_PARSE();
@@ -531,7 +537,7 @@ namespace dyj {
             if (!ret) {
                 rerr.push_back(new Error(Error::REDEFINITION, t->get_location()));
             }
-            irs.emplace_back(Quaternary::PARAM, name);
+            buffer.emplace_back(Quaternary::PARAM, name);
             while (peek() && peek()->get_type() == Token::COMMA) {
                 GET(Token::COMMA);
                 TAKE(parse_type_id, ctype);
@@ -543,7 +549,7 @@ namespace dyj {
                 if (!ret) {
                     rerr.push_back(new Error(Error::REDEFINITION, t->get_location()));
                 }
-                irs.emplace_back(Quaternary::PARAM, name);
+                buffer.emplace_back(Quaternary::PARAM, name);
             }
         }
         RETURN_PARSE();
@@ -564,11 +570,11 @@ namespace dyj {
         }
         full_house_table.push_layer();
         GET(Token::LBRACE);
-        irs.emplace_back(Quaternary::ENTRY);
-        irs.emplace_back(Quaternary::BEGIN);
+        buffer.emplace_back(Quaternary::ENTRY);
+        buffer.emplace_back(Quaternary::BEGIN);
         TAKE(parse_multiple_statement, FullHouse::VOID);
-        irs.emplace_back(Quaternary::END);
-        irs.emplace_back(Quaternary::EXIT);
+        buffer.emplace_back(Quaternary::END);
+        buffer.emplace_back(Quaternary::EXIT);
         GET(Token::RBRACE);
         full_house_table.pop_layer();
 
@@ -598,13 +604,13 @@ namespace dyj {
         TAKE(parse_term, ctmp, temp);
         if (!flag) {
             ctype = ctmp;
-            irs.emplace_back(Quaternary::COPY, var, temp);
+            buffer.emplace_back(Quaternary::COPY, var, temp);
         } else {
             ctype = FullHouse::INT;
             if (op == 1) {
-                irs.emplace_back(Quaternary::COPY, var, temp);
+                buffer.emplace_back(Quaternary::COPY, var, temp);
             } else {
-                irs.emplace_back(Quaternary::NEGATE, var, temp);
+                buffer.emplace_back(Quaternary::NEGATE, var, temp);
             }
         }
         while (peek() && (peek()->get_type() == Token::PLUS || peek()->get_type() == Token::MINU)) {
@@ -619,9 +625,9 @@ namespace dyj {
             }
             TAKE(parse_term, ctmp, temp);
             if (op == 1) {
-                irs.emplace_back(Quaternary::PLUS, var, var, temp);
+                buffer.emplace_back(Quaternary::PLUS, var, var, temp);
             } else {
-                irs.emplace_back(Quaternary::MINUS, var, var, temp);
+                buffer.emplace_back(Quaternary::MINUS, var, var, temp);
             }
         }
 
@@ -639,7 +645,7 @@ namespace dyj {
 
         var = temp_namer->new_name();
         TAKE(parse_factor, ctmp, temp);
-        irs.emplace_back(Quaternary::COPY, var, temp);
+        buffer.emplace_back(Quaternary::COPY, var, temp);
         ctype = ctmp;
         while (peek() && (peek()->get_type() == Token::MULT || peek()->get_type() == Token::DIV)) {
             if (peek()->get_type() == Token::MULT) {
@@ -652,9 +658,9 @@ namespace dyj {
             TAKE(parse_factor, ctmp, temp);
             ctype = FullHouse::INT;
             if (is_mul) {
-                irs.emplace_back(Quaternary::TIME, var, var, temp);
+                buffer.emplace_back(Quaternary::TIME, var, var, temp);
             } else {
-                irs.emplace_back(Quaternary::DIVIDE, var, var, temp);
+                buffer.emplace_back(Quaternary::DIVIDE, var, var, temp);
             }
         }
 
@@ -675,7 +681,7 @@ namespace dyj {
             if (peek(1) && peek(1)->get_type() == Token::LPARENT) {
                 TAKE(parse_call_with_return, fh);
                 ctype = fh->get_calculation();
-                irs.emplace_back(Quaternary::GET_RETURN, var);
+                buffer.emplace_back(Quaternary::GET_RETURN, var);
             } else {
                 GET(Token::IDENFR);
                 name = t->get_content();
@@ -702,9 +708,9 @@ namespace dyj {
                     } else {
                         GET(Token::RBRACK);
                     }
-                    irs.emplace_back(Quaternary::INDEX, var, name, temp);
+                    buffer.emplace_back(Quaternary::INDEX, var, name, temp);
                 } else {
-                    irs.emplace_back(Quaternary::COPY, var, name);
+                    buffer.emplace_back(Quaternary::COPY, var, name);
                 }
                 ctype = fh ? fh->get_calculation() : FullHouse::VOID;
             }
@@ -845,7 +851,7 @@ namespace dyj {
                 DP("???mismatched types");
                 rerr.push_back(new Error(Error::UNKNOWN_ERROR, s->get_token()->get_location()));
             }
-            irs.emplace_back(Quaternary::ELEMENT, name, temp, rvar);
+            buffer.emplace_back(Quaternary::ELEMENT, name, temp, rvar);
         } else {
             GET(Token::IDENFR);
             name = t->get_content();
@@ -868,7 +874,7 @@ namespace dyj {
                 DP("mismatched types");
                 rerr.push_back(new Error(Error::UNKNOWN_ERROR, s->get_token()->get_location()));
             }
-            irs.emplace_back(Quaternary::COPY, name, rvar);
+            buffer.emplace_back(Quaternary::COPY, name, rvar);
         }
 
         RETURN_PARSE();
@@ -884,7 +890,7 @@ namespace dyj {
         GET(Token::LPARENT);
         TAKE(parse_condition, var);
         else_label = label_namer->new_name();
-        irs.emplace_back(Quaternary::JUMP_UNLESS, "", var, else_label);
+        buffer.emplace_back(Quaternary::JUMP_UNLESS, "", var, else_label);
         if (peek() && peek()->get_type() != Token::RPARENT) {
             rerr.push_back(new Error(Error::RPARENT_LOST, s->get_token()->get_location()));
         } else {
@@ -893,7 +899,7 @@ namespace dyj {
         TAKE(parse_statement, ctin);
         if (peek() && peek()->get_type() == Token::ELSETK) {
             end_label = label_namer->new_name();
-            irs.emplace_back(Quaternary::JUMP, "", "", end_label);
+            buffer.emplace_back(Quaternary::JUMP, "", "", end_label);
             place_tag(else_label);
             GET(Token::ELSETK);
             TAKE(parse_statement, ctin);
@@ -926,22 +932,22 @@ namespace dyj {
             var = temp_namer->new_name();
             switch (t->get_type()) {
             case Token::LSS:
-                irs.emplace_back(Quaternary::LESS, var, lvar, rvar);
+                buffer.emplace_back(Quaternary::LESS, var, lvar, rvar);
                 break;
             case Token::LEQ:
-                irs.emplace_back(Quaternary::LEQ, var, lvar, rvar);
+                buffer.emplace_back(Quaternary::LEQ, var, lvar, rvar);
                 break;
             case Token::GRE:
-                irs.emplace_back(Quaternary::LESS, var, rvar, lvar);
+                buffer.emplace_back(Quaternary::LESS, var, rvar, lvar);
                 break;
             case Token::GEQ:
-                irs.emplace_back(Quaternary::LEQ, var, rvar, lvar);
+                buffer.emplace_back(Quaternary::LEQ, var, rvar, lvar);
                 break;
             case Token::EQL:
-                irs.emplace_back(Quaternary::EQU, var, rvar, lvar);
+                buffer.emplace_back(Quaternary::EQU, var, rvar, lvar);
                 break;
             case Token::NEQ:
-                irs.emplace_back(Quaternary::NEQ, var, rvar, lvar);
+                buffer.emplace_back(Quaternary::NEQ, var, rvar, lvar);
                 break;
             default:
                 return nullptr;
@@ -972,9 +978,9 @@ namespace dyj {
             } else {
                 GET(Token::RPARENT);
             }
-            irs.emplace_back(Quaternary::JUMP_UNLESS, "", temp, end_label);
+            buffer.emplace_back(Quaternary::JUMP_UNLESS, "", temp, end_label);
             TAKE(parse_statement, ctin);
-            irs.emplace_back(Quaternary::JUMP, "", "", begin_label);
+            buffer.emplace_back(Quaternary::JUMP, "", "", begin_label);
             place_tag(end_label);
         } else if (t && t->get_type() == Token::DOTK) {
             GET(Token::DOTK);
@@ -992,27 +998,25 @@ namespace dyj {
             } else {
                 GET(Token::RPARENT);
             }
-            irs.emplace_back(Quaternary::JUMP_IF, "", temp, begin_label);
+            buffer.emplace_back(Quaternary::JUMP_IF, "", temp, begin_label);
         } else if (t && t->get_type() == Token::FORTK) {
             GET(Token::FORTK);
             GET(Token::LPARENT);
             TAKE(parse_assign_statement);
             GET(Token::SEMICN);
             end_label = label_namer->new_name();
-            lb = label_namer->new_name();
-            lc = label_namer->new_name();
             begin_label = place_tag();
             TAKE(parse_condition, temp);
-            irs.emplace_back(Quaternary::JUMP_UNLESS, "", temp, end_label);
-            irs.emplace_back(Quaternary::JUMP, "", "", lc);
+            buffer.emplace_back(Quaternary::JUMP_UNLESS, "", temp, end_label);
             GET(Token::SEMICN);
-            place_tag(lb);
+            dump_buffer();
             TAKE(parse_assign_statement);
-            irs.emplace_back(Quaternary::JUMP, "", "", begin_label);
+            auto tmp = buffer;
+            buffer.clear();
             GET(Token::RPARENT);
-            place_tag(lc);
             TAKE(parse_statement, ctin);
-            irs.emplace_back(Quaternary::JUMP, "", "", lb);
+            buffer.insert(buffer.end(), tmp.begin(), tmp.end());
+            buffer.emplace_back(Quaternary::JUMP, "", "", begin_label);
             place_tag(end_label);
         } else {
             return nullptr;
@@ -1056,9 +1060,9 @@ namespace dyj {
             GET(Token::RPARENT);
         }
         for (auto &var : vars) {
-            irs.emplace_back(Quaternary::ARGUMENT, "", var);
+            buffer.emplace_back(Quaternary::ARGUMENT, "", var);
         }
-        irs.emplace_back(Quaternary::CALL, name);
+        buffer.emplace_back(Quaternary::CALL, name);
         if (fh && params.size() != fh->get_array_size()) {
             rerr.push_back(new Error(Error::UNMATCHED_PARAM_COUNT, t->get_location()));
         } else if (fh && !fh->same_params(params)) {
@@ -1090,9 +1094,9 @@ namespace dyj {
             GET(Token::RPARENT);
         }
         for (auto &var : vars) {
-            irs.emplace_back(Quaternary::ARGUMENT, "", var);
+            buffer.emplace_back(Quaternary::ARGUMENT, "", var);
         }
-        irs.emplace_back(Quaternary::CALL, name);
+        buffer.emplace_back(Quaternary::CALL, name);
         if (params.size() != fh->get_array_size()) {
             rerr.push_back(new Error(Error::UNMATCHED_PARAM_COUNT, t->get_location()));
         } else if (!fh->same_params(params)) {
@@ -1197,9 +1201,9 @@ namespace dyj {
         } else {
             DP("here we are\n");
             if (fh->get_calculation() == FullHouse::INT) {
-                irs.emplace_back(Quaternary::READI, name);
+                buffer.emplace_back(Quaternary::READI, name);
             } else {
-                irs.emplace_back(Quaternary::READC, name);
+                buffer.emplace_back(Quaternary::READC, name);
             }
         }
         while (peek() && peek()->get_type() == Token::COMMA) {
@@ -1216,9 +1220,9 @@ namespace dyj {
                 rerr.push_back(new Error(Error::UNKNOWN_ERROR, t->get_location()));
             } else {
                 if (fh->get_calculation() == FullHouse::INT) {
-                    irs.emplace_back(Quaternary::READI, name);
+                    buffer.emplace_back(Quaternary::READI, name);
                 } else {
-                    irs.emplace_back(Quaternary::READC, name);
+                    buffer.emplace_back(Quaternary::READC, name);
                 }
             }
         }
@@ -1243,25 +1247,25 @@ namespace dyj {
             if (peek() && peek()->get_type() == Token::COMMA) {
                 GET(Token::COMMA);
                 TAKE(parse_expression, ctype, var);
-                irs.emplace_back(Quaternary::PRINTS, "", get_escape(str));
+                buffer.emplace_back(Quaternary::PRINTS, "", get_escape(str));
                 if (ctype == FullHouse::INT) {
-                    irs.emplace_back(Quaternary::PRINTI, "", var);
+                    buffer.emplace_back(Quaternary::PRINTI, "", var);
                 } else {
-                    irs.emplace_back(Quaternary::PRINTC, "", var);
+                    buffer.emplace_back(Quaternary::PRINTC, "", var);
                 }
-                irs.emplace_back(Quaternary::PRINTS, "", "\\n");
+                buffer.emplace_back(Quaternary::PRINTS, "", "\\n");
             } else {
-                irs.emplace_back(Quaternary::PRINTS, "", get_escape(str));
-                irs.emplace_back(Quaternary::PRINTS, "", "\\n");
+                buffer.emplace_back(Quaternary::PRINTS, "", get_escape(str));
+                buffer.emplace_back(Quaternary::PRINTS, "", "\\n");
             }
         } else {
             TAKE(parse_expression, ctype, var);
             if (ctype == FullHouse::INT) {
-                irs.emplace_back(Quaternary::PRINTI, "", var);
-                irs.emplace_back(Quaternary::PRINTS, "", "\\n");
+                buffer.emplace_back(Quaternary::PRINTI, "", var);
+                buffer.emplace_back(Quaternary::PRINTS, "", "\\n");
             } else {
-                irs.emplace_back(Quaternary::PRINTC, "", var);
-                irs.emplace_back(Quaternary::PRINTS, "", "\\n");
+                buffer.emplace_back(Quaternary::PRINTC, "", var);
+                buffer.emplace_back(Quaternary::PRINTS, "", "\\n");
             }
         }
         if (peek() && peek()->get_type() != Token::RPARENT) {
@@ -1284,7 +1288,7 @@ namespace dyj {
         if (peek() && peek()->get_type() == Token::LPARENT) {
             GET(Token::LPARENT);
             TAKE(parse_expression, ctype, var);
-            irs.emplace_back(Quaternary::SET_RETURN, "", var);
+            buffer.emplace_back(Quaternary::SET_RETURN, "", var);
             if (peek() && peek()->get_type() != Token::RPARENT) {
                 rerr.push_back(new Error(Error::RPARENT_LOST, s->get_token()->get_location()));
             } else {
@@ -1293,7 +1297,7 @@ namespace dyj {
         } else {
             ctype = FullHouse::VOID;
         }
-        irs.emplace_back(Quaternary::RETURN);
+        buffer.emplace_back(Quaternary::RETURN);
 
         RETURN_PARSE();
     }

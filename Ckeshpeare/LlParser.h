@@ -43,13 +43,14 @@ namespace dyj {
     private:
         Symbol *tree;
         StackFullHouseManager full_house_table;
-        std::vector<Quaternary> irs;
+        std::vector<Quaternary> buffer, irs;
         Namer *label_namer, *temp_namer;
 
     private:
         std::string place_tag(void);
         void place_tag(const std::string &name);
         std::string get_escape(const string &str);
+        void dump_buffer(void);
 
     private:
         Symbol *parse_operator_add(void);

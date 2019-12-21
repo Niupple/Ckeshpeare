@@ -1,0 +1,9 @@
+MARS 4.5  Copyright 2003-2014 Pete Sanderson and Kenneth Vollmar
+
+return at port1, a == a
+return at port2, a != 'a'
+0
+1
+return local c: b
+Nest Func result: 399
+

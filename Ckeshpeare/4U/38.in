@@ -1,0 +1,18 @@
+const int a=10;
+const char c ='-';
+
+void main() {
+	int i;
+	i=1;
+	if (a) {
+		printf("i:",i);
+	} else {
+		printf("haha");
+	}
+	
+	for (i=a;i>0;i=i-1) {
+		printf(i*a);
+	}
+
+
+}

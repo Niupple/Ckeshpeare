@@ -201,24 +201,24 @@ void codeOptimizingHomework() {
     Symbol *tree = parser.parse();
 
     for (auto e : dyj::rerr) {
-        std::cout << e->to_string() << std::endl;
+        //std::cout << e->to_string() << std::endl;
     }
     if (!dyj::rerr.empty()) {
         return;
     }
 
     if (tree) {
-        cout << tree->to_string() << endl;
+        //cout << tree->to_string() << endl;
     }
     irs = parser.get_irs();
 
 
-    cout << "__________________IRS______________________" << endl;
+    //cout << "__________________IRS______________________" << endl;
     for (auto &c : irs) {
-        cout << c.to_string() << endl;
+        //cout << c.to_string() << endl;
         //IRs << c.get_block_id() << " " << c.to_string() << endl;
     }
-    cout << "___________________________________________" << endl;
+    //cout << "___________________________________________" << endl;
 
 #ifdef FUNCTION_INLINE
     Inliner inliner(parser.get_label_namer(), parser.get_var_namer());
@@ -227,11 +227,6 @@ void codeOptimizingHomework() {
     irs = inliner.dump();
 #endif
 
-#ifdef IR_PEEKHOLE
-    while (ir_peek_hole(irs)) {
-        DP("ONE MORE TIME\n");
-    }
-#endif
 
     FlowGraph fg;
     fg.load_and_cut(irs);
@@ -239,6 +234,12 @@ void codeOptimizingHomework() {
     fg.collision_analysis();
 
     irs = fg.dump();
+
+#ifdef IR_PEEKHOLE
+    while (ir_peek_hole(irs)) {
+        DP("ONE MORE TIME\n");
+    }
+#endif
 
 #ifdef BLADE_RUNNER
     BladeRunner br(irs);
@@ -269,9 +270,9 @@ void codeOptimizingHomework() {
 
     mips << dest_code;
 
-    cout << "__________________MIPS_____________________" << endl;
-    cout << dest_code;
-    cout << "___________________________________________" << endl;
+    //cout << "__________________MIPS_____________________" << endl;
+    //cout << dest_code;
+    //cout << "___________________________________________" << endl;
 }
 
 void fake() {
@@ -285,6 +286,7 @@ int main() {
     //tokenizeHomework();
     //parseHomework();
     //errorHandlingHomework();
+    //codeGeneratingHomework();
     codeOptimizingHomework();
     //fake();
 }

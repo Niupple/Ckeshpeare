@@ -1,0 +1,15 @@
+const int bbb = 123, ccc = -789;
+const char ddd = '5';
+int test,goo[10];
+
+int testConst(int ccc) {
+	const int bbb = 321;
+	printf("local bbb*ddd*ccc = ", bbb*ddd*ccc);
+	return (bbb);
+}
+
+void main(){
+	printf(bbb*testConst((ddd)));
+	printf(bbb+1);
+	printf(ddd*ccc);
+}

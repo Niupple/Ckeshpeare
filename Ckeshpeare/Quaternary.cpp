@@ -65,6 +65,7 @@ namespace dyj {
         case BEGIN:
         case END:
         case RETURN:
+        case COMMENT:
             return {};
         default:
             DP("%s\n", to_string().c_str());
@@ -109,6 +110,7 @@ namespace dyj {
         case END:
         case RETURN:
         case PRINTS:
+        case COMMENT:
             return {};
         case ELEMENT:
             return { dest, lhs, rhs };
@@ -170,6 +172,7 @@ namespace dyj {
         "BEGIN",
         "END",
         "VAR",
+        "COMMENT",
     };
 
 }

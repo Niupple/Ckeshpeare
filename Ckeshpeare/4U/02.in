@@ -1,0 +1,50 @@
+const int num = 33, number1 = 35, number2 = 36, number6 = 0;
+const char str = '1', str1 = 'a', str2 = 'e', str3 = '9', str4 = '+', str5 = '*';
+int i;
+int letter_only, number3, number4[100];
+char only_letter, str6, str7[200], cal[100], temp_cal;
+
+void main()
+{
+    int a, b, c, d, e, f, g;
+    int x, y;
+    int result_1, result_2, result_3, result_4;
+    int array[100];
+    array[99] = 100;
+    array[0] = array[99] - 90;
+    a = +1; b = number1; c = number2; d = number2 - num;
+    e = b + c - d;
+    f = c + a - d;
+    printf("\n a is", a);
+    printf("\n b is", b);
+    printf("\n c is", c);
+    printf("\n d is", d);
+    printf("\n e is", e);
+    printf("\n f is", f);
+    printf("\n g is", g);
+    x = 'x';
+    y = 'y';
+    printf("\n");
+    letter_only = (c - d + number4[90]) / 12 + 32 - (x * (y - 'x') - b);
+    printf("\nonly_letter is:", letter_only);
+    letter_only = b + c + c ;
+    printf("\nletter_only is:", letter_only);
+    result_1 = ((number4[90] + number4[99]) * a + number4[1] * b) * (x - 'a' + -32 - -43);
+    g = (str7[118] - 'a') * 32 + a + c - d / 43;
+    printf("\nThe second g is: ", g);
+    printf("\n");
+    number4[12] = -g * g * g / g / g / g ;
+    result_2 = (e + f) * (e - f)  / (e / f) + number4[98];
+    result_3 = (e + f) * (e - f)  / (e / f)  + number4[12];
+    printf("\n");
+    printf("Calculate the result_2 is: ", result_2);
+    printf("\n");
+    printf("Calculate the result_3 is: ", result_3);
+    printf("\n");
+    result_4 = 10;
+    printf("\n");
+    printf("Calculate the result_1 is: ", result_1);
+    printf("\n");
+    printf("Calculate the result_4 is: ", result_4);
+    printf("\n");
+}

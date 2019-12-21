@@ -1,0 +1,39 @@
+const int MAX_NUM = 128 ;
+
+int mod(int x, int y){
+   x=x-x/y*y;
+
+   return (x) ;
+}
+
+void complete_flower_num()
+{
+  int i,j,n,s;
+  
+  for(j=6;j< MAX_NUM ;j=j+1)
+  {
+    n = -1;
+    s = j;
+    for(i=1; i<j; i=i+1)
+    {
+      if( mod(j,i) == 0 )
+      {
+		n = n + 1;
+        s = s - i;
+      }
+    }
+
+    if(s==0)
+    {
+	  printf("j = ", j);
+      printf("complete number: ",j);
+	  printf("n = ", n);
+    }
+  }
+}
+
+
+void main()
+{
+   complete_flower_num() ;
+}

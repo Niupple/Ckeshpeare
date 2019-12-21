@@ -1,458 +1,259 @@
 .data
-_colored_freaking_trousers: .asciiz " "
-_blue_good_looking_trousers: .asciiz "  "
-_stylish_boring_chicken: .asciiz "'water flower'number is:"
-_colored_freaking_memory: .asciiz "---------------------------------------------------------------"
-_pale_metal_chinese: .asciiz "5 != "
-_old_fashioned_irratating_day: .asciiz "OVERFLOW!"
-_colorful_good_looking_computer: .asciiz "SWAP x = "
-_stylish_interesting_thing: .asciiz "SWAP y = "
-_shinny_wooden_ssd: .asciiz "The total is "
-_pale_freaking_switch: .asciiz "\n"
-_yellow_royal_apple: .asciiz "complete number: "
-_pink_plastic_shirts: .asciiz "x = "
-_yellow_weird_coke: .asciiz "y = "
+_red_boring_trousers: .asciiz "--------Test const in different areas--------"
+_stylish_imperialist_switch: .asciiz "--------Test finished--------"
+_blue_interesting_trip: .asciiz "--------Test var--------"
+_colorful_amazing_calendar: .asciiz "The function's Num1 is : "
+_shinny_civil_machine: .asciiz "The global Num1 is : "
+_pink_unique_pants: .asciiz "The local Num1 is : "
+_colored_amazing_week: .asciiz "The testCh is : "
+_pink_imperialist_year: .asciiz "The testch is : "
+_red_stink_calendar: .asciiz "\n"
 .text
 jal __main__
 j __main_end__
-factorial:
-addu $8 $0 $4
-li $9 1
-sle $10 $8 $9
-sw $8 0($30)
-sw $10 -8($30)
-beq $10 $0 _colorful_royal_chicken
-li $8 1
-addu $2 $0 $8
-jr $31
-_colorful_royal_chicken:
-lw $9 0($30)
-addu $8 $0 $9
-addu $10 $0 $9
-subiu $10 $10 1
-sw $29 -20($30)
-addiu $29 $30 -24
-sw $10 0($29)
-addu $4 $10 $0
-sw $8 -12($30)
-sw $31 -4($29)
-addiu $30 $29 -8
-jal factorial
-addiu $30 $29 24
-lw $31 -4($29)
-lw $29 -20($30)
-addu $8 $0 $2
-lw $10 -12($30)
-mul $9 $10 $8
-addu $2 $0 $9
-jr $31
 __main__:
 addu $30 $29 $0
-sw $29 -4($30)
-addiu $29 $30 -8
-li $8 5
-sw $8 0($29)
-addu $4 $8 $0
-sw $31 -4($29)
-addiu $30 $29 -8
-jal factorial
-addiu $30 $29 8
-lw $31 -4($29)
-lw $29 -4($30)
-addu $16 $0 $2
-addu $17 $0 $16
-ori $2 $0 4
-la $4 _pale_metal_chinese
-syscall
-addu $4 $0 $17
-ori $2 $0 1
-syscall
-ori $2 $0 4
-la $4 _pale_freaking_switch
-syscall
-li $8 5
-addu $16 $0 $8
-li $9 10
-addu $18 $0 $9
-addu $17 $0 $16
-addu $16 $0 $18
-addu $18 $0 $17
-ori $2 $0 4
-la $4 _pink_plastic_shirts
-syscall
-addu $4 $0 $18
-ori $2 $0 1
-syscall
-ori $2 $0 4
-la $4 _pale_freaking_switch
-syscall
-addu $18 $0 $16
-ori $2 $0 4
-la $4 _yellow_weird_coke
-syscall
-addu $4 $0 $18
-ori $2 $0 1
-syscall
-ori $2 $0 4
-la $4 _pale_freaking_switch
-syscall
-addu $18 $0 $17
-addu $17 $0 $16
-addu $16 $0 $18
-addu $18 $0 $17
-ori $2 $0 4
-la $4 _colorful_good_looking_computer
-syscall
-addu $4 $0 $18
-ori $2 $0 1
-syscall
-ori $2 $0 4
-la $4 _pale_freaking_switch
-syscall
-addu $17 $0 $16
-ori $2 $0 4
-la $4 _stylish_interesting_thing
-syscall
-addu $4 $0 $17
-ori $2 $0 1
-syscall
-ori $2 $0 4
-la $4 _pale_freaking_switch
-syscall
-_red_wonderful_shirts:
-li $8 2
+li $8 0
 addu $17 $0 $8
-_shinny_beautiful_tour:
-li $8 128
-slt $16 $17 $8
-beq $16 $0 _red_wooden_thing
-j _blue_irratating_tour
-_stylish_metal_apple:
-addiu $17 $17 1
-j _shinny_beautiful_tour
-_blue_irratating_tour:
-li $8 1
-subu $19 $0 $8
-addu $18 $0 $17
-addu $23 $0 $8
-_kinky_extrordinary_noodles:
-slt $16 $23 $17
-beq $16 $0 _smoothy_interesting_calendar
-j _colored_dummy_cpu
-_pale_plastic_tour:
-addiu $23 $23 1
-j _kinky_extrordinary_noodles
-_colored_dummy_cpu:
-div $20 $17 $23
-mul $16 $20 $23
-addu $16 $0 $17
-addu $21 $0 $23
-addu $20 $0 $16
-addu $16 $0 $21
-addu $22 $0 $20
-addu $21 $0 $20
-div $21 $21 $16
-mul $21 $21 $16
-subu $20 $22 $21
-addu $2 $0 $20
-_yellow_freaking_person:
-addu $20 $0 $2
-li $8 0
-seq $16 $8 $20
-beq $16 $0 _colorful_plastic_noodles
-addiu $19 $19 1
-subu $18 $18 $23
-li $8 128
-sle $16 $8 $19
-beq $16 $0 _green_annoying_memory
-ori $2 $0 4
-la $4 _old_fashioned_irratating_day
-syscall
-ori $2 $0 4
-la $4 _pale_freaking_switch
-syscall
-j _yellow_wooden_headset
-_green_annoying_memory:
-sll $1 $19 2
-addu $28 $30 $1
-sw $23 -52($28)
-_yellow_wooden_headset:
-_colorful_plastic_noodles:
-j _pale_plastic_tour
-_smoothy_interesting_calendar:
-li $8 0
-seq $16 $8 $18
-beq $16 $0 _pink_boring_cpu
-addu $16 $0 $17
-ori $2 $0 4
-la $4 _yellow_royal_apple
-syscall
-addu $4 $0 $16
-ori $2 $0 1
-syscall
-ori $2 $0 4
-la $4 _pale_freaking_switch
-syscall
-li $8 0
-addu $23 $0 $8
-_old_fashioned_good_looking_grapes:
-sle $16 $23 $19
-beq $16 $0 _stylish_pretty_coke
-j _blue_civil_life
-_pink_interesting_shirts:
-addiu $23 $23 1
-j _old_fashioned_good_looking_grapes
-_blue_civil_life:
-sll $1 $23 2
-addu $28 $30 $1
-lw $16 -52($28)
-ori $2 $0 4
-la $4 _blue_good_looking_trousers
-syscall
-addu $4 $0 $16
-ori $2 $0 1
-syscall
-ori $2 $0 4
-la $4 _pale_freaking_switch
-syscall
-j _pink_interesting_shirts
-_stylish_pretty_coke:
-ori $2 $0 4
-la $4 _colored_freaking_trousers
-syscall
-ori $2 $0 4
-la $4 _pale_freaking_switch
-syscall
-_pink_boring_cpu:
-j _stylish_metal_apple
-_red_wooden_thing:
-ori $2 $0 4
-la $4 _colored_freaking_memory
-syscall
-ori $2 $0 4
-la $4 _pale_freaking_switch
-syscall
-ori $2 $0 4
-la $4 _stylish_boring_chicken
-syscall
-ori $2 $0 4
-la $4 _pale_freaking_switch
-syscall
-li $8 0
-addu $16 $0 $8
-li $9 100
-addu $23 $0 $9
-_yellow_plastic_computer:
-addu $21 $0 $23
-li $8 100
-addu $20 $0 $8
-addiu $20 $20 128
-slt $17 $21 $20
-beq $17 $0 _blue_annoying_earphone
-j _stylish_good_looking_computer
-_old_fashioned_interesting_coke:
-addiu $23 $23 1
-j _yellow_plastic_computer
-_stylish_good_looking_computer:
-li $8 100
-div $19 $23 $8
-li $9 10
-div $17 $23 $9
-addu $21 $0 $9
-addu $20 $0 $17
-addu $17 $0 $21
-addu $22 $0 $20
-addu $21 $0 $20
-div $21 $21 $17
-mul $21 $21 $17
-subu $20 $22 $21
-addu $2 $0 $20
-_colored_imperialist_noodles:
-addu $17 $0 $2
-addu $20 $0 $23
+_stylish_freaking_ps4:
 li $8 10
-addu $22 $0 $8
-addu $21 $0 $20
-addu $20 $0 $22
-addu $24 $0 $21
-addu $22 $0 $21
-div $22 $22 $20
-mul $22 $22 $20
-subu $21 $24 $22
-addu $2 $0 $21
-_colorful_amazing_headset:
-addu $20 $0 $2
-addu $24 $0 $19
-addu $25 $0 $17
-addu $21 $0 $20
-addu $22 $0 $24
-addu $24 $0 $25
-addu $25 $0 $21
-li $8 100
-mul $21 $22 $8
-addu $22 $0 $24
-li $9 10
-mul $22 $22 $9
-addu $21 $21 $22
-addu $21 $21 $25
-addu $2 $0 $21
-_stylish_metal_headset:
-addu $22 $0 $2
-addu $21 $0 $19
-addu $19 $0 $17
-addu $17 $0 $20
-addu $20 $0 $21
-addu $21 $0 $19
-addu $19 $0 $17
-addu $17 $0 $20
-mul $17 $17 $20
-mul $24 $17 $20
-addu $17 $0 $21
-mul $17 $17 $21
-mul $17 $17 $21
-addu $24 $24 $17
-addu $17 $0 $19
-mul $17 $17 $19
-mul $17 $17 $19
-addu $24 $24 $17
-addu $2 $0 $24
-_blue_extrordinary_cpu:
-addu $19 $0 $2
-seq $17 $19 $22
-beq $17 $0 _cutting_edge_royal_keyboard
-sll $1 $16 2
-addu $28 $30 $1
-sw $23 -52($28)
-addiu $16 $16 1
-_cutting_edge_royal_keyboard:
-j _old_fashioned_interesting_coke
-_blue_annoying_earphone:
+slt $16 $17 $8
+beq $16 $0 _shinny_imperialist_computer
 li $8 0
-addu $23 $0 $8
-_stylish_boring_noodles:
-slt $17 $23 $16
-beq $17 $0 _pale_beautiful_machine
-j _cutting_edge_wonderful_thing
-_old_fashioned_good_looking_headset_and_yellow_socialist_calendar:
-addiu $23 $23 1
-j _stylish_boring_noodles
-_cutting_edge_wonderful_thing:
-sll $1 $23 2
-addu $28 $30 $1
-lw $17 -52($28)
+sll $26 $17 2
+addu $28 $30 $26
+sw $8 0($28)
+sll $26 $17 2
+addu $28 $30 $26
+sw $8 -40($28)
+addiu $17 $17 1
+j _stylish_freaking_ps4
+_shinny_imperialist_computer:
 ori $2 $0 4
-la $4 _blue_good_looking_trousers
+la $4 _red_boring_trousers
+syscall
+ori $2 $0 4
+la $4 _red_stink_calendar
+syscall
+li $8 100
+addu $16 $0 $8
+ori $2 $0 4
+la $4 _pink_unique_pants
+syscall
+addu $4 $0 $16
+ori $2 $0 1
+syscall
+ori $2 $0 4
+la $4 _red_stink_calendar
+syscall
+li $9 1024
+addu $2 $0 $9
+_kinky_pretty_year:
+addu $18 $0 $2
+addiu $18 $18 100
+subiu $18 $18 100
+ori $2 $0 4
+la $4 _shinny_civil_machine
+syscall
+addu $4 $0 $18
+ori $2 $0 1
+syscall
+ori $2 $0 4
+la $4 _red_stink_calendar
+syscall
+li $8 +0
+addu $2 $0 $8
+_pink_beautiful_thing:
+addu $18 $0 $2
+addiu $18 $18 100
+subiu $18 $18 100
+ori $2 $0 4
+la $4 _colorful_amazing_calendar
+syscall
+addu $4 $0 $18
+ori $2 $0 1
+syscall
+ori $2 $0 4
+la $4 _red_stink_calendar
+syscall
+ori $2 $0 4
+la $4 _stylish_imperialist_switch
+syscall
+ori $2 $0 4
+la $4 _red_stink_calendar
+syscall
+ori $2 $0 12
+syscall
+addu $16 $0 $2
+ori $2 $0 4
+la $4 _blue_interesting_trip
+syscall
+ori $2 $0 4
+la $4 _red_stink_calendar
+syscall
+addu $17 $0 $16
+ori $2 $0 4
+la $4 _pink_imperialist_year
 syscall
 addu $4 $0 $17
-ori $2 $0 1
+ori $2 $0 11
 syscall
 ori $2 $0 4
-la $4 _pale_freaking_switch
+la $4 _red_stink_calendar
 syscall
-j _old_fashioned_good_looking_headset_and_yellow_socialist_calendar
-_pale_beautiful_machine:
+ori $2 $0 12
+syscall
+addu $16 $0 $2
+addu $2 $0 $16
+_red_stink_day:
+addu $16 $0 $2
 ori $2 $0 4
-la $4 _colored_freaking_trousers
+la $4 _colored_amazing_week
+syscall
+addu $4 $0 $16
+ori $2 $0 11
 syscall
 ori $2 $0 4
-la $4 _pale_freaking_switch
+la $4 _red_stink_calendar
 syscall
 ori $2 $0 4
-la $4 _colored_freaking_memory
+la $4 _stylish_imperialist_switch
 syscall
 ori $2 $0 4
-la $4 _pale_freaking_switch
+la $4 _red_stink_calendar
 syscall
 li $8 0
-addu $24 $0 $8
 li $9 1
-addu $21 $0 $9
+sll $26 $8 2
+addu $28 $30 $26
+sw $9 0($28)
 li $10 2
-addu $20 $0 $10
-_shinny_irratating_chinese:
-li $8 128
-sle $16 $20 $8
-beq $16 $0 _yellow_metal_machine
-j _old_fashioned_stink_switch
-_blue_plastic_grapes:
-addiu $20 $20 1
-j _shinny_irratating_chinese
-_old_fashioned_stink_switch:
-li $8 2
-div $22 $20 $8
-addu $23 $0 $8
-_stylish_freaking_calendar:
-sle $16 $23 $22
-beq $16 $0 _yellow_pretty_chicken
-j _yellow_dummy_headset
-_pink_irratating_calendar:
-addiu $23 $23 1
-j _stylish_freaking_calendar
-_yellow_dummy_headset:
-div $17 $20 $23
-mul $16 $17 $23
-addu $16 $0 $20
-addu $25 $0 $23
-addu $17 $0 $16
-addu $16 $0 $25
-addu $8 $0 $17
-addu $25 $0 $17
-div $25 $25 $16
-mul $25 $25 $16
-subu $17 $8 $25
-addu $2 $0 $17
-_colorful_wonderful_chicken:
-addu $17 $0 $2
-li $8 0
-seq $16 $8 $17
-beq $16 $0 _shinny_extrordinary_headset
-li $8 0
-addu $21 $0 $8
-_shinny_extrordinary_headset:
-j _pink_irratating_calendar
-_yellow_pretty_chicken:
-li $8 1
-seq $16 $8 $21
-beq $16 $0 _green_socialist_trousers
-addu $16 $0 $20
-ori $2 $0 4
-la $4 _colored_freaking_trousers
-syscall
+sll $26 $9 2
+addu $28 $30 $26
+sw $10 -40($28)
+li $11 3
+sll $26 $10 2
+addu $28 $30 $26
+sw $11 0($28)
+li $12 4
+sll $26 $11 2
+addu $28 $30 $26
+sw $12 -40($28)
+li $13 5
+sll $26 $12 2
+addu $28 $30 $26
+sw $13 0($28)
+li $14 6
+sll $26 $13 2
+addu $28 $30 $26
+sw $14 -40($28)
+sll $26 $12 2
+addu $28 $30 $26
+lw $16 0($28)
+sll $26 $16 2
+addu $28 $30 $26
+lw $18 -40($28)
+li $15 7
+sll $26 $18 2
+addu $28 $30 $26
+sw $15 0($28)
+sll $26 $10 2
+addu $28 $30 $26
+lw $18 0($28)
+sll $26 $18 2
+addu $28 $30 $26
+lw $16 -40($28)
+sll $26 $16 2
+addu $28 $30 $26
+lw $17 0($28)
+sll $26 $17 2
+addu $28 $30 $26
+lw $16 -40($28)
+sll $26 $16 2
+addu $28 $30 $26
+lw $17 0($28)
+sll $26 $10 2
+addu $28 $30 $26
+lw $16 0($28)
+sll $26 $16 2
+addu $28 $30 $26
+lw $18 -40($28)
+sll $26 $18 2
+addu $28 $30 $26
+lw $16 0($28)
+sll $26 $16 2
+addu $28 $30 $26
+lw $18 -40($28)
+sll $26 $18 2
+addu $28 $30 $26
+lw $16 0($28)
+sll $26 $10 2
+addu $28 $30 $26
+lw $18 0($28)
+sll $26 $18 2
+addu $28 $30 $26
+lw $19 -40($28)
+sll $26 $19 2
+addu $28 $30 $26
+lw $18 0($28)
+sll $26 $18 2
+addu $28 $30 $26
+lw $18 -40($28)
+addu $16 $16 $18
+sll $26 $17 2
+addu $28 $30 $26
+sw $16 -40($28)
+addu $19 $0 $12
+addu $18 $0 $9
+addu $17 $0 $14
+addu $16 $0 $13
+subu $21 $0 $9
+addu $20 $0 $9
+mul $20 $20 $9
+addu $21 $21 $20
+addiu $21 $21 1
+sll $26 $21 2
+addu $28 $30 $26
+lw $21 -40($28)
+addu $16 $16 $21
+subiu $16 $16 5
+sll $26 $16 2
+addu $28 $30 $26
+lw $20 0($28)
+mul $17 $17 $20
+div $17 $17 $10
+div $16 $17 $11
+sll $26 $16 2
+addu $28 $30 $26
+lw $17 -40($28)
+mul $16 $18 $17
+sll $26 $16 2
+addu $28 $30 $26
+lw $16 0($28)
+addu $19 $19 $16
+sll $26 $10 2
+addu $28 $30 $26
+lw $16 0($28)
+sll $26 $16 2
+addu $28 $30 $26
+lw $16 -40($28)
+subu $19 $19 $16
+sll $26 $19 2
+addu $28 $30 $26
+lw $16 -40($28)
+sll $26 $16 2
+addu $28 $30 $26
+lw $17 0($28)
+sll $26 $17 2
+addu $28 $30 $26
+lw $16 -40($28)
 addu $4 $0 $16
 ori $2 $0 1
 syscall
 ori $2 $0 4
-la $4 _pale_freaking_switch
+la $4 _red_stink_calendar
 syscall
-addiu $24 $24 1
-li $8 10
-div $17 $24 $8
-mul $16 $17 $8
-seq $17 $24 $16
-beq $17 $0 _green_special_thing
-ori $2 $0 4
-la $4 _colored_freaking_trousers
-syscall
-ori $2 $0 4
-la $4 _pale_freaking_switch
-syscall
-_green_special_thing:
-_green_socialist_trousers:
-li $8 1
-addu $21 $0 $8
-j _blue_plastic_grapes
-_yellow_metal_machine:
-addu $16 $0 $24
-ori $2 $0 4
-la $4 _shinny_wooden_ssd
-syscall
-addu $4 $0 $16
-ori $2 $0 1
-syscall
-ori $2 $0 4
-la $4 _pale_freaking_switch
-syscall
-_colorful_special_chinese:
+jr $31
 __main_end__:
 ori $2 $0 10
 syscall

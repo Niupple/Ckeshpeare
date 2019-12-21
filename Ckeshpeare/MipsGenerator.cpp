@@ -151,6 +151,9 @@ namespace dyj {
             case IR::VAR:
                 parse_def();
                 break;
+            case IR::COMMENT:
+                pop();
+                break;
             }
         }
     }
@@ -352,7 +355,7 @@ namespace dyj {
         std::set<std::string> usd;
         int K = available_global_regs.size();
         for (auto p : collisions) {
-            DP("collision(%s, %s)\n", p.first.c_str(), p.second.c_str());
+            //DP("collision(%s, %s)\n", p.first.c_str(), p.second.c_str());
             add_edge(p.first, p.second);
             add_edge(p.second, p.first);
         }
@@ -428,7 +431,7 @@ namespace dyj {
     }
 
     bool MipsGenerator::still_alive(const std::string &name) {
-        for (size_t i = counter; i < irs.size() && irs[i].get_block_id() == irs[counter].get_block_id(); ++i) {
+        for (size_t i = counter + 1; i < irs.size() && irs[i].get_block_id() == irs[counter].get_block_id(); ++i) {
             if (irs[i].get_uses().count(name) > 0) {
                 return true;
             } else if (irs[i].get_defs().count(name) > 0) {
@@ -585,8 +588,8 @@ namespace dyj {
             if (local_name_to_pos.find(arr) != local_name_to_pos.end()) {
                 idx = local_name_to_pos.at(arr);
                 addr = idx_to_addr(idx);
-                mips.push_back(Mips::sll(Mips::AT, aid, "2"));
-                mips.push_back(Mips::addu(Mips::GP, Mips::FP, Mips::AT));
+                mips.push_back(Mips::sll(Mips::K0, aid, "2"));
+                mips.push_back(Mips::addu(Mips::GP, Mips::FP, Mips::K0));
                 mips.push_back(Mips::lw(dst, Mips::GP, std::to_string(addr)));
             } else {
                 DP("LOCAL ARRAY USED BEFORE DECLARE\n");
@@ -595,8 +598,8 @@ namespace dyj {
             std::string label;
             if (global_name_to_pos.find(arr) != global_name_to_pos.end()) {
                 label = global_name_to_pos.at(arr);
-                mips.push_back(Mips::sll(Mips::AT, aid, "2"));
-                mips.push_back(Mips::lw(dst, Mips::AT, label));
+                mips.push_back(Mips::sll(Mips::K0, aid, "2"));
+                mips.push_back(Mips::lw(dst, Mips::K0, label));
             } else {
                 DP("GLOBAL ARRAY USED BEFORE DECLARE\n");
             }
@@ -638,8 +641,8 @@ namespace dyj {
             if (local_name_to_pos.find(arr) != local_name_to_pos.end()) {
                 idx = local_name_to_pos.at(arr);
                 addr = idx_to_addr(idx);
-                mips.push_back(Mips::sll(Mips::AT, aid, "2"));
-                mips.push_back(Mips::addu(Mips::GP, Mips::FP, Mips::AT));
+                mips.push_back(Mips::sll(Mips::K0, aid, "2"));
+                mips.push_back(Mips::addu(Mips::GP, Mips::FP, Mips::K0));
                 mips.push_back(Mips::sw(src, Mips::GP, std::to_string(addr)));
             } else {
                 DP("LOCAL ARRAY USED BEFORE DECLARE\n");
@@ -648,8 +651,8 @@ namespace dyj {
             std::string label;
             if (global_name_to_pos.find(arr) != global_name_to_pos.end()) {
                 label = global_name_to_pos.at(arr);
-                mips.push_back(Mips::sll(Mips::AT, aid, "2"));
-                mips.push_back(Mips::sw(src, Mips::AT, label));
+                mips.push_back(Mips::sll(Mips::K0, aid, "2"));
+                mips.push_back(Mips::sw(src, Mips::K0, label));
             } else {
                 DP("GLOBAL ARRAY USED BEFORE DECLARE\n");
             }
@@ -710,6 +713,7 @@ namespace dyj {
                     t = def_use(d);
                     rd = GET(t, 0);
                     mips.push_back(Mips::li(rd, s1));
+                    pop();
                     return;
                 }
             }

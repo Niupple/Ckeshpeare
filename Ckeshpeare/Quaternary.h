@@ -41,6 +41,7 @@ namespace dyj {
             BEGIN,
             END,
             VAR,
+            COMMENT,
         };
 
         Quaternary() = delete;

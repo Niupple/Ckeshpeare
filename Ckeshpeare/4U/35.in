@@ -1,0 +1,17 @@
+const int gConst1 = -89213;
+int gVarArr[100];
+
+void main(){
+	const int consta=10,constb=-89;
+	const char constc = '-', constd = '*';
+	int vara,varb, varArr[50];
+	char varc,vard;
+	if (consta<1) {
+		varArr[consta+2] = gVarArr[14]*constd*varArr[0];
+		vara=1-consta;
+	} else {
+
+		vara=1+consta;
+	}
+	
+}

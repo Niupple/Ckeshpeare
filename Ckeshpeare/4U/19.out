@@ -1,0 +1,10 @@
+MARS 4.5  Copyright 2003-2014 Pete Sanderson and Kenneth Vollmar
+
+charArr[3] = a
+local same_char_1: a
+local same_char_2: b
+expr_1 = 4
+expr_2 = 98
+global same_char_1: z
+global same_char_2: y
+

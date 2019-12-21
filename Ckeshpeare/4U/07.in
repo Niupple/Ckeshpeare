@@ -1,0 +1,54 @@
+const char c = 'a';
+const int a = 10;
+
+
+char tempCharFun(int a) {
+	const char c = 'b';
+	
+	if (a) {
+		printf("return local c: ", c);
+		return (c);
+	}
+	else {
+		return ('e');
+	}
+}
+
+int testFunNest(int a, int b, char c) {
+	return (a + b + c);
+}
+
+int testNonVoidFun(int a) {
+	if (a + c > ('e')) {
+		return (1);
+	}
+	else {
+		return (0);
+	}
+
+	printf("not return successfully!!!");
+
+}
+
+void testVoidFun(char a) {
+	if ((a) == ('a')) {
+		printf("return at port1, a == a");
+		return;
+	}
+	else {
+		printf("return at port2, a != 'a'");
+		return;
+	}
+	
+	printf("not return successfully!!!");
+}
+
+void main() {
+	testVoidFun('a');
+	testVoidFun('b');
+
+	printf(testNonVoidFun(1));
+	printf(testNonVoidFun(10));
+	
+	printf("Nest Func result: ", testFunNest(1, testFunNest(testFunNest(1, tempCharFun(0) - 1, 'd'), 2, c), tempCharFun(a)));
+}

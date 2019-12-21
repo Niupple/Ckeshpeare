@@ -1,0 +1,47 @@
+
+void testWhileLoop() {
+	int a;
+	a = 5;
+	while (a > 0) {
+		printf("a = ", a);
+		a = a - 1;
+	}
+	printf("test while success");
+}
+
+void testDoWhileLoop() {
+	int b;
+	b = 5;
+	
+	do {
+		printf("b = ", b);
+		b = b - 1;
+	} while (b > 0);
+	
+	do {
+		printf("after do-while, b = ", b);
+	} while (b > 0);
+	
+	printf("test do-while success");
+
+}
+
+void testForLoop() {
+	int i;
+	
+	for (i = 0; i < 5; i = i + 1) {
+		printf("i = ", i);
+	}
+	
+	printf("test for success");
+}
+
+
+void main(){
+	testWhileLoop();
+	
+	testDoWhileLoop();
+	
+	testForLoop();
+	
+}

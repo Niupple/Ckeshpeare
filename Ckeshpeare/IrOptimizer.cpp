@@ -54,7 +54,7 @@ namespace dyj {
                 }
             }
         }
-#ifdef _DEBUG
+#ifdef _DEBUGi
         DP("use[%d]\n", block_id);
         for (auto &var : use) {
             DP("\t'%s'\n", var.c_str());
@@ -199,7 +199,7 @@ namespace dyj {
         std::vector<std::set<std::string>> ret;
         for (auto block : blocks) {
             ret.push_back(in_living[block]);
-#ifdef _DEBUG
+#ifdef _DEBUGi
             DP("IN[%d] = \n", block->block_id);
             for (auto &var : in_living[block]) {
                 DP("\t'%s'\n", var.c_str());
@@ -213,7 +213,7 @@ namespace dyj {
         std::vector<std::set<std::string>> ret;
         for (auto block : blocks) {
             ret.push_back(out_living[block]);
-#ifdef _DEBUG
+#ifdef _DEBUGi
             DP("OUT[%d] = \n", block->block_id);
             for (auto &var : out_living[block]) {
                 DP("\t'%s'\n", var.c_str());
@@ -264,7 +264,7 @@ namespace dyj {
     }
 
     void FlowGraph::confirm(void) {
-        DP("confirmed\n");
+        //DP("confirmed\n");
         for (auto p : suspects) {
             collisions.insert(p);
         }
@@ -272,7 +272,7 @@ namespace dyj {
     }
 
     void FlowGraph::suspect(const std::string &a, const std::string &b) {
-        DP("suspect(%s, %s)\n", a.c_str(), b.c_str());
+        //DP("suspect(%s, %s)\n", a.c_str(), b.c_str());
         if (is_const(a) || is_const(b)) {
             return;
         }
@@ -362,27 +362,30 @@ namespace dyj {
             if (i + 1 < n && x.get_type() == Quaternary::JUMP && old[i + 1].get_type() == Quaternary::LABEL && x.get_rhs() == old[i + 1].get_rhs()) {
                 continue;
             }
+            if (x.get_type() == Quaternary::COPY && i == last[x.get_dest()] && is_temp(x.get_dest())) {
+                continue;
+            }
             for (j = i + 1; j < n; ++j) {
                 const Quaternary &y = old[j];
                 // DP("[%s] v [%s] : \n", x.to_string().c_str(), y.to_string().c_str());
-                if (x.get_dest() == y.get_lhs() && y.get_type() == Quaternary::COPY && is_temp(x.get_dest()) && last[y.get_lhs()] == j) {
+                if (x.get_type() != Quaternary::CALL && x.get_dest() == y.get_lhs() && y.get_type() == Quaternary::COPY && is_temp(x.get_dest()) && last[y.get_lhs()] == j) {
                     // DP("True1\n");
-                    x = Quaternary(x.get_type(), y.get_dest(), x.get_lhs(), x.get_rhs());
+                    x = Quaternary(x.get_type(), y.get_dest(), x.get_lhs(), x.get_rhs(), x.get_block_id());
                     usd[j] = true;
                     still_good = true;
-                    // DP("[%s]\n", x.to_string().c_str());
+                    DP("[%s]\n", x.to_string().c_str());
                 } else if (x.get_type() == Quaternary::COPY && x.get_dest() == y.get_lhs() && is_temp(x.get_dest()) && last[y.get_lhs()] == j) {
                     // DP("True2\n");
                     usd[j] = true;
-                    x = Quaternary(y.get_type(), y.get_dest(), x.get_lhs(), y.get_rhs());
+                    x = Quaternary(y.get_type(), y.get_dest(), x.get_lhs(), y.get_rhs(), x.get_block_id());
                     still_good = true;
-                    // DP("[%s]\n", x.to_string().c_str());
+                    DP("[%s]\n", x.to_string().c_str());
                 } else if (x.get_type() == Quaternary::COPY && x.get_dest() == y.get_rhs() && is_temp(x.get_dest()) && last[y.get_rhs()] == j) {
                     // DP("True3\n");
                     usd[j] = true;
-                    x = Quaternary(y.get_type(), y.get_dest(), y.get_lhs(), x.get_lhs());
+                    x = Quaternary(y.get_type(), y.get_dest(), y.get_lhs(), x.get_lhs(), x.get_block_id());
                     still_good = true;
-                    // DP("[%s]\n", x.to_string().c_str());
+                    DP("[%s]\n", x.to_string().c_str());
                 } else {
                     // DP("False\n");
                     break;
@@ -390,6 +393,7 @@ namespace dyj {
             }
             irs.push_back(x);
         }
+
         return still_good;
     }
 
@@ -417,6 +421,14 @@ namespace dyj {
         Function *func = nullptr;
         int i;
         for (i = 0; i < n; ++i) {
+            Quaternary &ir = irs[i];
+            if (ir.get_type() == Quaternary::VAR) {
+                header.push_back(ir);
+            } else {
+                break;
+            }
+        }
+        for (; i < n; ++i) {
             Quaternary &ir = irs[i];
             DP("IR: %s\n", ir.to_string().c_str());
             if (ir.get_type() == Quaternary::ENTRY) {
@@ -460,6 +472,7 @@ namespace dyj {
     }
 
     void Inliner::apply_all(void) {
+        output.insert(output.end(), header.begin(), header.end());
         for (auto func : functions) {
             IrList new_irs;
             apply_inline(new_irs, func->body);
@@ -578,6 +591,7 @@ namespace dyj {
             output.push_back(ir);
         }
         output.emplace_back(Quaternary::END);
+        output.emplace_back(Quaternary::RETURN);
     }
 
 }

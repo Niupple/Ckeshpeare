@@ -1,0 +1,16 @@
+const char con_char_1 = 'a';
+const char con_char_2 = 'b';
+
+char glob_char_1;
+char glob_char_2;
+
+char testChar(char para_char_1) {
+	printf("testChar para_char_1: ", para_char_1);
+	return (para_char_1);
+}
+
+void main(){
+	char loc_char_1;
+	loc_char_1 = testChar('c');
+	printf("loc_char_1 = ", loc_char_1);
+}
