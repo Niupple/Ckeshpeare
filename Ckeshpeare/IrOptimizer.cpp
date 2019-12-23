@@ -548,6 +548,7 @@ namespace dyj {
                 output.emplace_back(Quaternary::JUMP, "", "", end_label);
                 break;
             case Quaternary::CALL:
+            case Quaternary::PRINTS:
                 output.push_back(ir);
                 break;
             default:

@@ -1,18 +1,50 @@
+0 ENTRY   
 0 BEGIN   
-1 LABEL   foo
-1 PLUS a@0 a@0 1
-1 SET_RETURN  a@0 
-1 RETURN   
-2 END   
-2 RETURN   
-3 ENTRY   
-3 BEGIN   
-3 COPY a@0 0 
-3 COPY __t9 a@0 
-3 CALL foo  
-3 GET_RETURN __t12  
-3 PLUS b@2 __t9 __t12
-3 PRINTI  b@2 
-3 PRINTS  \n 
-3 END   
-3 EXIT   
+0 NEGATE x3@0 5 
+0 NEGATE x7@1 6 
+0 NEGATE __t4 -10 
+0 PLUS __t4 __t4 -12
+0 COPY __t9 x3@0 
+0 TIME __t9 __t9 -7
+0 DIVIDE __t9 __t9 -8
+0 MINUS x4@0 __t4 __t9
+0 COPY __t15 -10 
+0 PLUS __t15 __t15 -12
+0 MINUS __t14 __t15 x3@0
+0 TIME __t14 __t14 -7
+0 DIVIDE __t14 __t14 -8
+0 NEGATE x8@1 __t14 
+0 COPY __t24 -10 
+0 PRINTS  x1:  
+0 PRINTI  __t24 
+0 PRINTS  \n 
+0 COPY __t27 -12 
+0 PRINTS  x2:  
+0 PRINTI  __t27 
+0 PRINTS  \n 
+0 COPY __t30 x3@0 
+0 PRINTS  x3:  
+0 PRINTI  __t30 
+0 PRINTS  \n 
+0 COPY __t33 x4@0 
+0 PRINTS  x4:  
+0 PRINTI  __t33 
+0 PRINTS  \n 
+0 COPY __t36 -7 
+0 PRINTS  x5:  
+0 PRINTI  __t36 
+0 PRINTS  \n 
+0 COPY __t39 -8 
+0 PRINTS  x6:  
+0 PRINTI  __t39 
+0 PRINTS  \n 
+0 COPY __t42 x7@1 
+0 PRINTS  x7:  
+0 PRINTI  __t42 
+0 PRINTS  \n 
+0 COPY __t45 x8@1 
+0 PRINTS  x8:  
+0 PRINTI  __t45 
+0 PRINTS  \n 
+0 END   
+0 EXIT   

@@ -1,12 +1,22 @@
-int a;
-int foo() {
-    a = a + 1;
-    return (a);
-}
+const int x1 = -10, x2 = -12;
+int x3, x4;
 
 void main() {
-    int b;
-    a = 0;
-    b = a + foo();
-    printf(b);
+    const int x5 = -7, x6 = -8;
+    int x7, x8;
+
+    x3=-5;
+    x7=-6;
+    
+    x4 = -x1 + x2 - x3 * x5 / x6;
+    x8 = -(x1 + x2 - x3) * x5 / x6;
+
+    printf("x1: ", x1);
+    printf("x2: ", x2);
+    printf("x3: ", x3);
+    printf("x4: ", x4);
+    printf("x5: ", x5);
+    printf("x6: ", x6);
+    printf("x7: ", x7);
+    printf("x8: ", x8);
 }

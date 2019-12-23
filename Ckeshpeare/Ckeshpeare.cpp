@@ -164,8 +164,8 @@ void codeGeneratingHomework() {
 
 // Optimizer switches
 #define IR_PEEKHOLE
-//#define BLADE_RUNNER
-//#define FUNCTION_INLINE
+// #define BLADE_RUNNER
+#define FUNCTION_INLINE
 
 void codeOptimizingHomework() {
     using namespace dyj;

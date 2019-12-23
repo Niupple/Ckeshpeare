@@ -1,38 +1,122 @@
 .data
-_smoothy_amazing_life: .space 4
-_red_dummy_tour: .asciiz "\n"
+_shinny_plastic_year: .space 4
+_pale_unique_ssd: .space 4
+_smoothy_amazing_earphone: .asciiz "\n"
+_blue_ugly_shirts: .asciiz "x1: "
+_yellow_boring_machine: .asciiz "x2: "
+_colorful_wonderful_year: .asciiz "x3: "
+_pink_weird_chinese: .asciiz "x4: "
+_colorful_freaking_thing: .asciiz "x5: "
+_shinny_civil_ssd: .asciiz "x6: "
+_colorful_pretty_chinese: .asciiz "x7: "
+_pink_good_looking_switch: .asciiz "x8: "
 .text
 jal __main__
 j __main_end__
-foo:
-lw $8 _smoothy_amazing_life($0)
-addiu $8 $8 1
-addu $2 $0 $8
-sw $8 _smoothy_amazing_life($0)
-jr $31
-jr $31
 __main__:
 addu $30 $29 $0
-li $8 0
-addu $9 $0 $8
-addu $17 $0 $9
-sw $29 -12($30)
-addiu $29 $30 -16
-sw $9 _smoothy_amazing_life($0)
-sw $31 0($29)
-addiu $30 $29 -4
-jal foo
-addiu $30 $29 16
-lw $31 0($29)
-lw $29 -12($30)
-addu $18 $0 $2
-addu $16 $17 $18
-addu $4 $0 $16
+li $8 5
+subu $9 $0 $8
+li $10 6
+subu $17 $0 $10
+li $11 -10
+subu $18 $0 $11
+addiu $18 $18 -12
+addu $16 $0 $9
+li $12 -7
+mul $16 $16 $12
+li $13 -8
+div $16 $16 $13
+subu $14 $18 $16
+addu $16 $0 $11
+addiu $16 $16 -12
+subu $18 $16 $9
+mul $18 $18 $12
+div $18 $18 $13
+subu $16 $0 $18
+addu $18 $0 $11
+ori $2 $0 4
+la $4 _blue_ugly_shirts
+syscall
+addu $4 $0 $18
 ori $2 $0 1
 syscall
 ori $2 $0 4
-la $4 _red_dummy_tour
+la $4 _smoothy_amazing_earphone
 syscall
+li $15 -12
+addu $18 $0 $15
+ori $2 $0 4
+la $4 _yellow_boring_machine
+syscall
+addu $4 $0 $18
+ori $2 $0 1
+syscall
+ori $2 $0 4
+la $4 _smoothy_amazing_earphone
+syscall
+addu $18 $0 $9
+ori $2 $0 4
+la $4 _colorful_wonderful_year
+syscall
+addu $4 $0 $18
+ori $2 $0 1
+syscall
+ori $2 $0 4
+la $4 _smoothy_amazing_earphone
+syscall
+addu $18 $0 $14
+ori $2 $0 4
+la $4 _pink_weird_chinese
+syscall
+addu $4 $0 $18
+ori $2 $0 1
+syscall
+ori $2 $0 4
+la $4 _smoothy_amazing_earphone
+syscall
+addu $18 $0 $12
+ori $2 $0 4
+la $4 _colorful_freaking_thing
+syscall
+addu $4 $0 $18
+ori $2 $0 1
+syscall
+ori $2 $0 4
+la $4 _smoothy_amazing_earphone
+syscall
+addu $18 $0 $13
+ori $2 $0 4
+la $4 _shinny_civil_ssd
+syscall
+addu $4 $0 $18
+ori $2 $0 1
+syscall
+ori $2 $0 4
+la $4 _smoothy_amazing_earphone
+syscall
+addu $18 $0 $17
+ori $2 $0 4
+la $4 _colorful_pretty_chinese
+syscall
+addu $4 $0 $18
+ori $2 $0 1
+syscall
+ori $2 $0 4
+la $4 _smoothy_amazing_earphone
+syscall
+addu $17 $0 $16
+ori $2 $0 4
+la $4 _pink_good_looking_switch
+syscall
+addu $4 $0 $17
+ori $2 $0 1
+syscall
+ori $2 $0 4
+la $4 _smoothy_amazing_earphone
+syscall
+sw $9 _shinny_plastic_year($0)
+sw $14 _pale_unique_ssd($0)
 __main_end__:
 ori $2 $0 10
 syscall
