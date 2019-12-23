@@ -388,7 +388,9 @@ namespace dyj {
 
     void MipsGenerator::add_edge(const std::string &a, const std::string &b) {
         DP("add_edge(%s, %s)\n", a.c_str(), b.c_str());
-        if (a != b) {
+        if (is_global(a) || is_global(b)) {
+            return;
+        } else if (a != b) {
             edges[a].push_back(b);
             ++degs[a];
         } else {
@@ -491,7 +493,7 @@ namespace dyj {
                 std::string replaced = opt_find_replaced(cur_block, on_hold);
                 Mips::Registers reg = var_to_reg.at(replaced);
                 DP("%d : %s -> %s\n", (int)reg, replaced.c_str(), name.c_str());
-                if (reg_to_dirty[reg] && living_out[cur_block].count(replaced) > 0) {
+                if (reg_to_dirty[reg] && still_alive(replaced) > 0) {
                     store(reg, replaced);
                 }
                 reg_to_dirty[reg] = write;
@@ -521,11 +523,23 @@ namespace dyj {
         for (auto &p : reg_to_dirty) {
             auto &name = reg_to_var.at(p.first);
             auto &dirty = p.second;
-            if (dirty && still_alive(name)) {
+            if (dirty && (is_global(name) || still_alive(name))) {
                 store(p.first, name);
             }
         }
         reg_to_dirty.clear();
+    }
+
+    void MipsGenerator::dump_global(const std::string &name) {
+        if (is_global(name)) {
+            Mips::Registers reg = var_to_reg.at(name);
+            if (reg_to_dirty.at(reg)) {
+                store(reg, name);
+            }
+            var_to_reg.erase(name);
+            reg_to_dirty.erase(reg);
+            reg_to_var.erase(reg);
+        }
     }
 
     void MipsGenerator::clear_reginfo(void) {
@@ -587,7 +601,7 @@ namespace dyj {
             int addr;
             if (local_name_to_pos.find(arr) != local_name_to_pos.end()) {
                 idx = local_name_to_pos.at(arr);
-                addr = idx_to_addr(idx);
+                addr = idx_to_addr(idx) - bytes[idx] + 4;
                 mips.push_back(Mips::sll(Mips::K0, aid, "2"));
                 mips.push_back(Mips::addu(Mips::GP, Mips::FP, Mips::K0));
                 mips.push_back(Mips::lw(dst, Mips::GP, std::to_string(addr)));
@@ -640,7 +654,7 @@ namespace dyj {
             int addr;
             if (local_name_to_pos.find(arr) != local_name_to_pos.end()) {
                 idx = local_name_to_pos.at(arr);
-                addr = idx_to_addr(idx);
+                addr = idx_to_addr(idx) - bytes[idx] + 4;
                 mips.push_back(Mips::sll(Mips::K0, aid, "2"));
                 mips.push_back(Mips::addu(Mips::GP, Mips::FP, Mips::K0));
                 mips.push_back(Mips::sw(src, Mips::GP, std::to_string(addr)));

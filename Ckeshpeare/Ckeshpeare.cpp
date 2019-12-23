@@ -165,7 +165,7 @@ void codeGeneratingHomework() {
 // Optimizer switches
 #define IR_PEEKHOLE
 //#define BLADE_RUNNER
-#define FUNCTION_INLINE
+//#define FUNCTION_INLINE
 
 void codeOptimizingHomework() {
     using namespace dyj;
@@ -201,7 +201,7 @@ void codeOptimizingHomework() {
     Symbol *tree = parser.parse();
 
     for (auto e : dyj::rerr) {
-        //std::cout << e->to_string() << std::endl;
+        std::cout << e->to_string() << std::endl;
     }
     if (!dyj::rerr.empty()) {
         return;
@@ -227,6 +227,11 @@ void codeOptimizingHomework() {
     irs = inliner.dump();
 #endif
 
+#ifdef IR_PEEKHOLE
+    while (ir_peek_hole(irs)) {
+        DP("ONE MORE TIME\n");
+    }
+#endif
 
     FlowGraph fg;
     fg.load_and_cut(irs);
@@ -235,11 +240,6 @@ void codeOptimizingHomework() {
 
     irs = fg.dump();
 
-#ifdef IR_PEEKHOLE
-    while (ir_peek_hole(irs)) {
-        DP("ONE MORE TIME\n");
-    }
-#endif
 
 #ifdef BLADE_RUNNER
     BladeRunner br(irs);

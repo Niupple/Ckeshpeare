@@ -1,259 +1,38 @@
 .data
-_red_boring_trousers: .asciiz "--------Test const in different areas--------"
-_stylish_imperialist_switch: .asciiz "--------Test finished--------"
-_blue_interesting_trip: .asciiz "--------Test var--------"
-_colorful_amazing_calendar: .asciiz "The function's Num1 is : "
-_shinny_civil_machine: .asciiz "The global Num1 is : "
-_pink_unique_pants: .asciiz "The local Num1 is : "
-_colored_amazing_week: .asciiz "The testCh is : "
-_pink_imperialist_year: .asciiz "The testch is : "
-_red_stink_calendar: .asciiz "\n"
+_smoothy_amazing_life: .space 4
+_red_dummy_tour: .asciiz "\n"
 .text
 jal __main__
 j __main_end__
+foo:
+lw $8 _smoothy_amazing_life($0)
+addiu $8 $8 1
+addu $2 $0 $8
+sw $8 _smoothy_amazing_life($0)
+jr $31
+jr $31
 __main__:
 addu $30 $29 $0
 li $8 0
-addu $17 $0 $8
-_stylish_freaking_ps4:
-li $8 10
-slt $16 $17 $8
-beq $16 $0 _shinny_imperialist_computer
-li $8 0
-sll $26 $17 2
-addu $28 $30 $26
-sw $8 0($28)
-sll $26 $17 2
-addu $28 $30 $26
-sw $8 -40($28)
-addiu $17 $17 1
-j _stylish_freaking_ps4
-_shinny_imperialist_computer:
-ori $2 $0 4
-la $4 _red_boring_trousers
-syscall
-ori $2 $0 4
-la $4 _red_stink_calendar
-syscall
-li $8 100
-addu $16 $0 $8
-ori $2 $0 4
-la $4 _pink_unique_pants
-syscall
-addu $4 $0 $16
-ori $2 $0 1
-syscall
-ori $2 $0 4
-la $4 _red_stink_calendar
-syscall
-li $9 1024
-addu $2 $0 $9
-_kinky_pretty_year:
+addu $9 $0 $8
+addu $17 $0 $9
+sw $29 -12($30)
+addiu $29 $30 -16
+sw $9 _smoothy_amazing_life($0)
+sw $31 0($29)
+addiu $30 $29 -4
+jal foo
+addiu $30 $29 16
+lw $31 0($29)
+lw $29 -12($30)
 addu $18 $0 $2
-addiu $18 $18 100
-subiu $18 $18 100
-ori $2 $0 4
-la $4 _shinny_civil_machine
-syscall
-addu $4 $0 $18
-ori $2 $0 1
-syscall
-ori $2 $0 4
-la $4 _red_stink_calendar
-syscall
-li $8 +0
-addu $2 $0 $8
-_pink_beautiful_thing:
-addu $18 $0 $2
-addiu $18 $18 100
-subiu $18 $18 100
-ori $2 $0 4
-la $4 _colorful_amazing_calendar
-syscall
-addu $4 $0 $18
-ori $2 $0 1
-syscall
-ori $2 $0 4
-la $4 _red_stink_calendar
-syscall
-ori $2 $0 4
-la $4 _stylish_imperialist_switch
-syscall
-ori $2 $0 4
-la $4 _red_stink_calendar
-syscall
-ori $2 $0 12
-syscall
-addu $16 $0 $2
-ori $2 $0 4
-la $4 _blue_interesting_trip
-syscall
-ori $2 $0 4
-la $4 _red_stink_calendar
-syscall
-addu $17 $0 $16
-ori $2 $0 4
-la $4 _pink_imperialist_year
-syscall
-addu $4 $0 $17
-ori $2 $0 11
-syscall
-ori $2 $0 4
-la $4 _red_stink_calendar
-syscall
-ori $2 $0 12
-syscall
-addu $16 $0 $2
-addu $2 $0 $16
-_red_stink_day:
-addu $16 $0 $2
-ori $2 $0 4
-la $4 _colored_amazing_week
-syscall
-addu $4 $0 $16
-ori $2 $0 11
-syscall
-ori $2 $0 4
-la $4 _red_stink_calendar
-syscall
-ori $2 $0 4
-la $4 _stylish_imperialist_switch
-syscall
-ori $2 $0 4
-la $4 _red_stink_calendar
-syscall
-li $8 0
-li $9 1
-sll $26 $8 2
-addu $28 $30 $26
-sw $9 0($28)
-li $10 2
-sll $26 $9 2
-addu $28 $30 $26
-sw $10 -40($28)
-li $11 3
-sll $26 $10 2
-addu $28 $30 $26
-sw $11 0($28)
-li $12 4
-sll $26 $11 2
-addu $28 $30 $26
-sw $12 -40($28)
-li $13 5
-sll $26 $12 2
-addu $28 $30 $26
-sw $13 0($28)
-li $14 6
-sll $26 $13 2
-addu $28 $30 $26
-sw $14 -40($28)
-sll $26 $12 2
-addu $28 $30 $26
-lw $16 0($28)
-sll $26 $16 2
-addu $28 $30 $26
-lw $18 -40($28)
-li $15 7
-sll $26 $18 2
-addu $28 $30 $26
-sw $15 0($28)
-sll $26 $10 2
-addu $28 $30 $26
-lw $18 0($28)
-sll $26 $18 2
-addu $28 $30 $26
-lw $16 -40($28)
-sll $26 $16 2
-addu $28 $30 $26
-lw $17 0($28)
-sll $26 $17 2
-addu $28 $30 $26
-lw $16 -40($28)
-sll $26 $16 2
-addu $28 $30 $26
-lw $17 0($28)
-sll $26 $10 2
-addu $28 $30 $26
-lw $16 0($28)
-sll $26 $16 2
-addu $28 $30 $26
-lw $18 -40($28)
-sll $26 $18 2
-addu $28 $30 $26
-lw $16 0($28)
-sll $26 $16 2
-addu $28 $30 $26
-lw $18 -40($28)
-sll $26 $18 2
-addu $28 $30 $26
-lw $16 0($28)
-sll $26 $10 2
-addu $28 $30 $26
-lw $18 0($28)
-sll $26 $18 2
-addu $28 $30 $26
-lw $19 -40($28)
-sll $26 $19 2
-addu $28 $30 $26
-lw $18 0($28)
-sll $26 $18 2
-addu $28 $30 $26
-lw $18 -40($28)
-addu $16 $16 $18
-sll $26 $17 2
-addu $28 $30 $26
-sw $16 -40($28)
-addu $19 $0 $12
-addu $18 $0 $9
-addu $17 $0 $14
-addu $16 $0 $13
-subu $21 $0 $9
-addu $20 $0 $9
-mul $20 $20 $9
-addu $21 $21 $20
-addiu $21 $21 1
-sll $26 $21 2
-addu $28 $30 $26
-lw $21 -40($28)
-addu $16 $16 $21
-subiu $16 $16 5
-sll $26 $16 2
-addu $28 $30 $26
-lw $20 0($28)
-mul $17 $17 $20
-div $17 $17 $10
-div $16 $17 $11
-sll $26 $16 2
-addu $28 $30 $26
-lw $17 -40($28)
-mul $16 $18 $17
-sll $26 $16 2
-addu $28 $30 $26
-lw $16 0($28)
-addu $19 $19 $16
-sll $26 $10 2
-addu $28 $30 $26
-lw $16 0($28)
-sll $26 $16 2
-addu $28 $30 $26
-lw $16 -40($28)
-subu $19 $19 $16
-sll $26 $19 2
-addu $28 $30 $26
-lw $16 -40($28)
-sll $26 $16 2
-addu $28 $30 $26
-lw $17 0($28)
-sll $26 $17 2
-addu $28 $30 $26
-lw $16 -40($28)
+addu $16 $17 $18
 addu $4 $0 $16
 ori $2 $0 1
 syscall
 ori $2 $0 4
-la $4 _red_stink_calendar
+la $4 _red_dummy_tour
 syscall
-jr $31
 __main_end__:
 ori $2 $0 10
 syscall

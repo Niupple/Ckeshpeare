@@ -60,7 +60,8 @@ namespace dyj {
         reg_triple def_use(const std::string &def, const std::string &lhs = "", const std::string &rhs = "", bool write_1 = true, bool write_2 = false, bool write_3 = false);
         std::string opt_find_replaced(int cur_block, const std::set<std::string> &on_hold);
         bool still_alive(const std::string &name);
-        void dump_live_dirty();
+        void dump_live_dirty(void);
+        void dump_global(const std::string &name);
         void clear_reginfo(void);
         void register_local_variable(const std::string &var, size_t size = 4);
         void load(Mips::Registers reg, const std::string &name);

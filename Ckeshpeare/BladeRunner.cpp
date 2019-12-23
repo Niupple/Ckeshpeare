@@ -26,6 +26,8 @@ namespace dyj {
                 return false;
             } else if (ir.get_type() == Quaternary::ENTRY) {
                 entry = i;
+            } else if (ir.get_type() == Quaternary::EXIT) {
+                exit = i;
             } else if (ir.get_type() == Quaternary::LABEL) {
                 labels[ir.get_rhs()] = i;
             }
@@ -100,7 +102,7 @@ namespace dyj {
             case Quaternary::VAR:
                 break;
             case Quaternary::ENTRY:
-                push_layer(-1);
+                push_layer(exit - 1);
                 break;
             case Quaternary::ARGUMENT:
                 push_arg(use(lhs));

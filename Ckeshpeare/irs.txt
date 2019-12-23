@@ -1,109 +1,18 @@
-0 ENTRY   
 0 BEGIN   
-0 VAR str@4 40 
-0 VAR abc@4 40 
-0 COPY i@4 0 
-1 LABEL   _stylish_freaking_ps4
-1 LESS __t16 i@4 10
-1 JUMP_UNLESS  __t16 _shinny_imperialist_computer
-2 ELEMENT str@4 i@4 0
-2 ELEMENT abc@4 i@4 0
-2 PLUS i@4 i@4 1
-2 JUMP   _stylish_freaking_ps4
-3 LABEL   _shinny_imperialist_computer
-3 PRINTS  --------Test const in different areas-------- 
+1 LABEL   foo
+1 PLUS a@0 a@0 1
+1 SET_RETURN  a@0 
+1 RETURN   
+2 END   
+2 RETURN   
+3 ENTRY   
+3 BEGIN   
+3 COPY a@0 0 
+3 COPY __t9 a@0 
+3 CALL foo  
+3 GET_RETURN __t12  
+3 PLUS b@2 __t9 __t12
+3 PRINTI  b@2 
 3 PRINTS  \n 
-3 COPY __t31 100 
-3 PRINTS  The local Num1 is :  
-3 PRINTI  __t31 
-3 PRINTS  \n 
-3 SET_RETURN  1024 
-4 LABEL   _kinky_pretty_year
-4 GET_RETURN __t34  
-4 PLUS __t34 __t34 100
-4 MINUS __t34 __t34 100
-4 PRINTS  The global Num1 is :  
-4 PRINTI  __t34 
-4 PRINTS  \n 
-4 SET_RETURN  +0 
-5 LABEL   _pink_beautiful_thing
-5 GET_RETURN __t41  
-5 PLUS __t41 __t41 100
-5 MINUS __t41 __t41 100
-5 PRINTS  The function's Num1 is :  
-5 PRINTI  __t41 
-5 PRINTS  \n 
-5 PRINTS  --------Test finished-------- 
-5 PRINTS  \n 
-5 READC testch@4  
-5 PRINTS  --------Test var-------- 
-5 PRINTS  \n 
-5 COPY __t48 testch@4 
-5 PRINTS  The testch is :  
-5 PRINTC  __t48 
-5 PRINTS  \n 
-5 READC testCh@0  
-5 SET_RETURN  testCh@0 
-6 LABEL   _red_stink_day
-6 GET_RETURN __t51  
-6 PRINTS  The testCh is :  
-6 PRINTC  __t51 
-6 PRINTS  \n 
-6 PRINTS  --------Test finished-------- 
-6 PRINTS  \n 
-6 ELEMENT str@4 0 1
-6 ELEMENT abc@4 1 2
-6 ELEMENT str@4 2 3
-6 ELEMENT abc@4 3 4
-6 ELEMENT str@4 4 5
-6 ELEMENT abc@4 5 6
-6 INDEX __t81 str@4 4
-6 INDEX __t78 abc@4 __t81
-6 ELEMENT str@4 __t78 7
-6 INDEX __t100 str@4 2
-6 INDEX __t97 abc@4 __t100
-6 INDEX __t94 str@4 __t97
-6 INDEX __t91 abc@4 __t94
-6 INDEX __t88 str@4 __t91
-6 INDEX __t117 str@4 2
-6 INDEX __t114 abc@4 __t117
-6 INDEX __t111 str@4 __t114
-6 INDEX __t108 abc@4 __t111
-6 INDEX __t105 str@4 __t108
-6 INDEX __t130 str@4 2
-6 INDEX __t127 abc@4 __t130
-6 INDEX __t124 str@4 __t127
-6 INDEX __t122 abc@4 __t124
-6 PLUS __t105 __t105 __t122
-6 ELEMENT abc@4 __t88 __t105
-6 COPY __t144 4 
-6 COPY __t149 1 
-6 COPY __t152 6 
-6 COPY __t154 5 
-6 NEGATE __t158 1 
-6 COPY __t160 1 
-6 TIME __t160 __t160 1
-6 PLUS __t158 __t158 __t160
-6 PLUS __t158 __t158 1
-6 INDEX __t156 abc@4 __t158
-6 PLUS __t154 __t154 __t156
-6 MINUS __t154 __t154 5
-6 INDEX __t153 str@4 __t154
-6 TIME __t152 __t152 __t153
-6 DIVIDE __t152 __t152 2
-6 DIVIDE __t151 __t152 3
-6 INDEX __t150 abc@4 __t151
-6 TIME __t148 __t149 __t150
-6 INDEX __t146 str@4 __t148
-6 PLUS __t144 __t144 __t146
-6 INDEX __t165 str@4 2
-6 INDEX __t163 abc@4 __t165
-6 MINUS __t144 __t144 __t163
-6 INDEX __t141 abc@4 __t144
-6 INDEX __t138 str@4 __t141
-6 INDEX __t135 abc@4 __t138
-6 PRINTI  __t135 
-6 PRINTS  \n 
-6 RETURN   
-7 END   
-7 EXIT   
+3 END   
+3 EXIT   

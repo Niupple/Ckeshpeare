@@ -32,7 +32,7 @@ namespace dyj {
     private:
         const IrList &irs;
         IrList outs;
-        size_t entry;
+        size_t entry, exit;
         size_t pc;
         std::queue<int> args;
         int ret;

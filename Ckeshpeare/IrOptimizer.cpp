@@ -129,6 +129,7 @@ namespace dyj {
         bool flag = true;
         while (flag) {
             flag = false;
+            DP("one more time!\n");
             for (auto i = blocks.rbegin(); i != blocks.rend(); ++i) {
                 CodeBlock *block = *i;
                 auto &out = out_living[block];
@@ -284,6 +285,7 @@ namespace dyj {
     }
 
     void FlowGraph::dfs(CodeBlock *block, size_t id, const std::string &var) {
+        DP("dfs at (%p, %u, %s)\n", block, (unsigned)id, var.c_str());
         for (size_t i = id; i < block->irs.size(); ++i) {
             if (!visit(block, i)) {
                 return;

@@ -92,6 +92,7 @@ void main() {
     int cal; 
     char outch, underline; 
     int toPrinti; 
+	outch = 0;
     printf("\n"); 
     if(cal){ 
         printf("input cal != 0, cal = ", cal); 

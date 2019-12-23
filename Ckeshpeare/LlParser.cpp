@@ -847,10 +847,10 @@ namespace dyj {
             }
             GET(Token::ASSIGN);
             TAKE(parse_expression, rhs, rvar);
-            if (lhs != rhs) {
+            /*if (lhs != rhs) {
                 DP("???mismatched types");
                 rerr.push_back(new Error(Error::UNKNOWN_ERROR, s->get_token()->get_location()));
-            }
+            }*/
             buffer.emplace_back(Quaternary::ELEMENT, name, temp, rvar);
         } else {
             GET(Token::IDENFR);
@@ -870,10 +870,10 @@ namespace dyj {
             }
             GET(Token::ASSIGN);
             TAKE(parse_expression, rhs, rvar);
-            if (lhs != rhs) {
+            /*if (lhs != rhs) {
                 DP("mismatched types");
                 rerr.push_back(new Error(Error::UNKNOWN_ERROR, s->get_token()->get_location()));
-            }
+            }*/
             buffer.emplace_back(Quaternary::COPY, name, rvar);
         }
 
@@ -1048,8 +1048,10 @@ namespace dyj {
         if (!fh) {
             rerr.push_back(new Error(Error::UNDEFINED, t->get_location()));
         } else if (fh->get_calculation() == FullHouse::VOID) {
+            DP("void is called");
             rerr.push_back(new Error(Error::UNKNOWN_ERROR, t->get_location()));
         } else if (fh->get_behavior() != FullHouse::FUNCTION) {
+            DP("not a function is called");
             rerr.push_back(new Error(Error::UNKNOWN_ERROR, t->get_location()));
         }
         GET(Token::LPARENT);
@@ -1217,6 +1219,7 @@ namespace dyj {
             } else if (fh->get_constant() == FullHouse::CONST) {
                 rerr.push_back(new Error(Error::CONST_DISCARD, t->get_location()));
             } else if (fh->get_behavior() != FullHouse::VARIABLE) {
+                DP("Not a variable");
                 rerr.push_back(new Error(Error::UNKNOWN_ERROR, t->get_location()));
             } else {
                 if (fh->get_calculation() == FullHouse::INT) {

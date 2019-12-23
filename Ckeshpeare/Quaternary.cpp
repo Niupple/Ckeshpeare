@@ -92,6 +92,7 @@ namespace dyj {
         case SET_RETURN:
         case PRINTI:
         case PRINTC:
+        case ARGUMENT:
             return { lhs };
         case INDEX:
         case PRINTF:
@@ -102,7 +103,6 @@ namespace dyj {
         case VAR:
         case JUMP:
         case LABEL:
-        case ARGUMENT:
         case CALL:
         case ENTRY:
         case EXIT:
